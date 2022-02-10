@@ -1,3 +1,3 @@
 # Team_6_Studio_Frogs
-Ashley Nguyen
-Griffin Knock
+https://dnaccarato22.github.io/Star-Compose/
+Dawson Naccarato | Jason Davidoff | Ashley Nguyen | Griffin Knock

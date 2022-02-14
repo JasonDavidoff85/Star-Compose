@@ -34,15 +34,15 @@ img {
 
 </style>
 <div style="margin-left: 10px;">
-	<button type="button" class="btn btn-primary" onclick="addAnimate()"> play </button>
+	<button type="button" class="btn btn-primary" onclick="addAnimatePlay()"> Play </button>
+	<button type="button" class="btn btn-primary" onclick="addAnimateStop()"> Restart </button>
 </div>
 <body style="background-color: black;">
 	<svg id="starLine" height="560" width="100">
   		<line x1="50" y1="0" x2="50" y2="575" style="stroke:rgb(0,255,0);stroke-width:2"/>
 	</svg>
 	
-	<img class="moveable" src="orion.png">
-				<!-- <img src="cancer.png"> -->
+	<img class="moveable" src="orion.png">		
 
 <script>
 //Make the DIV element draggagle:
@@ -96,9 +96,14 @@ function dragElement(elmnt) {
 </script>
 
 <script>
-	function addAnimate() {
+	function addAnimatePlay() {
 		var elem = document.getElementById("starLine");
 		elem.classList.add("animated");
+	}
+
+	function addAnimateStop() {
+		var elem = document.getElementById("starLine");
+		elem.classList.remove("animated");
 	}
 </script>
 

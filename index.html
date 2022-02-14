@@ -9,7 +9,7 @@
 .animated {
   position: relative;
   animation-name: example;
-  animation-duration: 20s;
+  animation-duration: 30s;
   animation-timing-function: linear;
   z-index: 9;
 }
@@ -60,10 +60,18 @@ function dragElement(elmnt, index) {
 
   if (e) {
     /* if present, the header is where you move the DIV from:*/
-    if (index%2 == 0) {
-      e.style.top = (elmnt.offsetLeft + 100*index) + "px";
+    // Hardcoded positioning for demo audio file
+    if (index == 0) {
+      e.style.top = (elmnt.offsetLeft + 200) + "px";
+      e.style.left = (elmnt.offsetLeft + 400) + "px";
+    } else if (index == 1) {
+      e.style.top = (elmnt.offsetLeft + 75) + "px";
+      e.style.left = (elmnt.offsetLeft + 745) + "px";
+    } else if (index == 2) {
+      e.style.top = (elmnt.offsetLeft + 150) + "px";
+      e.style.left = (elmnt.offsetLeft + 1040) + "px";
     }
-    e.style.left = (elmnt.offsetLeft + 300*index) + "px";
+    
     e.onmousedown = dragMouseDown;
   } else {
     /* otherwise, move the DIV from anywhere inside the DIV:*/
@@ -104,14 +112,18 @@ function dragElement(elmnt, index) {
 </script>
 
 <script>
+  var audio = new Audio("ambient-demo.wav");
+
 	function addAnimatePlay() {
 		var elem = document.getElementById("starLine");
 		elem.classList.add("animated");
+    audio.play();
 	}
 
 	function addAnimateStop() {
 		var elem = document.getElementById("starLine");
 		elem.classList.remove("animated");
+    audio.stop(); // This doesn't work
 	}
 </script>
 

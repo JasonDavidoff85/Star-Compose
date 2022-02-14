@@ -28,7 +28,7 @@ img {
 
 @keyframes example {
   from {left: 0;}
-  to {left: 100%;}
+  to {left: 80%;}
 }
 
 
@@ -42,21 +42,29 @@ img {
   		<line x1="50" y1="0" x2="50" y2="575" style="stroke:rgb(0,255,0);stroke-width:2"/>
 	</svg>
 	
-	<img class="moveable" src="orion.png">		
+	<img class="moveable" src="orion.png">
+  <img class="moveable" src="zodiac.jpg">
+  <img class="moveable" src="taurus.jpg">
 
 <script>
 //Make the DIV element draggagle:
 var mydivs = document.getElementsByClassName("moveable");
 console.log("my divs: ", mydivs);
 for (var i = 0 ; i < mydivs.length; i++) {
-	dragElement(mydivs[i]);
+	dragElement(mydivs[i], i);
 }
 
-function dragElement(elmnt) {
+function dragElement(elmnt, index) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (document.getElementsByClassName("moveable")[0]) {
+  var e = document.getElementsByClassName("moveable")[index];
+
+  if (e) {
     /* if present, the header is where you move the DIV from:*/
-    document.getElementsByClassName("moveable")[0].onmousedown = dragMouseDown;
+    if (index%2 == 0) {
+      e.style.top = (elmnt.offsetLeft + 100*index) + "px";
+    }
+    e.style.left = (elmnt.offsetLeft + 300*index) + "px";
+    e.onmousedown = dragMouseDown;
   } else {
     /* otherwise, move the DIV from anywhere inside the DIV:*/
     elmnt.onmousedown = dragMouseDown;

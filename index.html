@@ -62,14 +62,20 @@ function dragElement(elmnt, index) {
     /* if present, the header is where you move the DIV from:*/
     // Hardcoded positioning for demo audio file
     if (index == 0) {
-      e.style.top = (elmnt.offsetLeft + 200) + "px";
-      e.style.left = (elmnt.offsetLeft + 400) + "px";
+      // e.style.top = (elmnt.offsetLeft + 200) + "px";
+      // e.style.left = (elmnt.offsetLeft + 400) + "px";
+      e.style.top = "35%";
+      e.style.left = "26%";
     } else if (index == 1) {
-      e.style.top = (elmnt.offsetLeft + 75) + "px";
-      e.style.left = (elmnt.offsetLeft + 745) + "px";
+      // e.style.top = (elmnt.offsetLeft + 75) + "px";
+      // e.style.left = (elmnt.offsetLeft + 745) + "px";
+      e.style.top = "20%";
+      e.style.left = "44%";
     } else if (index == 2) {
-      e.style.top = (elmnt.offsetLeft + 150) + "px";
-      e.style.left = (elmnt.offsetLeft + 1040) + "px";
+      // e.style.top = (elmnt.offsetLeft + 150) + "px";
+      // e.style.left = (elmnt.offsetLeft + 1040) + "px";
+      e.style.top = "30%";
+      e.style.left = "60%";
     }
     
     e.onmousedown = dragMouseDown;

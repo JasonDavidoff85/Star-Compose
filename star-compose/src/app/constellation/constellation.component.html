@@ -1,3 +1,22 @@
-<div class="example-box" cdkDrag>
-    Drag me around
+
+<div class="star-box" cdkDragBoundary=".example-boundary" cdkDrag>
+    
+    <svg class="boundary" height="200" width="200">
+        <circle cx="50" cy="20" r="5" fill="white"/>
+        <circle cx="75" cy="90" r="5" fill="white"/>
+        <circle cx="90" cy="120" r="5" fill="white"/>
+        <circle cx="60" cy="190" r="5" fill="white"/>
+        <circle cx="180" cy="170" r="5" fill="white"/>
+        <line x1="50" y1="20" x2="75" y2="90" style="stroke:rgb(255, 255, 255);stroke-width:2" />
+        <line x1="75" y1="90" x2="90" y2="120" style="stroke:rgb(255, 255, 255);stroke-width:2" />
+        <line x1="90" y1="120" x2="60" y2="190" style="stroke:rgb(255, 255, 255);stroke-width:2" />
+        <line x1="90" y1="120" x2="180" y2="170" style="stroke:rgb(255, 255, 255);stroke-width:2" />
+    </svg>
+
+    <div class="options">
+        <mat-icon class="drag-icon" cdkDragHandle>open_with</mat-icon>
+        <mat-icon class="rotate-icon">rotate_90_degrees_ccw</mat-icon>
+    </div>
+    
 </div>
+

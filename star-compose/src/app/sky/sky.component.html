@@ -2,5 +2,6 @@
     <mat-button-toggle value="bold">
         <mat-icon aria-hidden="false" aria-label="view constellations">star</mat-icon>
     </mat-button-toggle>
-    <app-constellation></app-constellation>
+
+    <app-constellation *ngFor="let i of constellations" [aConst]="i"></app-constellation>
 </div>

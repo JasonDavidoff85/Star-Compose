@@ -1,6 +1,7 @@
 import { Component, OnInit, Attribute, Input } from '@angular/core';
 import { Constellation } from "../_models/constellation.model"
 import { Star } from "../_models/star.model"
+import {DragDropModule, DragRef, Point} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-constellation',
@@ -9,7 +10,6 @@ import { Star } from "../_models/star.model"
 })
 export class ConstellationComponent implements OnInit {
 
-  RADIUS:number = 10;
   @Input() aConst!:Constellation;
   constructor() {}
 
@@ -19,26 +19,12 @@ export class ConstellationComponent implements OnInit {
     return elem.content.firstChild;
   }
 
-  // drawStar() { 
-  //   let boundary = this.htmlToElement('<div class="star-box" cdkDragBoundary=".example-boundary" cdkDrag>');
-  //   let svg = document.createElement('svg');
-  //   svg.classList.add('boundary');
-  //   svg.setAttribute('height', this.cancer.height.toString());
-  //   svg.setAttribute('width', this.cancer.width.toString());
-  //   for (let i = 0 ; i < this.cancer.stars.length ; i++) {
-  //     let star = document.createElement('circle');
-  //     star.setAttribute('cx', (this.cancer.stars[i].getX()).toString());
-  //     star.setAttribute('cy', (this.cancer.stars[i].getY()).toString());
-  //     star.setAttribute('r', this.RADIUS.toString());
-  //     star.setAttribute('fill', 'white');
-  //     svg.appendChild(star);
-  //   }
-  //   if (boundary) {
-  //     boundary.appendChild(svg);
-  //     const final = document.getElementById('stars');
-  //     if (final) final.appendChild(boundary);
-  //   }
-  // }
+  computeDragRenderPos(pos: Point, dragRef:DragRef<any>) {
+    return {
+      x: Math.floor(pos.x / 5) * 5,
+      y: Math.floor(pos.y / 5) * 5
+    }; // will render the element every 30 pixels horizontally
+  }
 
   ngOnInit(): void {
   }

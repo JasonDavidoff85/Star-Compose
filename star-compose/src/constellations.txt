@@ -378,3 +378,63 @@ aquarius: Constellation = {
       new Connection(130,59,145,33),
     ],
   };
+
+andromeda: Constellation = {
+    height: 200,
+    width: 230,
+    name: "Andromeda",
+    stars: [
+      new Star(210,30),
+      new Star(180,25),
+      new Star(145,49),
+      new Star(150,72),
+      new Star(125,80),
+      new Star(118,100),
+      new Star(170,110),
+      new Star(109,45),
+      new Star(100,68),
+      new Star(85,86),
+      new Star(90,20),
+      new Star(70, 15),
+      new Star(120,120),
+      new Star(66,56),
+      new Star(110,150),
+      new Star(80,155),
+      new Star(34,34)
+    ],
+    connections: [
+      new Connection(34,34,66,56),
+      new Connection(66,56,85,86),
+      new Connection(110,150,120,120),
+      new Connection(120,120,118,100),
+      new Connection(85,86,118,100),
+      new Connection(118,100,125,80),
+      new Connection(125,80,150,72),
+      new Connection(85,86,100,68),
+      new Connection(100,68,109,45),
+      new Connection(109,45,90,20),
+      new Connection(150,72,145,49),
+      new Connection(145,49,180,25),
+      new Connection(90,20,70,15),
+      new Connection(118,100,170,110),
+      new Connection(110,150,80,155),
+      new Connection(210,30,180,25)
+    ],
+  };
+
+  antlia: Constellation = {
+    height: 140,
+    width: 160,
+    name: "Antlia",
+    stars: [
+      new Star(106,24),
+      new Star(129,74),
+      new Star(33,80),
+      new Star(60,40),
+    ],
+    connections: [
+      new Connection(106,24,129,74),
+      new Connection(106,24,60,40),
+      new Connection(60,40,33,80)
+    ],
+  };

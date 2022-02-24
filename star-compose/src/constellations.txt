@@ -155,7 +155,7 @@ aquarius: Constellation = {
     ],
     connections: [
       new Connection(34,120,60,93),
-      new Connection(60,93,66,121),
+      new Connection(60,93,105,73),
       new Connection(34,120,66,121),
       new Connection(66,121,127,108),
       new Connection(127,108,120,84),
@@ -436,5 +436,214 @@ andromeda: Constellation = {
       new Connection(106,24,129,74),
       new Connection(106,24,60,40),
       new Connection(60,40,33,80)
+    ],
+  };
+
+  apus: Constellation = {
+    height: 200,
+    width: 200,
+    name: "Apus",
+    stars: [
+      new Star(150,75), 
+      new Star(170,105),
+      new Star(160,135),
+      new Star(65,50), 
+      new Star(20,20), 
+      new Star(40,60)
+    ],
+    connections: [
+      new Connection(150,75,65,50),
+      new Connection(65,50,40,60),
+      new Connection(40,60,20,20),
+      new Connection(150,75,170,105),
+      new Connection(170,105,160,135)
+    ],
+  };
+
+  aquila: Constellation = {
+    height: 170,
+    width: 200,
+    name: "Aquila",
+    stars: [
+      new Star(60,70),
+      new Star(70,45),
+      new Star(80,31),
+      new Star(105,73), //imp
+      new Star(130,25),
+      new Star(150,15),
+      new Star(135,135),
+      new Star(155,145),
+      new Star(92,118),
+      new Star(70,93),
+      new Star(24,120)
+    ],
+    connections: [
+      new Connection(24,120,70,93),
+      new Connection(24,120,92,118),
+      new Connection(92,118,135,135),
+      new Connection(135,135,130,25),
+      new Connection(130,25,105,73),
+      new Connection(105,73,80,31),
+      new Connection(80,31,70,45),
+      new Connection(70,45,60,70),
+      new Connection(150,15,130,25),
+      new Connection(135,135,105,73),
+      new Connection(105,73,70,93),
+      new Connection(135,135,155,145)
+
+    ],
+  };
+
+  ara: Constellation = {
+    height: 200,
+    width: 200,
+    name: "Ara",
+    stars: [
+      new Star(20,40),
+      new Star(80,30),
+      new Star(95,96),
+      new Star(145,104),
+      new Star(159,141),
+      new Star(87,170),
+      new Star(96,116),
+      new Star(145,66)      
+    ],
+    connections: [
+      new Connection(87,170,96,116),
+      new Connection(96,116,95,96),
+      new Connection(159,141,145,104),
+      new Connection(95,96,145,104),
+      new Connection(95,96,80,30),
+      new Connection(80,30,20,40),
+      new Connection(80,30,145,66),
+      new Connection(145,66,145,104)
+    ],
+  };
+
+  auriga: Constellation = {
+    height: 170,
+    width: 200,
+    name: "Auriga",
+    stars: [
+      new Star(34,87),
+      new Star(85,65),
+      new Star(85,96), 
+      new Star(65,151),
+      new Star(85,20),
+      new Star(135,62), 
+      new Star(162,70),
+      new Star(168,90),
+      new Star(145,85),
+      new Star(160,117),
+      new Star(130,151),
+      
+    ],
+    connections: [
+      new Connection(85,20,85,96),
+      new Connection(85,20,135,62),
+      new Connection(34,87,85,96),
+      new Connection(130,151,160,117),
+      new Connection(85,96,160,117),
+      new Connection(160,117,145,85),
+      new Connection(145,85,135,62),
+      new Connection(85,96,85,65),
+      new Connection(135,62,162,70),
+      new Connection(162,70,168,90),
+      new Connection(85,96,65,151)
+    ],
+  };
+
+  bootes: Constellation = {
+    height: 300,
+    width: 300,
+    name: "Bootes",
+    stars: [
+      new Star(40,87),
+      new Star(70,65), 
+      new Star(55,116), 
+      new Star(160,230),
+      new Star(128,135),
+      new Star(130,250),
+      new Star(125,270),
+      new Star(195,235),
+      new Star(215,245),
+      new Star(130,88),
+      new Star(150,50),
+      new Star(149,10),
+      new Star(100,160) 
+    ],
+    connections: [
+      new Connection(195,235,215,245),
+      new Connection(160,230,195,235),
+      new Connection(130,250,125,270),
+      new Connection(130,88,70,65),
+      new Connection(40,87,55,116),
+      new Connection(130,250,160,230),
+      new Connection(100,160,160,230),
+      new Connection(55,116,100,160),
+      new Connection(160,230,128,135),
+      new Connection(128,135,130,88),
+      new Connection(55,116,70,65),
+      new Connection(130,88,150,50),
+      new Connection(150,50,149,10),
+    ],
+  };
+
+caelum: Constellation = {
+    height: 150,
+    width: 200,
+    name: "Caelum",
+    stars: [
+      new Star(33,20),
+      new Star(86,26),
+      new Star(110,80),
+      new Star(160,112),
+      
+      
+    ],
+    connections: [
+      new Connection(110,80,160,112),
+      new Connection(110,80,86,26),
+      new Connection(86,26,33,20)
+    ],
+  };
+
+   camelopardalis: Constellation = {
+    height: 300,
+    width: 300,
+    name: "Camelopardalis",
+    stars: [
+      new Star(20,20),
+      new Star(28,45),
+      new Star(58,60),
+      new Star(98,75),
+      new Star(180,92), //
+      new Star(250,115),
+      new Star(165,157),
+      new Star(180,200),
+      new Star(210,250),
+      new Star(128,122),
+      new Star(66,116),
+      new Star(46,87),
+      new Star(73,190),
+      new Star(80,205),
+      new Star(150,235),
+    ],
+    connections: [
+      new Connection(80,205,73,190),
+      new Connection(80,205,150,235),
+      new Connection(73,190,66,116),
+      new Connection(46,87,28,45),
+      new Connection(46,87,66,116),
+      new Connection(66,116,128,122),
+      new Connection(210,250,180,200),
+      new Connection(180,200,165,157),
+      new Connection(128,122,165,157),
+      new Connection(165,157,180,92),
+      new Connection(28,45,20,20),
+      new Connection(98,75,180,92),
+      new Connection(28,45,58,60),
+      new Connection(98,75,58,60),
+      new Connection(180,92,250,115),
     ],
   };

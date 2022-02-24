@@ -1,0 +1,13 @@
+.menubar {
+    max-height: 5%;
+    background-color: rgba(46, 43, 43, 0.75);
+}
+
+.constellationButton {
+    height: 20px;
+    line-height: 20px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+ }

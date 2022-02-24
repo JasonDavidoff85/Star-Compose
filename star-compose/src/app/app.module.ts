@@ -9,17 +9,20 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
 
 import { SkyComponent } from './sky/sky.component';
 import { ConstellationComponent } from './constellation/constellation.component';
 import { ConductorComponent } from './conductor/conductor.component';
+import { MenubarComponent } from './menubar/menubar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SkyComponent,
     ConstellationComponent,
-    ConductorComponent
+    ConductorComponent,
+    MenubarComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import { ConductorComponent } from './conductor/conductor.component';
     DragDropModule,
     MatButtonToggleModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

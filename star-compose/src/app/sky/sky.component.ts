@@ -6,7 +6,7 @@ import { Star } from '../_models/star.model';
 @Component({
   selector: 'app-sky',
   templateUrl: './sky.component.html',
-  styleUrls: ['./sky.component.css']
+  styleUrls: ['./sky.component.css'],
 })
 export class SkyComponent implements OnInit {
 

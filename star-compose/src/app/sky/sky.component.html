@@ -1,4 +1,5 @@
+<app-menubar (buttonPressed)="conductor.play($event)"></app-menubar>
 <div class="example-boundary">
     <app-constellation *ngFor="let i of constellations" [aConst]="i"></app-constellation>
-    <app-conductor></app-conductor>
+    <app-conductor #conductor></app-conductor>
 </div>

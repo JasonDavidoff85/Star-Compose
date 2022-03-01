@@ -830,3 +830,454 @@ aquarius: Constellation = {
       new Connection(105,112,128,140),
     ],
   };
+
+  cepheus: Constellation = {
+    height: 200,
+    width: 200,
+    name: "Cepheus",
+    stars: [
+      new Star(150,90),
+      new Star(140,115),
+      new Star(100,124),
+      new Star(50,148),
+      new Star(40,170),
+      new Star(20,150),
+      new Star(25,90),
+      new Star(80,63),
+      new Star(30,20)
+    ],
+    connections: [
+      new Connection(100,124,140,115),
+      new Connection(20,150,40,170),
+      new Connection(40,170,50,148),
+      new Connection(80,63,100,124),
+      new Connection(80,63,25,90),
+      new Connection(30,20,80,63),
+      new Connection(30,20,25,90),
+      new Connection(25,90,50,148),
+      new Connection(50,148,100,124),
+      new Connection(140,115,150,90)
+    ],
+  };
+
+  cetus: Constellation = {
+    height: 250,
+    width: 300,
+    name: "Cetus",
+    stars: [
+      new Star(180,140),
+      new Star(160,125),
+      new Star(250,125),
+      new Star(210,190),
+      new Star(105,210),
+      new Star(40,170),
+      new Star(130,178),
+      new Star(60,73),
+      new Star(25,60),
+      new Star(35,30),
+      new Star(55,20),
+      new Star(85,30),
+      new Star(120,144),
+      new Star(70,94),
+      new Star(100,114)
+    ],
+    connections: [
+      new Connection(250,125,210,190),
+      new Connection(210,190,130,178),
+      new Connection(250,125,180,140),
+      new Connection(55,20,85,30),
+      new Connection(55,20,35,30),
+      new Connection(120,144,160,125),
+      new Connection(40,170,105,210),
+      new Connection(105,210,130,178),
+      new Connection(60,73,70,94),
+      new Connection(70,94,100,114),
+      new Connection(100,114,120,144),
+      new Connection(60,73,25,60),
+      new Connection(60,73,85,30),
+      new Connection(35,30,25,60),
+      new Connection(130,178,120,144),
+      new Connection(160,125,180,140)
+    ],
+  };
+
+  circinus: Constellation = {
+    height: 200,
+    width: 150,
+    name: "Circinus",
+    stars: [
+      new Star(106,160),
+
+      new Star(40,20),
+      new Star(90,112),
+
+      new Star(20,40),
+      new Star(36,79),
+    ],
+    connections: [
+      new Connection(106,160,90,112),
+      new Connection(90,112,40,20),
+      new Connection(106,160,36,79),
+      new Connection(36,79,20,40)
+    ],
+  };
+
+  columba: Constellation = {
+    height: 300,
+    width: 300,
+    name: "Columba",
+    stars: [
+      new Star(62,150),
+      new Star(25,80),
+      new Star(40,110),
+      new Star(100,92),
+      new Star(90,120),
+      new Star(83,220),
+      new Star(110,128),
+      new Star(157,125),
+      new Star(198,112),
+      new Star(150,98),
+      new Star(130,70),
+      new Star(162,20),
+      new Star(88,60)
+    ],
+    connections: [
+      new Connection(40,110,100,92),
+      new Connection(100,92,88,60),
+      new Connection(162,20,88,60),
+      new Connection(130,70,162,20),
+      new Connection(150,98,130,70),
+      new Connection(198,112,150,98),
+      new Connection(157,125,198,112),
+      new Connection(110,128,157,125),
+      new Connection(83,220,110,128),
+      new Connection(90,120,83,220),
+      new Connection(40,110,90,120),
+      new Connection(62,150,40,110),
+      new Connection(40,110,25,80)
+    ],
+  };
+
+comaBerenices: Constellation = {
+    height: 140,
+    width: 160,
+    name: "Coma Berenices",
+    stars: [
+      new Star(30,34),
+      new Star(98,25),
+      new Star(40,100),
+    ],
+    connections: [
+      new Connection(30,34,98,25),
+      new Connection(30,34,40,100),
+    ],
+  };
+
+  coronaAustralis: Constellation = {
+    height: 140,
+    width: 200,
+    name: "Corona Australis",
+    stars: [
+      new Star(60,120),
+      new Star(38,95),
+      new Star(30,70),
+      new Star(43,25),
+      new Star(33,45),
+      new Star(83,20),   
+      new Star(150,50)   
+    ],
+    connections: [
+      new Connection(150,50,83,20),
+      new Connection(30,70,33,45),
+      new Connection(33,45,43,25),
+      new Connection(43,25,83,20),
+      new Connection(30,70,38,95),
+      new Connection(38,95,60,120)
+    ],
+  };
+
+  coronaBorealis: Constellation = {
+    height: 140,
+    width: 200,
+    name: "Corona Borealis",
+    stars: [
+      new Star(20,40),
+      new Star(38,90),
+      new Star(70,110),
+      new Star(125,95),
+      new Star(100,105),
+      new Star(140,50),   
+      new Star(120,15)   
+    ],
+    connections: [
+      new Connection(120,15,140,50),
+      new Connection(70,110,100,105),
+      new Connection(100,105,125,95),
+      new Connection(125,95,140,50),
+      new Connection(70,110,38,90),
+      new Connection(38,90,20,40)
+    ],
+  };
+
+  corvus: Constellation = {
+    height: 200,
+    width: 200,
+    name: "Corvus",
+    stars: [
+      new Star(40,20),
+      new Star(38,120),
+      new Star(115,100),
+      new Star(95,35),
+      new Star(120,140)
+    ],
+    connections: [
+      new Connection(115,100,120,140),
+      new Connection(95,35,40,20),
+      new Connection(115,100,95,35),
+      new Connection(115,100,38,120),
+      new Connection(38,120,40,20)
+    ],
+  };
+
+  crater: Constellation = {
+    height: 200,
+    width: 200,
+    name: "Crater",
+    stars: [
+      new Star(100,120),//
+      new Star(60,130),
+      new Star(20,100),
+
+      new Star(140,160),
+      new Star(180,115),
+      new Star(120,80),
+      new Star(105,40),
+      new Star(70,20)
+    ],
+    connections: [
+      new Connection(100,120,60,130),
+      new Connection(60,130,20,100),
+      new Connection(120,80,105,40),
+      new Connection(105,40,70,20),
+      new Connection(120,80,100,120),
+      new Connection(180,115,120,80),
+      new Connection(180,115,140,160),
+      new Connection(140,160,100,120)
+    ],
+  };
+
+  crux: Constellation = {
+    height: 200,
+    width: 200,
+    name: "Crux",
+    stars: [
+      new Star(90,20),
+      new Star(100,120),
+      new Star(40,60), 
+      new Star(130,40)
+    ],
+    connections: [
+      new Connection(40,60,130,40),
+      new Connection(90,20,100,120),
+    ],
+  };
+
+   cygnus: Constellation = {
+    height: 300,
+    width: 300,
+    name: "Cygnus",
+    stars: [
+      new Star(250,20),
+      new Star(240,40),
+      new Star(220,60),
+      new Star(210,100), 
+      new Star(140,120),
+      new Star(100,160),
+      new Star(60,180),
+      new Star(20,185),
+      new Star(110,60),
+      new Star(190,190),
+      new Star(260,260)
+    ],
+    connections: [
+      new Connection(60,180,20,185),
+      new Connection(100,160,60,180),
+      new Connection(100,160,140,120),
+      new Connection(190,190,260,260),
+      new Connection(190,190,140,120),
+
+      new Connection(140,120,210,100),
+      new Connection(240,40,220,60),
+      new Connection(250,20,240,40),
+      new Connection(210,100,220,60),
+      new Connection(110,60,140,120),
+    ],
+  };
+
+  delphinus: Constellation = {
+    height: 250,
+    width: 200,
+    name: "Delphinus",
+    stars: [
+      new Star(20,20),
+      new Star(48,70),
+      new Star(115,100),
+      new Star(95,35),
+      new Star(145,200)
+    ],
+    connections: [
+      new Connection(115,100,145,200),
+      new Connection(95,35,20,20),
+      new Connection(115,100,95,35),
+      new Connection(115,100,48,70),
+      new Connection(48,70,20,20)
+    ],
+  };
+
+  dorado: Constellation = {
+    height: 200,
+    width: 200,
+    name: "Dorado",
+    stars: [
+      new Star(160,20),
+      new Star(127,40),
+      new Star(90,52),
+      new Star(56,100),
+      new Star(30,107),
+      new Star(40,150)
+    ],
+    connections: [
+      new Connection(56,100,40,150),
+      new Connection(56,100,90,52),
+      new Connection(90,52,127,40),
+      new Connection(127,40,160,20),
+      new Connection(56,100,30,107),
+    ],
+  };
+
+  draco: Constellation = {
+    height: 300,
+    width: 300,
+    name: "Draco",
+    stars: [
+      new Star(70,84),
+      new Star(90,100),
+      new Star(100,140),
+      new Star(130,170),
+      new Star(150,190),
+      new Star(180,180),
+      new Star(210,130),
+      new Star(230,50),
+      new Star(260,20),
+
+      new Star(25,72),
+      new Star(30,102),
+      new Star(56,200),
+      new Star(40,250),
+      new Star(85,220),
+      new Star(85,250),
+    ],
+    connections: [
+      new Connection(230,50,260,20),
+      new Connection(210,130,230,50),
+      new Connection(180,180,210,130),
+      new Connection(150,190,180,180),
+      new Connection(130,170,150,190),
+      new Connection(100,140,130,170),
+      new Connection(90,100,100,140),
+      new Connection(70,84,90,100),
+      new Connection(85,250,40,250),
+      new Connection(85,220,85,250),
+      new Connection(56,200,85,220),
+      new Connection(56,200,30,102),
+      new Connection(30,102,25,72),
+      new Connection(25,72,70,84),
+      new Connection(56,200,40,250),
+    ],
+  };
+
+  equuleus: Constellation = {
+    height: 200,
+    width: 200,
+    name: "Equuleus",
+    stars: [
+      new Star(90,30),
+      new Star(38,120),
+      new Star(105,160),
+      new Star(135,25),
+    ],
+    connections: [
+      new Connection(135,25,90,30),
+      new Connection(105,160,135,25),
+      new Connection(105,160,38,120),
+      new Connection(38,120,90,30)
+    ],
+  };
+
+eridanus: Constellation = {
+    height: 300,
+    width: 300,
+    name: "Eridanus",
+    stars: [
+      new Star(45,78),
+      new Star(35,102),
+      new Star(20,120),
+      new Star(35,140),
+      new Star(78,74),
+      new Star(112,100),
+      new Star(120,80),
+      new Star(135,64),
+      new Star(150,53),
+      new Star(170,45),
+      new Star(190,90),
+      new Star(180,120),
+
+      new Star(160,115),
+      new Star(145,120),
+      new Star(130,135),
+      new Star(115,155),
+      new Star(90,195),
+      new Star(85,210),
+      new Star(110,215),
+      new Star(115,205),
+      new Star(148,200),
+      new Star(153,210),
+      new Star(190,220),
+      new Star(200,190),
+      new Star(220,173),
+      new Star(230,230),
+      new Star(240,250),
+      new Star(250,245),
+      new Star(260,280)
+    ],
+    connections: [
+      new Connection(160,115,145,120),
+      new Connection(145,120,130,135),
+      new Connection(130,135,115,155),
+      new Connection(115,155,90,195),
+      new Connection(90,195,85,210),
+      new Connection(85,210,110,215),
+      new Connection(110,215,115,205),
+      new Connection(115,205,148,200),
+      new Connection(148,200,153,210),
+      new Connection(153,210,190,220),
+      new Connection(190,220,200,190),
+      new Connection(200,190,220,173),
+      new Connection(220,173,230,230),
+      new Connection(230,230,240,250),
+      new Connection(240,250,250,245),
+      new Connection(250,245,260,280),      
+      new Connection(180,120,160,115),
+      new Connection(190,90,180,120),
+      new Connection(170,45,190,90),
+      new Connection(150,53,170,45),
+      new Connection(135,64,150,53),
+      new Connection(120,80,135,64),
+      new Connection(112,100,120,80),
+      new Connection(78,74,112,100),
+      new Connection(20,120,35,102),
+      new Connection(35,102,45,78),
+      new Connection(45,78,78,74),
+      new Connection(20,120,35,140),
+    ],
+  };

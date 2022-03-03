@@ -2013,3 +2013,284 @@ fornax: Constellation = {
       new Connection(20,140,120,60)
     ],
   };
+
+   piscisAustrinus: Constellation = {
+    height: 200,
+    width: 300,
+    name: "Piscis Austrinus",
+    stars: [
+      new Star(20,57),//
+      new Star(70,20),
+      new Star(135,25),
+
+      new Star(170,40),
+      new Star(210,90),
+      new Star(215,110),
+
+      new Star(160,110),
+      new Star(100,107),
+      new Star(45,120),
+      new Star(30,110),
+
+    ],
+    connections: [ 
+      new Connection(70,20,20,57),
+      new Connection(215,110,160,110),
+      new Connection(160,110,100,107),
+      new Connection(100,107,45,120),
+      new Connection(45,120,30,110),
+      new Connection(30,110,20,57),
+      new Connection(70,20,135,25),
+      new Connection(135,25,170,40),
+      new Connection(170,40,210,90),
+      new Connection(215,110,210,90),
+    ],
+  };
+
+  puppis: Constellation = {
+    height: 300,
+    width: 300,
+    name: "Puppis",
+    stars: [
+      new Star(20,50),
+      new Star(35,20),
+      new Star(55,35),
+      new Star(75,45),
+      new Star(85,50),
+      new Star(140,76),
+      new Star(250,105),
+      new Star(255,193),
+      new Star(166,141),
+      new Star(135,145),
+      new Star(70,155)
+      
+    ],
+    connections: [
+      new Connection(55,35,75,45),
+      new Connection(75,45,85,50),
+      new Connection(85,50,140,76),
+      new Connection(135,145,70,155),
+      new Connection(70,155,140,76),
+      new Connection(135,145,166,141),
+      new Connection(166,141,255,193),
+      new Connection(255,193,250,105),
+      new Connection(250,105,140,76),
+      new Connection(55,35,35,20),
+      new Connection(35,20,20,50)
+    ],
+  };
+
+  pyxis: Constellation = {
+    height: 200,
+    width: 160,
+    name: "Pyxis",
+    stars: [
+      new Star(56,34),
+      new Star(78,135),
+      new Star(68,100),
+    ],
+    connections: [
+      new Connection(56,34,68,100),
+      new Connection(68,100,78,135)
+    ],
+  };
+
+  reticulum: Constellation = {
+    height: 200,
+    width: 160,
+    name: "Reticulum",
+    stars: [
+      new Star(30,20),
+      new Star(110,67),
+      new Star(90,52),
+      new Star(93,94),
+      new Star(150,170),
+      new Star(40,110),
+    ],
+    connections: [
+      new Connection(30,20,90,52),
+      new Connection(90,52,110,67),
+      new Connection(110,67,93,94),
+      new Connection(30,20,40,110),
+      new Connection(40,110,150,170),
+      new Connection(150,170,93,94)
+    ],
+  };
+
+  
+  sagitta: Constellation = {
+    height: 200,
+    width: 300,
+    name: "Sagitta",
+    stars: [
+      new Star(30,20),
+      new Star(70,35),
+      new Star(135,60),
+      new Star(220,76),
+      new Star(200,110),
+    ],
+    connections: [
+      new Connection(70,35,135,60),
+      new Connection(30,20,70,35),
+      new Connection(200,110,220,76),
+      new Connection(220,76,135,60),
+      new Connection(200,110,135,60)
+    ],
+  };
+
+  sculptor: Constellation = {
+    height: 140,
+    width: 200,
+    name: "Sculptor",
+    stars: [
+      new Star(70,45),
+      new Star(100,40),
+      new Star(109,20),//
+      new Star(160,25),
+      new Star(160,60),
+      new Star(85,75),
+      new Star(20,110),
+      new Star(35,69),
+    ],
+    connections: [
+      new Connection(109,20,160,25),
+      new Connection(160,25,160,60),
+      new Connection(70,45,109,20),
+      new Connection(109,20,100,40),
+      new Connection(100,40,85,75),
+      new Connection(70,45,35,69),
+      new Connection(35,69,20,110)
+    ],
+  };
+
+  scutum: Constellation = {
+    height: 200,
+    width: 160,
+    name: "Scutum",
+    stars: [
+      new Star(20,20), 
+      new Star(100,90), 
+      new Star(75,165), 
+      new Star(57,80)
+    ],
+    connections: [
+      new Connection(20,20,57,80),
+      new Connection(57,80,75,165),
+      new Connection(57,80,100,90)
+    ],
+  };
+
+  serpens: Constellation = {
+    height: 220,
+    width: 220,
+    name: "Serpens",
+    stars: [
+      new Star(88,170),
+      new Star(127,170),
+      new Star(95,190),
+      new Star(20,100),
+      new Star(50,128),
+
+      new Star(180,150),
+      new Star(180,115),
+      new Star(180,100),
+      new Star(190,85),
+      new Star(200,50),
+      new Star(180,30),//
+      new Star(170,15),
+      new Star(160,30),
+
+    ],
+    connections: [
+      new Connection(88,170,95,190),
+      new Connection(95,190,127,170),
+      new Connection(88,170,50,128),
+      new Connection(50,128,20,100),
+      new Connection(180,150,180,115),
+      new Connection(180,115,180,100),
+      new Connection(180,100,190,85),
+      new Connection(190,85,200,50),
+      new Connection(200,50,180,30),
+      new Connection(180,30,170,15),
+      new Connection(170,15,160,30),
+      new Connection(180,30,160,30),
+    ],
+  };
+
+  sextans: Constellation = {
+    height: 170,
+    width: 200,
+    name: "Sextans",
+    stars: [
+      new Star(100,20),
+      new Star(160,121),
+      new Star(20,30),
+      new Star(25,60)
+    ],
+    connections: [
+      new Connection(25,60,20,30),
+      new Connection(25,60,160,121),
+      new Connection(160,121,100,20),
+      new Connection(20,30,100,20)
+    ],
+  };
+  telescopium: Constellation = {
+    height: 250,
+    width: 250,
+    name: "Telescopium",
+    stars: [
+      new Star(80,100),
+      new Star(127,67),
+      new Star(100,90),
+      new Star(180,20),
+      new Star(220,25),
+      new Star(20,80),
+      new Star(65,30),
+      new Star(46,120),
+    ],
+    connections: [
+      new Connection(20,80,65,30),
+      new Connection(180,20,220,25),
+      new Connection(80,100,100,90),
+      new Connection(100,90,127,67),
+      new Connection(127,67,180,20),
+      new Connection(80,100,46,120),
+      new Connection(46,120,20,80)
+    ],
+  };
+
+  triangulum: Constellation = {
+    height: 200,
+    width: 300,
+    name: "Triangulum",
+    stars: [
+      
+      new Star(135,150),
+      new Star(60,20),
+      new Star(20,60),
+    ],
+    connections: [
+      new Connection(20,60,60,20),
+      new Connection(60,20,135,150),
+      new Connection(20,60,135,150)
+    ],
+  };
+
+  triangulumAustrale: Constellation = {
+    height: 200,
+    width: 300,
+    name: "Triangulum Australe",
+    stars: [
+      
+      new Star(150,75),
+      new Star(110,20),
+      new Star(20,120),
+      new Star(180,115),
+    ],
+    connections: [
+      new Connection(20,120,110,20),
+      new Connection(110,20,150,75),
+      new Connection(180,115,150,75),
+      new Connection(20,120,180,115),
+    ],
+  };

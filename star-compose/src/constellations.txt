@@ -2294,3 +2294,166 @@ fornax: Constellation = {
       new Connection(20,120,180,115),
     ],
   };
+
+tucana: Constellation = {
+    height: 200,
+    width: 300,
+    name: "Tucana",
+    stars: [
+      
+      new Star(70,130),
+      new Star(100,20),
+      new Star(20,100),
+      new Star(40,125),
+      new Star(180,40),
+      new Star(160,110)
+    ],
+    connections: [
+      new Connection(20,100,100,20),
+      new Connection(100,20,70,130),
+      new Connection(40,125,70,130),
+      new Connection(20,100,40,125),
+      new Connection(180,40,160,110),
+      new Connection(100,20,180,40)
+    ],
+  };  
+  ursaMajor: Constellation = {
+    height: 300,
+    width: 300,
+    name: "Ursa Major",
+    stars: [
+      new Star(63,70),
+      new Star(100,90), 
+      new Star(80,71), 
+      new Star(140,50),
+      new Star(140,75),
+      new Star(190,40),//
+      new Star(180,63),//
+      new Star(200,90),
+      new Star(240,110),
+      new Star(220,35),
+      new Star(100,130),
+      new Star(140,145),
+      new Star(178,150),
+      new Star(110,200),
+      new Star(20,80),
+      new Star(46,69),
+    ],
+    connections: [
+      new Connection(180,63,200,90),
+      new Connection(200,90,240,110),
+      new Connection(190,40,220,35),
+      new Connection(220,35,180,63),
+      new Connection(140,50,190,40),
+      new Connection(190,40,180,63),
+      new Connection(180,63,140,75),
+      new Connection(80,71,140,50),
+      new Connection(140,50,140,75),
+      new Connection(140,75,100,90),
+      new Connection(140,145,178,150),
+      new Connection(100,130,140,145),
+      new Connection(100,130,110,200),
+      new Connection(63,70,80,71),
+      new Connection(80,71,100,90),
+      new Connection(100,90,100,130),
+      new Connection(63,70,46,69),
+      new Connection(46,69,20,80)
+    ],
+  };
+
+  ursaMinor: Constellation = {
+    height: 200,
+    width: 200,
+    name: "UrsaMinor",
+    stars: [
+      new Star(58,82),
+      new Star(170,110),
+      new Star(105,110),
+      new Star(173,150),
+      new Star(100,149),
+      new Star(20,20),
+      new Star(35,50),
+    ],
+    connections: [
+      new Connection(58,82,105,110),
+      new Connection(105,110,170,110),
+      new Connection(170,110,173,150),
+      new Connection(58,82,35,50),
+      new Connection(35,50,20,20),
+      new Connection(173,150,100,149),
+      new Connection(100,149,105,110)
+    ],
+  };
+  vela: Constellation = {
+    height: 300,
+    width: 300,
+    name: "Vela",
+    stars: [
+      new Star(45,35),
+      new Star(110,40),
+      new Star(90,20),
+      new Star(150,39),
+      new Star(170,45),
+      new Star(210,90),
+      new Star(150,150),
+      new Star(110,145),
+      new Star(70,140),
+
+      new Star(20,100),
+      new Star(25,85),
+    ],
+    connections: [
+      new Connection(20,100,70,140),
+      new Connection(70,140,110,145),
+      new Connection(150,39,170,45),
+      new Connection(170,45,210,90),
+      new Connection(210,90,150,150),
+      new Connection(150,150,110,145),
+      new Connection(45,35,90,20),
+      new Connection(90,20,110,40),
+      new Connection(110,40,150,39),
+      new Connection(45,35,25,85),
+      new Connection(25,85,20,100)
+    ],
+  };
+
+  volans: Constellation = {
+    height: 140,
+    width: 160,
+    name: "Volans",
+    stars: [
+      new Star(65,60),
+      new Star(115,92),
+      new Star(75,110),
+      new Star(120,65),
+      new Star(20,20),
+      new Star(55,30),
+    ],
+    connections: [
+      new Connection(120,65,65,60),
+      new Connection(65,60,75,110),
+      new Connection(75,110,115,92),
+      new Connection(115,92,120,65),
+      new Connection(65,60,55,30),
+      new Connection(55,30,20,20)
+    ],
+  };
+
+  vulpecula: Constellation = {
+    height: 140,
+    width: 200,
+    name: "Vulpecula",
+    stars: [
+      new Star(70,65),
+      new Star(160,85),
+      new Star(120,52),
+      new Star(20,20),
+      new Star(53,22),
+    ],
+    connections: [
+      new Connection(70,65,120,52),
+      new Connection(120,52,160,85),
+      new Connection(70,65,53,22),
+      new Connection(53,22,20,20)
+    ],
+  };

@@ -1,13 +1,32 @@
 .star-box {
-    /* border: dotted red 2px; */
+    height: 200px;
+    width: 200px;
+    display: flex;
+    border: dotted #ccc 2px;
+}
+
+.constellation {
     height: 200px;
     width: 230px;
-    display: flex;
+    display: inline-flex;
+    position: relative;
+    z-index: -1;
+    transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 .options {
     display: flex;
     flex-direction: column;
+}
+
+.example-handle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #ccc;
+    cursor: move;
+    width: 24px;
+    height: 24px;
 }
 
 .drag-icon {
@@ -29,16 +48,12 @@
     margin-left: 2px;
 }
 
-.boundary {
-    border: dotted #ccc 2px;
+input[type=range][orient=vertical] {
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* Chromium */
+    width: 8px;
+    height: 200px;
+    padding: 0 5px;
+    float: top;
+    z-index: 10;
 }
-
-.example-handle {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: #ccc;
-    cursor: move;
-    width: 24px;
-    height: 24px;
-  }

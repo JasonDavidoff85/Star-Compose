@@ -2,6 +2,7 @@ import { Component, OnInit, Attribute, Input, HostListener } from '@angular/core
 import { Constellation } from "../_models/constellation.model"
 import { Star } from "../_models/star.model"
 import {DragDropModule, DragRef, Point} from '@angular/cdk/drag-drop';
+import { ResizeEvent } from 'angular-resizable-element';
 
 @Component({
   selector: 'app-constellation',
@@ -13,13 +14,8 @@ export class ConstellationComponent implements OnInit {
   rotateValue = 0;
   rotating = false;
 
-  @Input() aConst!:Constellation;
   constructor() {}
-
-  // @HostListener('window:mouseup', ['$event'])
-  // mouseUp(event: MouseEvent){
-  //   if (this.rotating) this.rotating = false;
-  // }
+  @Input() aConst!:Constellation;
 
   private htmlToElement(html: string) {
     let elem = document.createElement('template');
@@ -36,6 +32,16 @@ export class ConstellationComponent implements OnInit {
 
   setRotate(value: string) {
     this.rotateValue = +value;
+  }
+
+  public style: object = {};
+
+  onResizeEnd(event: ResizeEvent): void {
+    this.style = {
+      position: 'fixed',
+      width: `${event.rectangle.width}px`,
+      height: `${event.rectangle.height}px`
+    };
   }
 
   ngOnInit(): void {

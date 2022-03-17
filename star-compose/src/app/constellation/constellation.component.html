@@ -1,10 +1,12 @@
-<div class="star-box" cdkDragBoundary=".example-boundary" [cdkDragConstrainPosition]="computeDragRenderPos" cdkDrag>
-    <div class="constellation" [ngStyle]="{'transform':'rotate(' + rotateValue + 'deg)'}">
-        <svg [attr.height]="aConst.height" [attr.width]="aConst.width">
-            <circle *ngFor="let star of aConst.stars" [attr.cx]="star.x" [attr.cy]="star.y" r="5" fill="white"></circle>
-            <line *ngFor="let line of aConst.connections" [attr.x1]="line.x1" [attr.y1]="line.y1" [attr.x2]="line.x2" [attr.y2]="line.y2" style="stroke:rgb(255, 255, 255);stroke-width:2"></line>
-        </svg>
-    </div>
+<div class="star-box" cdkDragBoundary=".example-boundary" [cdkDragConstrainPosition]="computeDragRenderPos" cdkDrag
+[ngStyle]="style" mwlResizable [enableGhostResize]="true" [resizeSnapGrid]="{left: 30, right: 30}" (resizeEnd)="onResizeEnd($event)">
+    <svg [attr.height]="aConst.height" [attr.width]="aConst.width" class="constellation" [ngStyle]="{'transform':'rotate(' + rotateValue + 'deg)'}"
+    [ngStyle]="style" mwlResizable [enableGhostResize]="true" [resizeSnapGrid]="{left: 30, right: 30}" (resizeEnd)="onResizeEnd($event)">
+        <circle *ngFor="let star of aConst.stars" [attr.cx]="star.x" [attr.cy]="star.y" r="5" fill="white"></circle>
+        <line *ngFor="let line of aConst.connections" [attr.x1]="line.x1" [attr.y1]="line.y1" [attr.x2]="line.x2" [attr.y2]="line.y2" style="stroke:rgb(255, 255, 255);stroke-width:2"></line>
+    </svg>
+    <!-- TO DO: Fix moving options & star redrawing w/ svg resize -->
+    <div class="resize-grip" mwlResizeHandle [resizeEdges]="{ bottom: true, right: true }"></div>
 
     <div class="options">
         <mat-icon class="drag-icon" cdkDragHandle>open_with</mat-icon>

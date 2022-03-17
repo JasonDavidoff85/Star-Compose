@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { FormsModule } from "@angular/forms";
+import { ResizableModule } from "angular-resizable-element";
+
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -16,7 +18,6 @@ import { SkyComponent } from './sky/sky.component';
 import { ConstellationComponent } from './constellation/constellation.component';
 import { ConductorComponent } from './conductor/conductor.component';
 import { MenubarComponent } from './menubar/menubar.component';
-// Added
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MenubarComponent } from './menubar/menubar.component';
     BrowserAnimationsModule,
     DragDropModule,
     FormsModule,
+    ResizableModule,
     MatButtonToggleModule,
     MatIconModule,
     MatToolbarModule,

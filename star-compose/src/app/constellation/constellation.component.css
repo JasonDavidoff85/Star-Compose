@@ -1,13 +1,20 @@
 .star-box {
+    display: flex;
+    /* flex-flow: row; */
     height: 200px;
     width: 200px;
-    display: flex;
+    min-height: 200px;
+    min-width: 200px;
+    max-height: 400px;
+    max-width: 400px;
     border: dotted #ccc 2px;
 }
 
 .constellation {
-    height: 200px;
-    width: 230px;
+    min-height: 200px;
+    min-width: 200px;
+    max-height: 400px;
+    max-width: 400px;
     display: inline-flex;
     position: relative;
     z-index: -1;
@@ -15,8 +22,10 @@
 }
 
 .options {
+    float: right;
     display: flex;
     flex-direction: column;
+    z-index: 2;
 }
 
 .example-handle {
@@ -52,8 +61,22 @@ input[type=range][orient=vertical] {
     writing-mode: bt-lr; /* IE */
     -webkit-appearance: slider-vertical; /* Chromium */
     width: 8px;
-    height: 200px;
+    min-height: 200px;
+    max-height: 400px;
     padding: 0 5px;
     float: top;
-    z-index: 10;
+    z-index: 3;
+}
+
+.resize-grip {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    cursor: nwse-resize;
+    -webkit-clip-path: polygon(100% 0,100% 100%,0 100%);
+    clip-path: polygon(100% 0,100% 100%,0 100%);
+    background: repeating-linear-gradient(135deg,hsla(0,0%,100%,.5),hsla(0,0%,100%,.5) 2px,#000 0,#000 4px);
 }

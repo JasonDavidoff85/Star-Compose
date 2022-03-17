@@ -1,5 +1,23 @@
 <app-menubar (buttonPressed)="conductor.play($event)"></app-menubar>
 <div class="example-boundary">
-    <app-constellation *ngFor="let i of constellations" [aConst]="i"></app-constellation>
+    <!-- <app-constellation class="stars" *ngFor="let i of constellations" [aConst]="i"></app-constellation> -->
     <app-conductor #conductor></app-conductor>
 </div>
+
+<!-- <div class="constellationList"> -->
+        <table class="constellationList" >
+            <thead>
+                <tr>
+                    <th>Constellations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let constellation of constellations">
+                    <td>{{constellation.name}}</td>
+                    <td>
+                        <app-constellation class="stars" [aConst]="constellation"></app-constellation>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+<!-- </div> -->

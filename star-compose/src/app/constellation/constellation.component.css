@@ -1,20 +1,18 @@
 .star-box {
-    display: flex;
-    /* flex-flow: row; */
     height: 200px;
     width: 200px;
     min-height: 200px;
     min-width: 200px;
     max-height: 400px;
     max-width: 400px;
+}
+
+.outside {
+    display: flex;
     border: dotted #ccc 2px;
 }
 
-.constellation {
-    min-height: 200px;
-    min-width: 200px;
-    max-height: 400px;
-    max-width: 400px;
+.inside {
     display: inline-flex;
     position: relative;
     z-index: -1;

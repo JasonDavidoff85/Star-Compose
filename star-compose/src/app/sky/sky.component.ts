@@ -17,8 +17,8 @@ export class SkyComponent implements OnInit {
 
   // test hardcodes star:
   aquarius: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Aquarius",
     stars: [
       new Star(136,69), 
@@ -49,8 +49,8 @@ export class SkyComponent implements OnInit {
     ],
   };
   cancer: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Cancer",
     stars: [
       new Star(55,34), 
@@ -67,8 +67,8 @@ export class SkyComponent implements OnInit {
     ],
   };
   aries: Constellation = {
-    height: 160,
-    width: 160,
+    height: 300,
+    width: 300,
     name: "Aries",
     stars: [
       new Star(56,34),
@@ -87,8 +87,8 @@ export class SkyComponent implements OnInit {
     ],
   };
   capricorn: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Capricorn",
     stars: [
       new Star(164,33),
@@ -116,8 +116,8 @@ export class SkyComponent implements OnInit {
     ],
   };
   gemini: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Gemini",
     stars: [
       
@@ -157,8 +157,8 @@ export class SkyComponent implements OnInit {
     ],
   };
   leo: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Leo",
     stars: [
       new Star(141,41),
@@ -184,8 +184,8 @@ export class SkyComponent implements OnInit {
     ],
   };
   libra: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Libra",
     stars: [
       new Star(127,60),
@@ -209,8 +209,8 @@ export class SkyComponent implements OnInit {
     ],
   };
   pisces: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Pisces",
     stars: [
       new Star(137,64),
@@ -249,8 +249,8 @@ export class SkyComponent implements OnInit {
     ],
   };
   sagittarius: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Sagittarius",
     stars: [
       new Star(132,96), 
@@ -296,8 +296,8 @@ export class SkyComponent implements OnInit {
     ],
   };
   scorpio: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Scorpio",
     stars: [
       new Star(139,48),
@@ -330,8 +330,8 @@ export class SkyComponent implements OnInit {
     ],
   };
   taurus: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Taurus",
     stars: [
       new Star(132,90),
@@ -364,8 +364,8 @@ export class SkyComponent implements OnInit {
     // stars: [[50,20],[75,90], [90,120], [60,190], [180,170]].map((i) => new Star(i[0],i[1]))
   };
   virgo: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Virgo",
     stars: [
       new Star(145,33),
@@ -398,8 +398,8 @@ export class SkyComponent implements OnInit {
   };
 
   andromeda: Constellation = {
-    height: 230,
-    width: 230,
+    height: 300,
+    width: 300,
     name: "Andromeda",
     stars: [
       new Star(210,30),
@@ -441,8 +441,8 @@ export class SkyComponent implements OnInit {
   };
 
   antlia: Constellation = {
-    height: 160,
-    width: 160,
+    height: 300,
+    width: 300,
     name: "Antlia",
     stars: [
       new Star(106,24),
@@ -458,8 +458,8 @@ export class SkyComponent implements OnInit {
   };
 
   apus: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Apus",
     stars: [
       new Star(150,75), 
@@ -479,8 +479,8 @@ export class SkyComponent implements OnInit {
   };
 
   aquila: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Aquila",
     stars: [
       new Star(60,70),
@@ -513,8 +513,8 @@ export class SkyComponent implements OnInit {
   };
 
   ara: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Ara",
     stars: [
       new Star(20,40),
@@ -539,8 +539,8 @@ export class SkyComponent implements OnInit {
   };
 
   auriga: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Auriga",
     stars: [
       new Star(34,87),
@@ -608,8 +608,8 @@ export class SkyComponent implements OnInit {
   };
 
   caelum: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Caelum",
     stars: [
       new Star(33,20),
@@ -667,8 +667,8 @@ export class SkyComponent implements OnInit {
   };
 
   canesVenatici: Constellation = {
-    height: 160,
-    width: 160,
+    height: 300,
+    width: 300,
     name: "CanesVenatici",
     stars: [
       new Star(20,40),
@@ -728,8 +728,8 @@ export class SkyComponent implements OnInit {
   };
 
   canisMinor: Constellation = {
-    height: 160,
-    width: 160,
+    height: 300,
+    width: 300,
     name: "CanisMinor",
     stars: [
       new Star(30,90),
@@ -741,8 +741,8 @@ export class SkyComponent implements OnInit {
   };
 
   carina: Constellation = {
-    height: 250,
-    width: 250,
+    height: 300,
+    width: 300,
     name: "Carina",
     stars: [
       new Star(220,40),
@@ -773,8 +773,8 @@ export class SkyComponent implements OnInit {
   };
 
   cassiopeia: Constellation = {
-    height: 160,
-    width: 160,
+    height: 300,
+    width: 300,
     name: "Cassiopeia",
     stars: [
       new Star(20,20),
@@ -849,8 +849,8 @@ export class SkyComponent implements OnInit {
   };
 
   cepheus: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Cepheus",
     stars: [
       new Star(150,90),
@@ -920,8 +920,8 @@ export class SkyComponent implements OnInit {
   };
 
   chamaeleon: Constellation = {
-    height: 160,
-    width: 160,
+    height: 300,
+    width: 300,
     name: "Chamaeleon",
     stars: [
       new Star(66,44),
@@ -940,8 +940,8 @@ export class SkyComponent implements OnInit {
   };
 
   circinus: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Circinus",
     stars: [
       new Star(106,160),
@@ -995,8 +995,8 @@ export class SkyComponent implements OnInit {
   };
 
   comaBerenices: Constellation = {
-    height: 160,
-    width: 160,
+    height: 300,
+    width: 300,
     name: "Coma Berenices",
     stars: [
       new Star(30,34),
@@ -1010,8 +1010,8 @@ export class SkyComponent implements OnInit {
   };
 
   coronaAustralis: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Corona Australis",
     stars: [
       new Star(60,120),
@@ -1033,8 +1033,8 @@ export class SkyComponent implements OnInit {
   };
 
   coronaBorealis: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Corona Borealis",
     stars: [
       new Star(20,40),
@@ -1056,8 +1056,8 @@ export class SkyComponent implements OnInit {
   };
 
   corvus: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Corvus",
     stars: [
       new Star(40,20),
@@ -1076,8 +1076,8 @@ export class SkyComponent implements OnInit {
   };
 
   crater: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Crater",
     stars: [
       new Star(100,120),//
@@ -1103,8 +1103,8 @@ export class SkyComponent implements OnInit {
   };
 
   crux: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Crux",
     stars: [
       new Star(90,20),
@@ -1151,8 +1151,8 @@ export class SkyComponent implements OnInit {
   };
 
   delphinus: Constellation = {
-    height: 250,
-    width: 250,
+    height: 300,
+    width: 300,
     name: "Delphinus",
     stars: [
       new Star(20,20),
@@ -1171,8 +1171,8 @@ export class SkyComponent implements OnInit {
   };
 
   dorado: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Dorado",
     stars: [
       new Star(160,20),
@@ -1233,8 +1233,8 @@ export class SkyComponent implements OnInit {
   };
 
   equuleus: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Equuleus",
     stars: [
       new Star(90,30),
@@ -1319,8 +1319,8 @@ export class SkyComponent implements OnInit {
   };
 
   fornax: Constellation = {
-    height: 210,
-    width: 210,
+    height: 300,
+    width: 300,
     name: "Fornax",
     stars: [
       new Star(20,50),
@@ -1423,8 +1423,8 @@ export class SkyComponent implements OnInit {
     ],
   };
   horologium: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Horologium",
     stars: [
       new Star(127,67),
@@ -1489,8 +1489,8 @@ export class SkyComponent implements OnInit {
   };
 
   hydrus: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Hydrus",
     stars: [
       new Star(90,80),
@@ -1510,8 +1510,8 @@ export class SkyComponent implements OnInit {
   };
 
   indus: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Indus",
     stars: [
       new Star(140,25), 
@@ -1527,8 +1527,8 @@ export class SkyComponent implements OnInit {
   };
 
   lacerta: Constellation = {
-    height: 250,
-    width: 250,
+    height: 300,
+    width: 300,
     name: "Lacerta",
     stars: [
       new Star(50,46),
@@ -1551,8 +1551,8 @@ export class SkyComponent implements OnInit {
     ],
   };
   leoMinor: Constellation = {
-    height: 150,
-    width: 150,
+    height: 300,
+    width: 300,
     name: "Leo Minor",
     stars: [
       new Star(135,40), 
@@ -1566,8 +1566,8 @@ export class SkyComponent implements OnInit {
   };
 
   lepus: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Lepus",
     stars: [
       new Star(160,20),
@@ -1631,8 +1631,8 @@ export class SkyComponent implements OnInit {
   };
 
   lynx: Constellation = {
-    height: 160,
-    width: 160,
+    height: 300,
+    width: 300,
     name: "Lynx",
     stars: [
       new Star(70,90),
@@ -1654,8 +1654,8 @@ export class SkyComponent implements OnInit {
   };
 
   lyra: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Lyra",
     stars: [
       new Star(120,60), 
@@ -1683,8 +1683,8 @@ export class SkyComponent implements OnInit {
   };
 
   mensa: Constellation = {
-    height: 160,
-    width: 160,
+    height: 300,
+    width: 300,
     name: "Mensa",
     stars: [
       new Star(75,110),
@@ -1700,8 +1700,8 @@ export class SkyComponent implements OnInit {
   };
 
   microscopium: Constellation = {
-    height: 110,
-    width: 110,
+    height: 300,
+    width: 300,
     name: "Microscopium",
     stars: [
       new Star(25,20),
@@ -1717,8 +1717,8 @@ export class SkyComponent implements OnInit {
   };
 
   monoceros: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Monoceros",
     stars: [
       new Star(65,70),
@@ -1741,8 +1741,8 @@ export class SkyComponent implements OnInit {
     ],
   };
   musca: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Musca",
     stars: [
       new Star(65,40),
@@ -1761,8 +1761,8 @@ export class SkyComponent implements OnInit {
     ],
   };
   norma: Constellation = {
-    height: 160,
-    width: 160,
+    height: 300,
+    width: 300,
     name: "Norma",
     stars: [
       new Star(60,75),
@@ -1778,8 +1778,8 @@ export class SkyComponent implements OnInit {
   };
 
   octans: Constellation = {
-    height: 160,
-    width: 160,
+    height: 300,
+    width: 300,
     name: "Octans",
     stars: [
       new Star(20,20),
@@ -1794,8 +1794,8 @@ export class SkyComponent implements OnInit {
   };
 
   ophiuchus: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Ophiuchus",
     stars: [
       new Star(130,140),
@@ -1834,8 +1834,8 @@ export class SkyComponent implements OnInit {
   };
 
   orion: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Orion",
     stars: [
       new Star(30,20),
@@ -1883,8 +1883,8 @@ export class SkyComponent implements OnInit {
   };
 
   pavo: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Pavo",
     stars: [
       new Star(51,20),
@@ -1959,8 +1959,8 @@ export class SkyComponent implements OnInit {
   };
 
   perseus: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Perseus",
     stars: [
       new Star(20,140),
@@ -2002,8 +2002,8 @@ export class SkyComponent implements OnInit {
   };
 
   phoenix: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Phoenix",
     stars: [
       new Star(20,70),
@@ -2034,8 +2034,8 @@ export class SkyComponent implements OnInit {
   };
 
   pictor: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Pictor",
     stars: [
       new Star(20,140),
@@ -2117,8 +2117,8 @@ export class SkyComponent implements OnInit {
   };
 
   pyxis: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Pyxis",
     stars: [
       new Star(56,34),
@@ -2132,8 +2132,8 @@ export class SkyComponent implements OnInit {
   };
 
   reticulum: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Reticulum",
     stars: [
       new Star(30,20),
@@ -2175,8 +2175,8 @@ export class SkyComponent implements OnInit {
   };
 
   sculptor: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Sculptor",
     stars: [
       new Star(70,45),
@@ -2200,8 +2200,8 @@ export class SkyComponent implements OnInit {
   };
 
   scutum: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Scutum",
     stars: [
       new Star(20,20), 
@@ -2217,8 +2217,8 @@ export class SkyComponent implements OnInit {
   };
 
   serpens: Constellation = {
-    height: 220,
-    width: 220,
+    height: 300,
+    width: 300,
     name: "Serpens",
     stars: [
       new Star(88,170),
@@ -2254,8 +2254,8 @@ export class SkyComponent implements OnInit {
   };
 
   sextans: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Sextans",
     stars: [
       new Star(100,20),
@@ -2271,8 +2271,8 @@ export class SkyComponent implements OnInit {
     ],
   };
   telescopium: Constellation = {
-    height: 250,
-    width: 250,
+    height: 300,
+    width: 300,
     name: "Telescopium",
     stars: [
       new Star(80,100),
@@ -2398,8 +2398,8 @@ export class SkyComponent implements OnInit {
   };
 
   ursaMinor: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "UrsaMinor",
     stars: [
       new Star(58,82),
@@ -2454,8 +2454,8 @@ export class SkyComponent implements OnInit {
   };
 
   volans: Constellation = {
-    height: 160,
-    width: 160,
+    height: 300,
+    width: 300,
     name: "Volans",
     stars: [
       new Star(65,60),
@@ -2476,8 +2476,8 @@ export class SkyComponent implements OnInit {
   };
 
   vulpecula: Constellation = {
-    height: 200,
-    width: 200,
+    height: 300,
+    width: 300,
     name: "Vulpecula",
     stars: [
       new Star(70,65),

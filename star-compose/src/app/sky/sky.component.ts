@@ -14,6 +14,7 @@ export class SkyComponent implements OnInit {
   constructor() { }
 
   constellations:Constellation[] = [];
+  draggableConstellations:Constellation[] = []
 
   // test hardcodes star:
   aquarius: Constellation = {
@@ -2493,6 +2494,22 @@ export class SkyComponent implements OnInit {
       new Connection(53,22,20,20)
     ],
   };
+
+  addToSky(nm:string) {
+    console.log(nm)
+    for (let i in this.constellations)
+    {
+      if (this.constellations[i].name == nm)
+      {
+        console.log(i)
+        this.draggableConstellations.push(this.constellations[i])
+      }
+      // console.log(this.constellations[i].name)
+    }
+    this.draggableConstellations.push()
+  }
+
+
 
   ngOnInit(): void {
     console.log(data);

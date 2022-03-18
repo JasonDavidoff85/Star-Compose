@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {SynthService} from '../_services/tone.service';
+
 @Component({
   selector: 'app-menubar',
   templateUrl: './menubar.component.html',
@@ -8,10 +10,16 @@ export class MenubarComponent implements OnInit {
 
   @Output() buttonPressed = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(
+    private synth: SynthService
+    ) {}
 
   runConductor() {
     this.buttonPressed.emit(true);
+  }
+
+  playSound() {
+    this.synth.playStars();
   }
 
   ngOnInit(): void {

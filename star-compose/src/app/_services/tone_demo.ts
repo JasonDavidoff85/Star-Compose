@@ -12,21 +12,14 @@ import { Star } from '../_models/star.model';
   export class SynthService {
     // synth: Tone.Synth<Tone.SynthOptions>;
     // bass: Tone.PolySynth<Monophonic<any>>;
-    synth = new Tone.Synth({
-      oscillator : {
-        volume: 5,
-        count: 3,
-        spread: 40,
-        type : "fatsawtooth"
-      }
-    }).toMaster();
+    
 
   // bass synth for lines
     bass = new Tone.PolySynth(Tone.Synth, { 
     oscillator : {
       type : "sawtooth"
     }
-    }).toMaster();
+    }).toDestination();
     constructor() {
       // Melody synth for stars
     //   this.synth = new Tone.Synth({
@@ -49,18 +42,29 @@ import { Star } from '../_models/star.model';
     }
 
 // build the melody based on the star data (currently just x data)
-playStars(constellation: Constellation):void {
+playStars(constellation: Constellation = this.cancer):void {
     // This assumes a constellation object with valid grid data.
-
+    let synth = new Tone.Synth({
+      oscillator : {
+        volume: 5,
+        count: 3,
+        spread: 40,
+        type : "fatsawtooth"
+      }
+    }).toDestination();
+    console.log("playing star:", constellation);
     let stars = constellation.stars;
     let playData = [];
     // This builds play times based on the star dat of the constellation
     for (let star of stars) {
-        playData.push({'time': star.getX(), 'note': 'G5', 'duration': '16n'});
+        let pTime = Math.floor(star.getX()/4);
+        let pBeat = star.getX() % 4;
+        playData.push({'time': pTime + ':' + pBeat, note: 'G5', duration: '16n', 'velocity': 0.9});
     }
-    const mainMelodyPart = new Tone.Part((time, note) => {
-        this.synth.triggerAttackRelease(note.note, note.duration, time);
-      }, playData).start(0);
+    const melody = new Tone.Part(((time: any, value: { note: any; velocity: any; }) => {
+      // the value is an object which contains both the note and the velocity
+      synth.triggerAttackRelease(value.note, "16n", time, value.velocity);
+    }), playData).start(0);
 
 }
 
@@ -93,13 +97,18 @@ playLines(constellation: Constellation):void {
     let playData = [];
     // This builds play times based on the line connections
     for (let line of connections) {
-        let duration = line.x2 - line.x1;
-        playData.push({'time': line.x1, 'note': 'C2', 'duration': duration});
+        //let duration = line.x2 - line.x1;
+        let pTime = Math.floor(line.x1/4);
+        let pBeat = line.x1 % 4;
+        playData.push({'time': pTime + ':' + pBeat, 'note': 'C2', 'duration': '2n', 'velocity': 0.7});
     }
-    const bassline = new Tone.Part((time, note) => {
-        this.bass.triggerAttackRelease(note.note, note.duration, time);
-      }, playData).start(0);
-
+    // const bassline = new Tone.Part((time, note) => {
+    //     this.bass.triggerAttackRelease(note.note, note.duration, time);
+    //   }, playData).start(0);
+const bassLine = new Tone.Part(((time: any, value: { note: any; velocity: any; }) => {
+	// the value is an object which contains both the note and the velocity
+	this.bass.triggerAttackRelease(value.note, '2n', time, value.velocity);
+}), playData).start(0);
 }
 
 //TODO
@@ -121,10 +130,20 @@ changeTempoTo(newTempo:number):void {
 //     Tone.Transport.stop();
 //   }
 // });
-ngOnInit():void {
-  this.playLines(this.cancer);
-  this.playStars(this.cancer);
-  Tone.Transport.start();
+// ngOnInit():void {
+//   this.playLines(this.cancer);
+//   this.playStars(this.cancer);
+//   Tone.Transport.start();
+// }
+
+public testTone() {
+    //const synth = new Tone.Synth().toDestination();
+
+//play a middle 'C' for the duration of an 8th note
+   // synth.triggerAttackRelease("C4", "8n");
+    this.playLines(this.cancer);
+    this.playStars(this.cancer);
+    Tone.Transport.start();
 }
 
 

@@ -20,7 +20,7 @@ import { Star } from '../_models/star.model';
     }).toDestination();
     constructor() {
 
-      Tone.Transport.bpm.value = 960;
+      Tone.Transport.bpm.value = 1500;
     }
 
 // build the melody based on the star data (currently just x data)

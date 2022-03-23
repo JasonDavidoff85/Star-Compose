@@ -9,6 +9,7 @@ import {SynthService} from '../_services/tone.service';
 export class MenubarComponent implements OnInit {
 
   @Output() buttonPressed = new EventEmitter<boolean>();
+  @Output() renderAudio = new EventEmitter<boolean>();
 
   constructor(
     private synth: SynthService
@@ -16,10 +17,11 @@ export class MenubarComponent implements OnInit {
 
   runConductor() {
     this.buttonPressed.emit(true);
+    this.renderAudio.emit(true);
   }
 
   playSound() {
-    this.synth.playStars();
+    // this.synth.playStars();
   }
 
   ngOnInit(): void {

@@ -1,7 +1,20 @@
-import { Component, OnInit, Attribute } from '@angular/core';
+import { 
+  Component, 
+  OnInit, 
+  Attribute, 
+  Input, 
+  Output, 
+  EventEmitter, 
+  ViewChildren, 
+  QueryList,
+  ElementRef
+} from '@angular/core';
+import { ConstellationComponent } from '../constellation/constellation.component';
+// import { EventEmitter } from 'stream';
 import { Connection } from '../_models/connection.model';
 import { Constellation } from '../_models/constellation.model';
 import { Star } from '../_models/star.model';
+import {SynthService} from '../_services/tone.service';
 
 @Component({
   selector: 'app-sky',
@@ -10,7 +23,10 @@ import { Star } from '../_models/star.model';
 })
 export class SkyComponent implements OnInit {
 
-  constructor() { }
+  @ViewChildren(ConstellationComponent) consts!: QueryList<ConstellationComponent>;
+  @Output() getScreenCoords = new EventEmitter<boolean>();
+
+  constructor(private synth: SynthService) { }
 
   constellations:Constellation[] = [];
 
@@ -32,10 +48,26 @@ export class SkyComponent implements OnInit {
       new Connection(90,120,60,190),
       new Connection(90,120,180,170)
     ],
+    leftBound: 0
     // stars: [[50,20],[75,90], [90,120], [60,190], [180,170]].map((i) => new Star(i[0],i[1]))
   };
 
+  renderAudio($event: boolean) {
+    let constData: {stars: Star[], connections: Connection[]} = {stars: [], connections: []}
+    // console.log("sky got button press");
+    // this.consts.forEach((element, index) => console.log(element.getScreenCoord()));
+    this.consts.forEach((element, index) => {
+      // console.log(element.getScreenCoord().stars);
+      constData.stars.push(...element.getScreenCoord().stars);
+      constData.connections.push(...element.getScreenCoord().connections);
+    });
+    console.log(constData);
+    
+    this.synth.playStars(constData);
+  }
+
   ngOnInit(): void {
+    this.constellations.push(this.cancer);
     this.constellations.push(this.cancer);
   }
 

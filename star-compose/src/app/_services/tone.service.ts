@@ -24,7 +24,7 @@ import { Star } from '../_models/star.model';
     }
 
 // build the melody based on the star data (currently just x data)
-playStars(constellation: Constellation = this.cancer):void {
+playStars(constellation: {stars:Star[], connections:Connection[]}):void {
     // This assumes a constellation object with valid grid data.
     let synth = new Tone.Synth({
       oscillator : {
@@ -82,6 +82,7 @@ const bassLine = new Tone.Part(((time: any, value: { note: any; velocity: any; }
       new Connection(90,120,60,190),
       new Connection(90,120,180,170)
     ],
+    leftBound: 0
     // stars: [[50,20],[75,90], [90,120], [60,190], [180,170]].map((i) => new Star(i[0],i[1]))
   };
 

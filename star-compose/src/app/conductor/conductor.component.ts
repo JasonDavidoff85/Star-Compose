@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import {
   trigger,
   state,
@@ -28,8 +28,11 @@ import {
 export class ConductorComponent implements OnInit {
 
   isPlaying: boolean = false;
+  public height:number;
 
-  constructor() { }
+  constructor() {
+    this.height = 0;
+  }
 
   play($event:boolean) {
     this.isPlaying = $event;
@@ -37,6 +40,13 @@ export class ConductorComponent implements OnInit {
   
 
   ngOnInit(): void {
+    this.height = window.innerHeight - (0.05 * window.innerHeight);
+    console.log(this.height);
   }
+
+  @HostListener('window:resize', ['$event'])  
+  onResize(event: any) {  
+    this.height = window.innerHeight - (0.05 * window.innerHeight);
+  }  
 
 }

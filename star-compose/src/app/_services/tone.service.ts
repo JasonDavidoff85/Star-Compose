@@ -20,11 +20,20 @@ import { Star } from '../_models/star.model';
     }).toDestination();
     constructor() {
 
-      Tone.Transport.bpm.value = 1500;
+      Tone.Transport.bpm.value = 6000;
     }
 
+    bassMajorCollection = ['C2', 'F2', 'G2', 'A3', 'C3'];
+    melodyMajorCollection = ['C4', 'D4', 'E4', 'F4', 'G4', 'A5', 'B5', 'C5'];
+
+    //Reference for snippet -> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random 
+    getRandomInt(min:number, max:number):number {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+    }
 // build the melody based on the star data (currently just x data)
-playStars(constellation: Constellation = this.cancer):void {
+playStars(constellation: {stars:Star[], connections:Connection[]}):void {
     // This assumes a constellation object with valid grid data.
     let synth = new Tone.Synth({
       oscillator : {
@@ -41,7 +50,7 @@ playStars(constellation: Constellation = this.cancer):void {
     for (let star of stars) {
         let pTime = Math.floor(star.getX()/4);
         let pBeat = star.getX() % 4;
-        playData.push({'time': pTime + ':' + pBeat, note: 'G5', duration: '16n', 'velocity': 0.9});
+        playData.push({'time': pTime + ':' + pBeat, note: this.melodyMajorCollection[this.getRandomInt(0, 8)], duration: '16n', 'velocity': 0.9});
     }
     const melody = new Tone.Part(((time: any, value: { note: any; velocity: any; }) => {
       // the value is an object which contains both the note and the velocity
@@ -52,9 +61,9 @@ playStars(constellation: Constellation = this.cancer):void {
     // This builds play times based on the line connections
     for (let line of connections) {
         //let duration = line.x2 - line.x1;
-        let pTime = Math.floor(line.x1/4);
-        let pBeat = line.x1 % 4;
-        playData2.push({'time': pTime + ':' + pBeat, 'note': 'C2', 'duration': '2m', 'velocity': 0.7});
+        let pTime1 = Math.floor(line.x1/4);
+        let pBeat1 = line.x1 % 4;
+        playData2.push({'time': pTime1 + ':' + pBeat1, 'note': this.bassMajorCollection[this.getRandomInt(0, 5)], 'duration': '2m', 'velocity': 0.7});
     }
 const bassLine = new Tone.Part(((time: any, value: { note: any; velocity: any; }) => {
 	// the value is an object which contains both the note and the velocity
@@ -82,6 +91,7 @@ const bassLine = new Tone.Part(((time: any, value: { note: any; velocity: any; }
       new Connection(90,120,60,190),
       new Connection(90,120,180,170)
     ],
+    leftBound: 0
     // stars: [[50,20],[75,90], [90,120], [60,190], [180,170]].map((i) => new Star(i[0],i[1]))
   };
 

@@ -19,8 +19,10 @@ import { Star } from '../_models/star.model';
     }
     }).toDestination();
     constructor() {
-
-      Tone.Transport.bpm.value = 6000;
+      // Griffin PC: 6000
+      // Grifin Loaner Laptop: 3900
+      
+      Tone.Transport.bpm.value = 3900;
     }
 
     bassMajorCollection = ['C2', 'F2', 'G2', 'A3', 'C3'];

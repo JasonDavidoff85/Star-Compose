@@ -20,7 +20,7 @@ import {
         left: '99%',
       })),
       transition('waiting => finished', [
-        animate('20s')
+        animate('60s')
       ]),
     ])
   ]

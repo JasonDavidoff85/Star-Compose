@@ -69,6 +69,7 @@ export class SkyComponent implements OnInit {
   ngOnInit(): void {
     this.constellations.push(this.cancer);
     this.constellations.push(this.cancer);
+    console.log(window.innerWidth);
   }
 
 }

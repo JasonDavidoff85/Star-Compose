@@ -4,6 +4,7 @@ import { Star } from "../_models/star.model"
 import {DragDropModule, DragRef, Point} from '@angular/cdk/drag-drop';
 import { CdkVirtualForOfContext } from '@angular/cdk/scrolling';
 import { Connection } from '../_models/connection.model';
+import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y/input-modality/input-modality-detector';
 
 @Component({
   selector: 'app-constellation',
@@ -17,6 +18,7 @@ export class ConstellationComponent implements OnInit {
   @Input() aConst!:Constellation;
   @Output() dataPoints = new EventEmitter<{stars: Star[], connections: Connection[]}>();
 
+  gridSize = 50;
   constructor() {}
 
   public getScreenCoord(): {stars: Star[], connections: Connection[]} { 
@@ -44,11 +46,13 @@ export class ConstellationComponent implements OnInit {
   computeDragRenderPos(pos: Point, dragRef:DragRef<any>) {
     // this.aConst.leftBound = this.border.nativeElement.getBoundingClientRect.left;
     // console.log("SVG Postition: ", this.aConst.leftBound);
+    let gridSize = 50;
     return {
-      x: Math.floor(pos.x / 5) * 5,
-      y: Math.floor(pos.y / 5) * 5
+      x: Math.floor(pos.x / gridSize) * gridSize,
+      y: Math.floor(pos.y / gridSize) * gridSize
     }; // will render the element every 30 pixels horizontally
   }
+
 
   ngOnInit(): void {
   }

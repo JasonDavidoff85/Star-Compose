@@ -4,7 +4,6 @@ import { Connection } from '../_models/connection.model';
 import { Constellation } from '../_models/constellation.model';
 import { Star } from '../_models/star.model';
 import data from './constellations.json';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-sky',

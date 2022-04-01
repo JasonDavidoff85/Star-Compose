@@ -1,4 +1,4 @@
-import { Component, OnInit, Attribute } from '@angular/core';
+import { Component, OnInit, Attribute, Input, Output, EventEmitter } from '@angular/core';
 import { ConstellationComponent } from '../constellation/constellation.component';
 import { Connection } from '../_models/connection.model';
 import { Constellation } from '../_models/constellation.model';
@@ -11,15 +11,14 @@ import data from './constellations.json';
   styleUrls: ['./sky.component.css'],
 })
 export class SkyComponent implements OnInit {
-
   constructor() { }
 
   //List of constellations in menu
   constellations:Constellation[] = [];
+  //List of constellations in sky
+  draggableConstellations:Constellation[] = [];
   //All Constellations
   allConstellations:Constellation[] = [];
-  //List of constellations on screen 
-  draggableConstellations:Constellation[] = [];
   //Temps
   currStar:Star[] = [];
   currConnection:Connection[] = [];
@@ -33,6 +32,13 @@ export class SkyComponent implements OnInit {
   callApi(Longitude: number, Latitude: number){
     const url = `https://api-adresse.data.gouv.fr/reverse/?lon=${Longitude}&lat=${Latitude}`
     //Call API
+  }
+
+  //Add constellation to sky on click
+  onSelectedConstellation(constellation:Constellation)
+  {
+    console.log("GOT THE MESSAGE")
+    this.draggableConstellations.push(constellation)
   }
 
   //Attempts to get user location; Gets filtered constellations if location is permitted, otherwise gets all constellations
@@ -95,19 +101,6 @@ export class SkyComponent implements OnInit {
       this.currConnection = []
       this.allConstellations.push(temp)
     }
-  }
-
-  //onClick function to add constellations to side from menu bar
-  addToSky(nm:string) {
-    for (let i in this.constellations)
-    {
-      if (this.constellations[i].name == nm)
-      {
-        this.draggableConstellations.push(this.constellations[i])
-      }
-      // console.log(this.constellations[i].name)
-    }
-    this.draggableConstellations.push()
   }
 
   ngOnInit(): void {

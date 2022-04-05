@@ -11,24 +11,31 @@ import {
 } from '@angular/core';
 import { ConstellationComponent } from '../constellation/constellation.component';
 // import { EventEmitter } from 'stream';
+import { Injectable } from '@angular/core';
+import { Inject } from '@angular/core';
 import { Connection } from '../_models/connection.model';
 import { Constellation } from '../_models/constellation.model';
 import { Star } from '../_models/star.model';
 import {SynthService} from '../_services/tone.service';
+
 
 @Component({
   selector: 'app-sky',
   templateUrl: './sky.component.html',
   styleUrls: ['./sky.component.css'],
 })
+@Injectable({
+  providedIn: 'root',
+})
 export class SkyComponent implements OnInit {
 
   @ViewChildren(ConstellationComponent) consts!: QueryList<ConstellationComponent>;
   @Output() getScreenCoords = new EventEmitter<boolean>();
 
-  constructor(private synth: SynthService) { }
+  constructor(private synth: SynthService) { this.width = window.innerWidth; }
 
   constellations:Constellation[] = [];
+  width:number;
 
   // test hardcodes star:
   cancer: Constellation = {
@@ -69,7 +76,7 @@ export class SkyComponent implements OnInit {
   ngOnInit(): void {
     this.constellations.push(this.cancer);
     this.constellations.push(this.cancer);
-    console.log(window.innerWidth);
+    
   }
 
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Inject } from '@angular/core';
 import * as Tone from 'tone';
 import { PolySynth } from 'tone';
 import { Monophonic } from 'tone/build/esm/instrument/Monophonic';
@@ -11,6 +12,7 @@ import { Star } from '../_models/star.model';
   })
 export class SynthService {
   bpm: number;
+  screenWidth: number;
   bassMajorCollection = ['C2', 'F2', 'G2', 'A3', 'C3'];
   melodyMajorCollection = ['C4', 'D4', 'E4', 'F4', 'G4', 'A5', 'B5', 'C5'];
 
@@ -21,10 +23,13 @@ export class SynthService {
   }
   }).toDestination();
 
-  constructor() {
+  
+  constructor(@Inject('width') private width: number) {
     // Griffin PC: 6000
     // Grifin Loaner Laptop: 3900
     this.bpm = 0
+    this.screenWidth = width;
+    console.log(width);
     
   }
   //Reference for snippet -> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random 
@@ -36,7 +41,7 @@ export class SynthService {
 
 // build the melody based on the star data (currently just x data)
   playStars(constellation: {stars:Star[], connections:Connection[]}):void {
-      this.setTempo(60, 1440, 50);
+      this.setTempo(60, this.screenWidth, 50);
       Tone.Transport.bpm.value = this.bpm;
       // This assumes a constellation object with valid grid data.
       let synth = new Tone.Synth({

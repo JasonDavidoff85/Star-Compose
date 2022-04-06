@@ -10,7 +10,6 @@ export class MenubarComponent implements OnInit {
   @HostBinding('class.navbar-opened') navbarOpened = false;  
   @Input() constellations:Constellation[] = [];
   
-  draggableConstellations:Constellation[] = [];
   @Output() onSelected = new EventEmitter<any>();
   constructor() { }
 

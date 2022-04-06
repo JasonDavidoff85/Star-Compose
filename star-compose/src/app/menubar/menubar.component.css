@@ -20,6 +20,8 @@
     height: 95%;
     background-color: rgba(0, 0, 0, 0.5);
     overflow: auto;
+    background-color: rgba(46, 43, 43, 0.75);
+
 }
 
 table {

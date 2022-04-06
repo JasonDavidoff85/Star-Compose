@@ -23,6 +23,8 @@ export class SkyComponent implements OnInit {
   currStar:Star[] = [];
   currConnection:Connection[] = [];
 
+  boolChange = 0;
+
   myLat = -100000;
 
   //List of all constellations
@@ -36,9 +38,37 @@ export class SkyComponent implements OnInit {
 
   //Add constellation to sky on click
   onSelectedConstellation(constellation:Constellation)
+  {    
+   this.draggableConstellations.push(constellation)
+   this.boolChange = 1 
+  }
+
+  changeStarPosition()
   {
-    console.log("GOT THE MESSAGE")
-    this.draggableConstellations.push(constellation)
+    let height =  window.innerHeight - (0.05 * window.innerHeight);
+    let width =  window.innerWidth - (0.2 * window.innerWidth);
+    
+    let randHeight = (Math.floor(Math.random() * (height -299))).toString() + "px";
+    let randWidth = (Math.floor(Math.random() * (width - 299))).toString() + "px";
+    
+    if (height < 300)
+    {
+      randHeight = "0px";
+    }
+    if (width < 300)
+    {
+      randWidth = "0px";
+    }
+    let elem = document.getElementsByClassName("stars")
+    if (elem != null)
+    {
+        if (elem.length > 0)
+        {
+        let str = "position: absolute; top:" +randHeight+ "; left:" +randWidth+ ";"
+        elem[this.draggableConstellations.length - 1].setAttribute("style", str)
+        }
+    }
+    this.boolChange = 0;
   }
 
   //Attempts to get user location; Gets filtered constellations if location is permitted, otherwise gets all constellations
@@ -49,8 +79,6 @@ export class SkyComponent implements OnInit {
         const longitude = position.coords.longitude;
         const latitude = position.coords.latitude;
         this.callApi(longitude, latitude);
-        console.log(longitude)
-        console.log(latitude) 
         // this.constellations = this.allConstellations
         this.myLat = latitude
         this.getConstellations()
@@ -105,6 +133,12 @@ export class SkyComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLocation()
+  }
 
+  ngAfterViewChecked(): void {
+    if (this.boolChange == 1)
+    {
+      this.changeStarPosition()
+    }
   }
 }

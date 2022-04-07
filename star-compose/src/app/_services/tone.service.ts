@@ -24,12 +24,11 @@ export class SynthService {
   }).toDestination();
 
   
-  constructor(@Inject('width') private width: number) {
+  constructor() {
     // Griffin PC: 6000
     // Grifin Loaner Laptop: 3900
     this.bpm = 0
-    this.screenWidth = width;
-    console.log(width);
+    this.screenWidth = window.innerWidth;
     
   }
   //Reference for snippet -> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random 
@@ -69,10 +68,10 @@ export class SynthService {
       let playData2 = [];
       // This builds play times based on the line connections
       for (let line of connections) {
-          let duration = line.x2 - line.x1;
+          let duration = Math.ceil((line.x2 - line.x1)/4);
           let pTime1 = Math.floor(line.x1/4);
           let pBeat1 = line.x1 % 4;
-          playData2.push({'time': pTime1 + ':' + pBeat1, 'note': this.bassMajorCollection[this.getRandomInt(0, 5)], 'duration': duration +'n', 'velocity': 0.7});
+          playData2.push({'time': pTime1 + ':' + pBeat1, 'note': this.bassMajorCollection[this.getRandomInt(0, 5)], 'duration': duration +'m', 'velocity': 0.7});
       }
     const bassLine = new Tone.Part(((time: any, value: { note: any; velocity: any; duration: any; }) => {
       // the value is an object which contains both the note and the velocity

@@ -48,7 +48,7 @@ export class SkyComponent implements OnInit {
     let height =  window.innerHeight - (0.05 * window.innerHeight);
     let width =  window.innerWidth - (0.2 * window.innerWidth);
     
-    let randHeight = (Math.floor(Math.random() * (height -299))).toString() + "px";
+    let randHeight = (Math.floor(Math.random() * ( (height -299)-(0.05 * window.innerHeight) ) +(0.05 * window.innerHeight)).toString() + "px");
     let randWidth = (Math.floor(Math.random() * (width - 299))).toString() + "px";
     
     if (height < 300)

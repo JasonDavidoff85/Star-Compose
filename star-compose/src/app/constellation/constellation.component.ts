@@ -1,10 +1,11 @@
-import { Component, OnInit, Attribute, Input, ViewChild, Directive, ElementRef, ViewChildren, QueryList, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Attribute, Input, ViewChild, Directive, ElementRef, ViewChildren, QueryList, Output, EventEmitter, HostListener } from '@angular/core';
 import { Constellation } from "../_models/constellation.model"
 import { Star } from "../_models/star.model"
 import {DragDropModule, DragRef, Point} from '@angular/cdk/drag-drop';
 import { CdkVirtualForOfContext } from '@angular/cdk/scrolling';
 import { Connection } from '../_models/connection.model';
 import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y/input-modality/input-modality-detector';
+import { ResizeEvent } from 'angular-resizable-element';
 
 @Component({
   selector: 'app-constellation',
@@ -19,7 +20,13 @@ export class ConstellationComponent implements OnInit {
   @Output() dataPoints = new EventEmitter<{stars: Star[], connections: Connection[]}>();
 
   gridSize = 50;
+
+
+  rotateValue = 0;
+  rotating = false;
+
   constructor() {}
+  @Input() aConst!:Constellation;
 
   public getScreenCoord(): {stars: Star[], connections: Connection[]} { 
     let allStars: Star[] = [];
@@ -53,6 +60,19 @@ export class ConstellationComponent implements OnInit {
     }; // will render the element every 30 pixels horizontally
   }
 
+  setRotate(value: string) {
+    this.rotateValue = +value;
+  }
+
+  public style: object = {};
+
+  onResizeEnd(event: ResizeEvent): void {
+    this.style = {
+      position: 'fixed',
+      width: `${event.rectangle.width}px`,
+      height: `${event.rectangle.height}px`
+    };
+  }
 
   ngOnInit(): void {
   }

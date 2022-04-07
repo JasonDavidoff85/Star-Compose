@@ -13,9 +13,10 @@ import { Star } from '../_models/star.model';
 export class SynthService {
   bpm: number;
   screenWidth: number;
-  bassMajorCollection = ['C2', 'F2', 'G2', 'A3', 'C3'];
-  melodyMajorCollection = ['C4', 'D4', 'E4', 'F4', 'G4', 'A5', 'B5', 'C5'];
-
+  bassMajorCollection = ['C2', 'F2', 'G2', 'A3', 'C3']; //only typical tonal centers
+  melodyMajorCollection = ['C4', 'D4', 'E4', 'F4', 'G4', 'A5', 'C5']; //removed the 7th for tonality
+  bassMinorrCollection = ['A2', 'D2', 'E2', 'F2', 'A3']; //only typical tonal centers
+  melodyMinorCollection = ['A4', 'B4', 'C4', 'D4', 'E4', 'F4', 'A5'];
   // bass synth for lines
   bass = new Tone.PolySynth(Tone.Synth, { 
   oscillator : {

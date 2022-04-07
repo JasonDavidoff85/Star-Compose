@@ -9,7 +9,7 @@
 
 .outside {
     display: flex;
-    border: dotted #ccc 2px;
+    border: dotted darkslategray 2px;
 }
 
 .inside {

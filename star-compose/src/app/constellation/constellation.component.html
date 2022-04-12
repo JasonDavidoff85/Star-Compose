@@ -1,15 +1,17 @@
 <div class="star-box outside" cdkDragBoundary=".example-boundary" [cdkDragConstrainPosition]="computeDragRenderPos" cdkDrag
-[ngStyle]="style" mwlResizable [enableGhostResize]="true" [resizeSnapGrid]="{left: 30, right: 30}" (resizeEnd)="onResizeEnd($event)">
+[ngStyle]="style" mwlResizable [resizeSnapGrid]="{left: 30, right: 30}" (resizing)="resizing($event)">
     <svg class="star-box inside" [attr.height]="aConst.height" [attr.width]="aConst.width" [ngStyle]="{'transform':'rotate(' + rotateValue + 'deg)'}"
-    [ngStyle]="style" mwlResizable [enableGhostResize]="true" [resizeSnapGrid]="{left: 30, right: 30}" (resizeEnd)="onResizeEnd($event)">
+    [ngStyle]="style" mwlResizable [resizeSnapGrid]="{left: 30, right: 30}" (resizing)="resizing($event)">
         <circle *ngFor="let star of aConst.stars" [attr.cx]="star.x" [attr.cy]="star.y" r="5" fill="white"></circle>
         <line *ngFor="let line of aConst.connections" [attr.x1]="line.x1" [attr.y1]="line.y1" [attr.x2]="line.x2" [attr.y2]="line.y2" style="stroke:rgb(255, 255, 255);stroke-width:2"></line>
     </svg>
-    <!-- TO DO: Fix moving options & star redrawing w/ svg resize -->
-    <abbr title="Resize Constellation: this is not functional yet">
+
+    <!-- TODO fix button is only clickable once -->
+    <abbr title="Resize Constellation">
         <div class="resize-grip" mwlResizeHandle [resizeEdges]="{ bottom: true, right: true }"></div>
     </abbr>
 
+    <!-- TODO fix position change on resize -->
     <div class="options">
         <abbr title="Drag Constellation">
             <mat-icon class="drag-icon" cdkDragHandle>open_with</mat-icon>

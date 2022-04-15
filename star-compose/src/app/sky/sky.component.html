@@ -1,5 +1,23 @@
-<app-menubar (renderAudio)="renderAudio($event)" (buttonPressed)="conductor.play($event)"></app-menubar>
-<div class="example-boundary">
-    <app-constellation #constel *ngFor="let i of constellations" [aConst]="i"></app-constellation>
-    <app-conductor #conductor></app-conductor>
-</div>
+<app-menubar 
+(renderAudio)="renderAudio($event)" 
+(buttonPressed)="conductor.play($event)"
+(menuOpened)="snav.toggle()">
+</app-menubar>
+
+<mat-sidenav-container class="example-boundary" [hasBackdrop]="false">
+    <mat-sidenav #snav [mode]="'over'" position="end">
+        <mat-card *ngFor="let i of constellations" (click)="add(i.name)">
+            <mat-card-content>
+                {{i.name}}
+            </mat-card-content>
+        </mat-card>
+    <!-- <mat-nav-list>
+        <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a>
+    </mat-nav-list> -->
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <app-constellation #constel *ngFor="let i of activeConstellatoions" [aConst]="i"></app-constellation>
+        <app-conductor #conductor [playTime]="playTime"></app-conductor>
+    </mat-sidenav-content>
+</mat-sidenav-container>

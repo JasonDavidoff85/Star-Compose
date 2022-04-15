@@ -40,8 +40,8 @@ export class SynthService {
   }
 
 // build the melody based on the star data (currently just x data)
-  playStars(constellation: {stars:Star[], connections:Connection[]}):void {
-      this.setTempo(60, this.screenWidth, 50);
+  playStars(constellation: {stars:Star[], connections:Connection[]}, playtime: number):void {
+      this.setTempo(playtime, this.screenWidth, 50);
       Tone.Transport.bpm.value = this.bpm;
       // This assumes a constellation object with valid grid data.
       let synth = new Tone.Synth({

@@ -1,7 +1,11 @@
 .star-box {
     /* border: dotted red 2px; */
-    height: 200px;
-    width: 230px;
+    height: 300px;
+    width: 330px;
+    min-height: 300px;
+    min-width: 300px;
+    max-height: 400px;
+    max-width: 400px;
     display: flex;
 }
 

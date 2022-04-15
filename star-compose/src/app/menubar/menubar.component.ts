@@ -9,19 +9,28 @@ import {SynthService} from '../_services/tone.service';
 export class MenubarComponent implements OnInit {
 
   @Output() buttonPressed = new EventEmitter<boolean>();
+  @Output() menuOpened = new EventEmitter<boolean>();
   @Output() renderAudio = new EventEmitter<boolean>();
+  playStatus = "Play"
 
   constructor(
     private synth: SynthService
     ) {}
 
   runConductor() {
-    this.buttonPressed.emit(true);
+    if (this.playStatus === "Play") {
+      this.playStatus = "Stop";
+      this.buttonPressed.emit(true);
+    }
+    else if (this.playStatus === "Stop") {
+      this.playStatus = "Play"
+      this.buttonPressed.emit(false);
+    }
     this.renderAudio.emit(true);
   }
 
-  playSound() {
-    // this.synth.playStars();
+  openMenu() {
+    this.menuOpened.emit(true);
   }
 
   ngOnInit(): void {

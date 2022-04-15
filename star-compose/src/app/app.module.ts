@@ -10,11 +10,14 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatCardModule} from '@angular/material/card';
 
 import { SkyComponent } from './sky/sky.component';
 import { ConstellationComponent } from './constellation/constellation.component';
 import { ConductorComponent } from './conductor/conductor.component';
 import { MenubarComponent } from './menubar/menubar.component';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { MenubarComponent } from './menubar/menubar.component';
     MatButtonToggleModule,
     MatIconModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSidenavModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

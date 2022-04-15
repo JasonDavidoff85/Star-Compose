@@ -10,4 +10,11 @@
 
 .spacer {
     flex: 1 1 auto;
- }
+}
+
+mat-button-toggle {
+    height: 25px;
+}
+mat-icon {
+    display: block;
+}

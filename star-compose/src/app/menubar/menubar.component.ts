@@ -30,7 +30,7 @@ export class MenubarComponent implements OnInit {
             if ( str == null) {
               str = ""
             }
-            icons[i][j].setAttribute("style", str + "border: none;")
+            icons[i][j].setAttribute("style", str + "border: 2px solid transparent;")
           }
           else {
             var str = icons[i][j].getAttribute("style")

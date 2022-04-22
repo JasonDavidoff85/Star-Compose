@@ -12,7 +12,7 @@
     flex: 1 1 auto;
  }
  
-  .constellationList {
+.constellationList {
     position: absolute;
     right: 0%;
     top: 5%;
@@ -21,6 +21,7 @@
     background-color: rgba(0, 0, 0, 0.5);
     overflow: auto;
     background-color: rgba(46, 43, 43, 0.75);
+    z-index: 2;
 
 }
 

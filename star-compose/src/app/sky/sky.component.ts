@@ -79,15 +79,16 @@ export class SkyComponent implements OnInit {
         const longitude = position.coords.longitude;
         const latitude = position.coords.latitude;
         this.callApi(longitude, latitude);
-        // this.constellations = this.allConstellations
         this.myLat = latitude
         this.getConstellations()
+        if (this.constellations.length < 1)
+        {
+          this.constellations = this.allConstellations
+        }
     },
     (error) => {
       if (error.code == error.PERMISSION_DENIED)
         console.log("You denied support for geolocation :-(")
-        // console.log(locationSupport)
-        // this.constellations = this.allConstellations
         this.getConstellations()
         this.constellations = this.allConstellations
     });

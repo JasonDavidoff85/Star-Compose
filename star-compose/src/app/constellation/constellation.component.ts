@@ -13,10 +13,19 @@ import { ResizeEvent } from 'angular-resizable-element';
 })
 
 export class ConstellationComponent implements OnInit {
+  // Global Variables
   rotateValue = 0;
   rotating = false;
-  size = 300;
   rotated = false;
+  resized = false;
+  size = 300;
+  minSize = 300;
+  maxSize = 500;
+
+  // Icon Default Titles
+  dragTitle = "Drag Constellation";
+  rotateTitle = "Rotate Constellation";
+  resizeTitle = "Resize Constellation";
 
   @ViewChildren('star') circles!: QueryList<ElementRef>;
   @ViewChildren('connection') connections!: QueryList<ElementRef>;
@@ -58,21 +67,25 @@ export class ConstellationComponent implements OnInit {
   }
 
   setRotate(value: string) {
-    this.rotateValue = +value;
-    this.rotated = true;
+    if (!this.resized) {
+      this.rotateValue = +value;
+      this.rotated = true;
+      this.resizeTitle = "Resize Constellation (Disabled)";
+    }
   }
 
   public style: object = {};
 
   resizing(event: ResizeEvent): void {''
     if (!this.rotated) {
-      this.style = {
-        width: `${event.rectangle.width}px`,
-        height: `${event.rectangle.width}px`
-      };
-      let scale = this.elem.nativeElement.offsetWidth/this.size;
-      let newSize = this.size*scale;
-
+    this.style = {
+      width: `${event.rectangle.width}px`,
+      height: `${event.rectangle.width}px`
+    };
+    let scale = this.elem.nativeElement.offsetWidth/this.size;
+    let newSize = this.size*scale;
+    
+    if (newSize > this.minSize && newSize < this.maxSize) {
       // Reposition Stars
       this.aConst.stars.forEach((element, index) => {
         element.x += ((newSize/2) - this.size/2);       // recentering
@@ -96,8 +109,11 @@ export class ConstellationComponent implements OnInit {
       });
 
       this.size = newSize;
+      this.resized = true;
+      this.rotateTitle = "Rotate Constellation (Disabled)";
     }
   }
+}
 
   ngOnInit(): void {
   }

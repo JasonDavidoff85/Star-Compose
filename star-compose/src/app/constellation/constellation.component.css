@@ -1,6 +1,9 @@
 .star-box {
     height: 300px;
     width: 300px;
+}
+
+.box {
     min-height: 300px;
     min-width: 300px;
     max-height: 500px;
@@ -8,21 +11,31 @@
 }
 
 .outside {
-    display: flex;
+    position: absolute;
+    display: block;
+    z-index: 5;
     border: dotted #ccc 2px;
 }
 
 .inside {
-    display: inline-flex;
-    z-index: -1;
+    position: fixed;
+    display: block;
+    z-index: 3;
     transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.constellation-name {
+    /* position: sticky; */
+    /* display: block; */
+    /* position: relative; */
+    /* flex-direction: row; */
+    color: #ccc;
 }
 
 .options {
     float: right;
     display: flex;
     flex-direction: column;
-    z-index: 2;
 }
 
 .example-handle {
@@ -71,7 +84,6 @@ input[type=range][orient=vertical] {
     height: 12px;
     bottom: 0;
     right: 0;
-    z-index: 2;
     cursor: nwse-resize;
     -webkit-clip-path: polygon(100% 0,100% 100%,0 100%);
     clip-path: polygon(100% 0,100% 100%,0 100%);

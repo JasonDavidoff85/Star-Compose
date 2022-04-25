@@ -25,10 +25,10 @@
 }
 
 .constellation-name {
-    /* position: sticky; */
-    /* display: block; */
-    /* position: relative; */
-    /* flex-direction: row; */
+    float: left;
+    display: flex;
+    padding: 10px;
+    font-size: large;
     color: #ccc;
 }
 

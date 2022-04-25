@@ -5,6 +5,7 @@ import {DragDropModule, DragRef, Point} from '@angular/cdk/drag-drop';
 import { CdkVirtualForOfContext } from '@angular/cdk/scrolling';
 import { Connection } from '../_models/connection.model';
 import { ResizeEvent } from 'angular-resizable-element';
+import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-constellation',
@@ -21,6 +22,7 @@ export class ConstellationComponent implements OnInit {
   size = 300;
   minSize = 300;
   maxSize = 500;
+  name = "Constellation";
 
   // Icon Default Titles
   dragTitle = "Drag Constellation";
@@ -32,7 +34,6 @@ export class ConstellationComponent implements OnInit {
   @Output() dataPoints = new EventEmitter<{stars: Star[], connections: Connection[]}>();
 
   constructor(private elem:ElementRef) {}
-
   @Input() aConst!:Constellation;
 
   public getScreenCoord(): {stars: Star[], connections: Connection[]} {
@@ -84,7 +85,7 @@ export class ConstellationComponent implements OnInit {
     };
     let scale = this.elem.nativeElement.offsetWidth/this.size;
     let newSize = this.size*scale;
-    
+
     if (newSize > this.minSize && newSize < this.maxSize) {
       // Reposition Stars
       this.aConst.stars.forEach((element, index) => {
@@ -116,6 +117,7 @@ export class ConstellationComponent implements OnInit {
 }
 
   ngOnInit(): void {
+    this.name = this.aConst.name;
   }
 
   ngAfterViewInit() {

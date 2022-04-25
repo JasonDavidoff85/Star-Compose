@@ -17,7 +17,7 @@ import {
         left: '0px',
       })),
       state('finished', style({
-        left: '80%',
+        left: '100%',
       })),
       transition('waiting => finished', [
         animate('20s')

@@ -16,6 +16,7 @@ export class ConstellationComponent implements OnInit {
   rotateValue = 0;
   rotating = false;
   size = 300;
+  rotated = false;
 
   @ViewChildren('star') circles!: QueryList<ElementRef>;
   @ViewChildren('connection') connections!: QueryList<ElementRef>;
@@ -58,41 +59,44 @@ export class ConstellationComponent implements OnInit {
 
   setRotate(value: string) {
     this.rotateValue = +value;
+    this.rotated = true;
   }
 
   public style: object = {};
 
   resizing(event: ResizeEvent): void {''
-    this.style = {
-      width: `${event.rectangle.width}px`,
-      height: `${event.rectangle.width}px`
-    };
-    let scale = this.elem.nativeElement.offsetWidth/this.size;
-    let newSize = this.size*scale;
+    if (!this.rotated) {
+      this.style = {
+        width: `${event.rectangle.width}px`,
+        height: `${event.rectangle.width}px`
+      };
+      let scale = this.elem.nativeElement.offsetWidth/this.size;
+      let newSize = this.size*scale;
 
-    // Reposition Stars
-    this.aConst.stars.forEach((element, index) => {
-      element.x += ((newSize/2) - this.size/2);       // recentering
-      element.y += ((newSize/2) - this.size/2);
-      
-      element.x += (element.x-newSize/2)*(scale-1);   // resizing
-      element.y += (element.y-newSize/2)*(scale-1);
-    });
+      // Reposition Stars
+      this.aConst.stars.forEach((element, index) => {
+        element.x += ((newSize/2) - this.size/2);       // recentering
+        element.y += ((newSize/2) - this.size/2);
+        
+        element.x += (element.x-newSize/2)*(scale-1);   // resizing
+        element.y += (element.y-newSize/2)*(scale-1);
+      });
 
-    // Reposition Connections
-    this.aConst.connections.forEach((element, index) => {
-      element.x1 += ((newSize/2) - this.size/2);      // recentering
-      element.y1 += ((newSize/2) - this.size/2);
-      element.x2 += ((newSize/2) - this.size/2);
-      element.y2 += ((newSize/2) - this.size/2);
+      // Reposition Connections
+      this.aConst.connections.forEach((element, index) => {
+        element.x1 += ((newSize/2) - this.size/2);      // recentering
+        element.y1 += ((newSize/2) - this.size/2);
+        element.x2 += ((newSize/2) - this.size/2);
+        element.y2 += ((newSize/2) - this.size/2);
 
-      element.x1 += (element.x1-newSize/2)*(scale-1);  // resizing
-      element.y1 += (element.y1-newSize/2)*(scale-1);
-      element.x2 += (element.x2-newSize/2)*(scale-1);
-      element.y2 += (element.y2-newSize/2)*(scale-1);
-    });
+        element.x1 += (element.x1-newSize/2)*(scale-1);  // resizing
+        element.y1 += (element.y1-newSize/2)*(scale-1);
+        element.x2 += (element.x2-newSize/2)*(scale-1);
+        element.y2 += (element.y2-newSize/2)*(scale-1);
+      });
 
-    this.size = newSize;
+      this.size = newSize;
+    }
   }
 
   ngOnInit(): void {

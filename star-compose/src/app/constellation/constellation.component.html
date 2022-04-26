@@ -15,7 +15,7 @@
         <input #rotation *ngIf="this.rotating && !this.resized" type="range" orient="vertical" class="custom-range  my-2" min="0" max="360" [(ngModel)]="rotateValue" [value]='rotateValue' (change)="setRotate(rotation.value)">
     </div>
     <svg class="box inside" [ngStyle]="style" mwlResizable [resizeSnapGrid]="{left: 30, right: 30}" (resizing)="resizing($event)" [attr.height]="aConst.height" [attr.width]="aConst.width" [ngStyle]="{'transform':'rotate(' + rotateValue + 'deg)'}">
-        <circle *ngFor="let star of aConst.stars" [attr.cx]="star.x" [attr.cy]="star.y" r="5" fill="white"></circle>
-        <line *ngFor="let line of aConst.connections" [attr.x1]="line.x1" [attr.y1]="line.y1" [attr.x2]="line.x2" [attr.y2]="line.y2" style="stroke:rgb(255, 255, 255);stroke-width:2"></line>
+        <circle #star *ngFor="let star of aConst.stars" [attr.cx]="star.x" [attr.cy]="star.y" r="5" fill="white"></circle>
+        <line #connection *ngFor="let line of aConst.connections" [attr.x1]="line.x1" [attr.y1]="line.y1" [attr.x2]="line.x2" [attr.y2]="line.y2" style="stroke:rgb(255, 255, 255);stroke-width:2"></line>
     </svg>
 </div>

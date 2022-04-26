@@ -1,8 +1,22 @@
-import { Component, OnInit, Attribute, Input, Output, EventEmitter } from '@angular/core';
+import { 
+  Component, 
+  OnInit, 
+  Attribute, 
+  Input, 
+  Output, 
+  EventEmitter, 
+  ViewChildren, 
+  QueryList,
+  ElementRef
+} from '@angular/core';
 import { ConstellationComponent } from '../constellation/constellation.component';
+// import { EventEmitter } from 'stream';
+import { Injectable } from '@angular/core';
+import { Inject } from '@angular/core';
 import { Connection } from '../_models/connection.model';
 import { Constellation } from '../_models/constellation.model';
 import { Star } from '../_models/star.model';
+import {SynthService} from '../_services/tone.service';
 import data from './constellations.json';
 
 @Component({
@@ -10,11 +24,22 @@ import data from './constellations.json';
   templateUrl: './sky.component.html',
   styleUrls: ['./sky.component.css'],
 })
+@Injectable({
+  providedIn: 'root',
+})
 export class SkyComponent implements OnInit {
-  constructor() { }
+
+  @ViewChildren(ConstellationComponent) consts!: QueryList<ConstellationComponent>;
+  @Output() getScreenCoords = new EventEmitter<boolean>();
+
+  constructor(private synth: SynthService) { this.width = window.innerWidth; }
+
 
   //List of constellations in menu
   constellations:Constellation[] = [];
+  width:number;
+
+  
   //List of constellations in sky
   draggableConstellations:Constellation[] = [];
   //All Constellations
@@ -119,7 +144,8 @@ export class SkyComponent implements OnInit {
         width: this.constellationList[item].width,
         name: this.constellationList[item].name,
         stars: this.currStar,
-        connections: this.currConnection
+        connections: this.currConnection,
+        leftBound: 0
       }
       if (this.constellationList[item].month == month && this.constellationList[item].nLat > this.myLat && this.constellationList[item].sLat < this.myLat)
       {
@@ -132,7 +158,22 @@ export class SkyComponent implements OnInit {
     }
   }
 
+  renderAudio($event: boolean) {
+    let constData: {stars: Star[], connections: Connection[]} = {stars: [], connections: []}
+    // console.log("sky got button press");
+    // this.consts.forEach((element, index) => console.log(element.getScreenCoord()));
+    this.consts.forEach((element, index) => {
+      // console.log(element.getScreenCoord().stars);
+      constData.stars.push(...element.getScreenCoord().stars);
+      constData.connections.push(...element.getScreenCoord().connections);
+    });
+    console.log(constData);
+    
+    this.synth.playStars(constData);
+  }
+
   ngOnInit(): void {
+
     this.getLocation()
   }
 

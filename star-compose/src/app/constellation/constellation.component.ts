@@ -1,9 +1,10 @@
-import { Component, OnInit, Attribute, Input, ViewChild, Directive, ElementRef, ViewChildren, QueryList, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Attribute, Input, ViewChild, Directive, ElementRef, ViewChildren, QueryList, Output, EventEmitter, HostListener } from '@angular/core';
 import { Constellation } from "../_models/constellation.model"
 import { Star } from "../_models/star.model"
 import {DragDropModule, DragRef, Point} from '@angular/cdk/drag-drop';
 import { CdkVirtualForOfContext } from '@angular/cdk/scrolling';
 import { Connection } from '../_models/connection.model';
+import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y/input-modality/input-modality-detector';
 import { ResizeEvent } from 'angular-resizable-element';
 import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 
@@ -23,6 +24,7 @@ export class ConstellationComponent implements OnInit {
   minSize = 300;
   maxSize = 500;
   name = "Constellation";
+  gridSize = 50;
 
   // Icon Default Titles
   dragTitle = "Drag Constellation";
@@ -61,9 +63,10 @@ export class ConstellationComponent implements OnInit {
   computeDragRenderPos(pos: Point, dragRef:DragRef<any>) {
     // this.aConst.leftBound = this.border.nativeElement.getBoundingClientRect.left;
     // console.log("SVG Postition: ", this.aConst.leftBound);
+    let gridSize = 50;
     return {
-      x: Math.floor(pos.x / 5) * 5,
-      y: Math.floor(pos.y / 5) * 5
+      x: Math.floor(pos.x / gridSize) * gridSize,
+      y: Math.floor(pos.y / gridSize) * gridSize
     }; // will render the element every 30 pixels horizontally
   }
 

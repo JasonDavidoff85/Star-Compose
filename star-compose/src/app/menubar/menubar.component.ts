@@ -1,5 +1,7 @@
+import {SynthService} from '../_services/tone.service';
 import { Component, OnInit, Output, EventEmitter, HostBinding, HostListener, Input } from '@angular/core';
 import { Constellation } from '../_models/constellation.model';
+
 @Component({
   selector: 'app-menubar',
   templateUrl: './menubar.component.html',
@@ -9,12 +11,14 @@ export class MenubarComponent implements OnInit {
   @Output() buttonPressed = new EventEmitter<boolean>();
   @HostBinding('class.navbar-opened') navbarOpened = false;  
   @Input() constellations:Constellation[] = [];
-  
+  @Output() renderAudio = new EventEmitter<boolean>();
   @Output() onSelected = new EventEmitter<any>();
-  constructor() { }
+
+  constructor( private synth: SynthService ) {}
 
   runConductor() {
     this.buttonPressed.emit(true);
+    this.renderAudio.emit(true);
 
     //Twinkling background on run
     // let twink = document.getElementsByClassName("twinkling")

@@ -1,4 +1,4 @@
-<app-menubar (onSelected)="onSelectedConstellation($event)" [constellations]="constellations" (buttonPressed)="conductor.play($event)"></app-menubar>
+<app-menubar (renderAudio)="renderAudio($event)" (buttonPressed)="conductor.play($event)"></app-menubar>
 <div class="example-boundary">
     <div>
         <div class="background-stars"></div>
@@ -6,5 +6,7 @@
     </div>
 
     <app-constellation class="stars" *ngFor="let i of draggableConstellations" [aConst]="i"></app-constellation>
+    <!-- <app-constellation #constel *ngFor="let i of constellations" [aConst]="i"></app-constellation> -->
+
     <app-conductor #conductor></app-conductor>
 </div>

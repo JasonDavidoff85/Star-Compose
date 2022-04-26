@@ -1,6 +1,5 @@
 <app-menubar (renderAudio)="renderAudio($event)" (buttonPressed)="conductor.play($event)"></app-menubar>
 <div class="example-boundary">
     <app-constellation #constel *ngFor="let i of constellations" [aConst]="i"></app-constellation>
-
     <app-conductor #conductor></app-conductor>
 </div>

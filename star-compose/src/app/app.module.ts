@@ -6,9 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
-import { FormsModule } from "@angular/forms";
-import { ResizableModule } from "angular-resizable-element";
-
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -25,15 +22,13 @@ import { MenubarComponent } from './menubar/menubar.component';
     SkyComponent,
     ConstellationComponent,
     ConductorComponent,
-    MenubarComponent,
+    MenubarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     DragDropModule,
-    FormsModule,
-    ResizableModule,
     MatButtonToggleModule,
     MatIconModule,
     MatToolbarModule,

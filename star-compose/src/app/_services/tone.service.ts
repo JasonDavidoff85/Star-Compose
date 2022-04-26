@@ -13,16 +13,10 @@ import { Star } from '../_models/star.model';
 export class SynthService {
   bpm: number;
   screenWidth: number;
-  bassMajorCollection = ['C2', 'F2', 'G2', 'A3', 'C3']; //only typical tonal centers
-  melodyMajorCollection = ['C4', 'D4', 'E4', 'F4', 'G4', 'A5', 'C5']; //removed the 7th for tonality
-  bassMinorrCollection = ['A2', 'D2', 'E2', 'F2', 'A3']; //only typical tonal centers
-  melodyMinorCollection = ['A4', 'B4', 'C4', 'D4', 'E4', 'F4', 'A5'];
-  // bass synth for lines
-  bass = new Tone.PolySynth(Tone.Synth, { 
-  oscillator : {
-    type : "sawtooth"
-  }
-  }).toDestination();
+  bassMajorCollection = ['C2', 'F2', 'G2', 'A3', 'C3'];
+  melodyMajorCollection = ['C4', 'D4', 'E4', 'F4', 'G4', 'A5', 'B5', 'C5'];
+
+  
 
   
   constructor() {
@@ -43,42 +37,57 @@ export class SynthService {
   playStars(constellation: {stars:Star[], connections:Connection[]}):void {
       this.setTempo(60, this.screenWidth, 50);
       Tone.Transport.bpm.value = this.bpm;
+      //reverb and effects
+      let verb = new Tone.JCReverb().toDestination();
+      verb.roomSize.value = 0.3;
+      const comp = new Tone.Compressor(-10, 3);
       // This assumes a constellation object with valid grid data.
-      let synth = new Tone.Synth({
+      let synth = new Tone.PolySynth(Tone.Synth, {
         oscillator : {
-          volume: 5,
-          count: 3,
+          volume: -10,
+          count: 5,
           spread: 40,
-          type : "fatsawtooth"
+          type : "fattriangle2"
         }
-      }).toDestination();
+      }).toDestination().connect(verb).connect(comp);
+      
+      // bass synth for lines
+      let bass = new Tone.PolySynth(Tone.Synth, { 
+          oscillator : {
+            type : "sine3",
+            volume: -11
+        }
+      }).toDestination().connect(verb).connect(comp);
       console.log("playing star:", constellation);
+      let connections = constellation.connections;
+      let playData2 = [];
+      let prevPlayed2 = [];
+      // This builds play times based on the line connections
+      for (let line of connections) {
+          prevPlayed2.push(line.x1);
+          let duration = Math.ceil((line.x2 - line.x1)/4);
+          let pTime1 = Math.floor((line.x1-5)/4);
+          let pBeat1 = (line.x1-5) % 4;
+          playData2.push({'time': pTime1 + ':' + pBeat1, 'note': this.bassMajorCollection[this.getRandomInt(0, 5)], 'duration': duration +'m', 'velocity': 0.5});
+      }
+    const bassLine = new Tone.Part(((time: any, value: { note: any; velocity: any; duration: any; }) => {
+      // the value is an object which contains both the note and the velocity
+      bass.triggerAttackRelease(value.note, value.duration, time, value.velocity);
+      }), playData2).start(0);
       let stars = constellation.stars;
       let playData = [];
       // This builds play times based on the star dat of the constellation
       for (let star of stars) {
           let pTime = Math.floor(star.getX()/4);
           let pBeat = star.getX() % 4;
-          playData.push({'time': pTime + ':' + pBeat, note: this.melodyMajorCollection[this.getRandomInt(0, 8)], duration: '16n', 'velocity': 0.9});
+          playData.push({'time': pTime + ':' + pBeat, note: this.melodyMajorCollection[this.getRandomInt(0, 8)], duration: '16n', 'velocity': 0.4});
       }
       const melody = new Tone.Part(((time: any, value: { note: any; velocity: any; }) => {
         // the value is an object which contains both the note and the velocity
         synth.triggerAttackRelease(value.note, "16n", time, value.velocity);
       }), playData).start(0);
-      let connections = constellation.connections;
-      let playData2 = [];
-      // This builds play times based on the line connections
-      for (let line of connections) {
-          let duration = Math.ceil((line.x2 - line.x1)/4);
-          let pTime1 = Math.floor(line.x1/4);
-          let pBeat1 = line.x1 % 4;
-          playData2.push({'time': pTime1 + ':' + pBeat1, 'note': this.bassMajorCollection[this.getRandomInt(0, 5)], 'duration': duration +'m', 'velocity': 0.7});
-      }
-    const bassLine = new Tone.Part(((time: any, value: { note: any; velocity: any; duration: any; }) => {
-      // the value is an object which contains both the note and the velocity
-      this.bass.triggerAttackRelease(value.note, value.duration, time, value.velocity);
-      }), playData2).start(0);
-
+      
+    
     Tone.Transport.start();
   }
   // function for changing tempo

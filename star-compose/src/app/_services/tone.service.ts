@@ -16,14 +16,35 @@ export class SynthService {
   bassMajorCollection = ['C2', 'F2', 'G2', 'A3', 'C3'];
   melodyMajorCollection = ['C4', 'D4', 'E4', 'F4', 'G4', 'A5', 'B5', 'C5'];
 
+  //reverb and effects
+  verb = new Tone.JCReverb().toDestination();
+  //
+  lim = new Tone.Limiter(-1).toDestination;
+  // This assumes a constellation object with valid grid data.
+  synth = new Tone.PolySynth(Tone.Synth, {
+    oscillator : {
+      volume: -21,
+      count: 2,
+      spread: 20,
+      type : "fattriangle2"
+    }
+  }).toDestination();
   
+  // bass synth for lines
+  bass = new Tone.PolySynth(Tone.Synth, { 
+      oscillator : {
+        type : "sine3",
+        volume: -19
+    }
+  }).toDestination();
 
   
   constructor() {
-    // Griffin PC: 6000
-    // Grifin Loaner Laptop: 3900
     this.bpm = 0
     this.screenWidth = window.innerWidth;
+    this.verb.roomSize.value = 0.5;
+    this.synth.connect(this.verb);
+    this.bass.connect(this.verb);
     
   }
   //Reference for snippet -> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random 
@@ -37,36 +58,14 @@ export class SynthService {
   playStars(constellation: {stars:Star[], connections:Connection[]}):void {
       this.setTempo(60, this.screenWidth, 50);
       Tone.Transport.bpm.value = this.bpm;
-      //reverb and effects
-      let verb = new Tone.JCReverb().toDestination();
-      verb.roomSize.value = 0.3;
-      const comp = new Tone.Compressor(-10, 3);
-      // This assumes a constellation object with valid grid data.
-      let synth = new Tone.PolySynth(Tone.Synth, {
-        oscillator : {
-          volume: -23,
-          count: 2,
-          spread: 20,
-          type : "fattriangle2"
-        }
-      }).toDestination().connect(verb);
       
-      // bass synth for lines
-      let bass = new Tone.PolySynth(Tone.Synth, { 
-          oscillator : {
-            type : "sine3",
-            volume: -18
-        }
-      }).toDestination().connect(verb);
 
       
       console.log("playing star:", constellation);
       let connections = constellation.connections;
       let playData2 = [];
-      let prevPlayed2 = [];
       // This builds play times based on the line connections
       for (let line of connections) {
-          prevPlayed2.push(line.x1);
           let duration = Math.ceil((line.x2 - line.x1)/4);
           let pTime1 = Math.floor((line.x1-5)/4);
           let pBeat1 = (line.x1-5) % 4;
@@ -74,7 +73,7 @@ export class SynthService {
       }
     const bassLine = new Tone.Part(((time: any, value: { note: any; velocity: any; duration: any; }) => {
       // the value is an object which contains both the note and the velocity
-      bass.triggerAttackRelease(value.note, value.duration, time, value.velocity);
+      this.bass.triggerAttackRelease(value.note, value.duration, time, value.velocity);
       }), playData2).start(0);
       let stars = constellation.stars;
       let playData = [];
@@ -86,10 +85,10 @@ export class SynthService {
       }
       const melody = new Tone.Part(((time: any, value: { note: any; velocity: any; }) => {
         // the value is an object which contains both the note and the velocity
-        synth.triggerAttackRelease(value.note, "16n", time, value.velocity);
+        this.synth.triggerAttackRelease(value.note, "16n", time, value.velocity);
       }), playData).start(0);
       
-    
+    Tone.context.resume();
     Tone.Transport.start();
   }
   // function for changing tempo
@@ -97,11 +96,5 @@ export class SynthService {
       this.bpm = (screenSize) * (60/time)
   }
 
-  public testTone() {
-      const synth = new Tone.Synth().toDestination();
-
-  //play a middle 'C' for the duration of an 8th note
-      synth.triggerAttackRelease("C4", "8n");
-  }
 
 }

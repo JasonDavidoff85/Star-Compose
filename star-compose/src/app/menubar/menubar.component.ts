@@ -38,6 +38,7 @@ export class MenubarComponent implements OnInit {
     icons.push(document.getElementsByClassName("drag-icon"))
     icons.push(document.getElementsByClassName("rotate-icon"))
     icons.push(document.getElementsByClassName("resize-grip"))
+    icons.push(document.getElementsByClassName("constellation-name"))
     icons.push(document.getElementsByClassName("custom-range  my-2"))
 
     if (icons[0] != null) {

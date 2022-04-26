@@ -35,21 +35,17 @@ export class SkyComponent implements OnInit {
   constructor(private synth: SynthService) { this.width = window.innerWidth; }
 
 
-  //List of constellations in menu
+  // Constellations in menu
   constellations:Constellation[] = [];
   width:number;
 
-  
-  //List of constellations in sky
+  // Constellations in sky
   draggableConstellations:Constellation[] = [];
-  //All Constellations
   allConstellations:Constellation[] = [];
-  //Temps
+
   currStar:Star[] = [];
   currConnection:Connection[] = [];
-
   boolChange = 0;
-
   myLat = -100000;
 
   //List of all constellations
@@ -173,7 +169,6 @@ export class SkyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.getLocation()
   }
 

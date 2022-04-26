@@ -29,8 +29,8 @@
                     <td (click)="onSelectedConstellation(constellation)">
                     <div class="star-box">
                         <svg class="boundary" [attr.height]=300 [attr.width]=300>
-                            <circle *ngFor="let star of constellation.stars" [attr.cx]="star.x" [attr.cy]="star.y" r="5" fill="white"></circle>
-                            <line *ngFor="let line of constellation.connections" [attr.x1]="line.x1" [attr.y1]="line.y1" [attr.x2]="line.x2" [attr.y2]="line.y2" style="stroke:rgb(255, 255, 255);stroke-width:2"></line>
+                            <circle class="static" *ngFor="let star of constellation.stars" [attr.cx]="star.x" [attr.cy]="star.y" r="5" fill="white"></circle>
+                            <line class="static" *ngFor="let line of constellation.connections" [attr.x1]="line.x1" [attr.y1]="line.y1" [attr.x2]="line.x2" [attr.y2]="line.y2" style="stroke:rgb(255, 255, 255);stroke-width:2"></line>
                         </svg>
                     </div>
                 </td>

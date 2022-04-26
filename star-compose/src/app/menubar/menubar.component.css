@@ -38,3 +38,7 @@ tr {
     border-width: 1px 0;
     color: white;
   }
+
+.static {
+    position: static;    /* this didn't work */
+}

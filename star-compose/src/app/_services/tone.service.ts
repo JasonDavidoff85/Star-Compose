@@ -44,20 +44,22 @@ export class SynthService {
       // This assumes a constellation object with valid grid data.
       let synth = new Tone.PolySynth(Tone.Synth, {
         oscillator : {
-          volume: -10,
-          count: 5,
-          spread: 40,
+          volume: -23,
+          count: 2,
+          spread: 20,
           type : "fattriangle2"
         }
-      }).toDestination().connect(verb).connect(comp);
+      }).toDestination().connect(verb);
       
       // bass synth for lines
       let bass = new Tone.PolySynth(Tone.Synth, { 
           oscillator : {
             type : "sine3",
-            volume: -11
+            volume: -18
         }
-      }).toDestination().connect(verb).connect(comp);
+      }).toDestination().connect(verb);
+
+      
       console.log("playing star:", constellation);
       let connections = constellation.connections;
       let playData2 = [];

@@ -10,6 +10,7 @@ export class MenubarComponent implements OnInit {
 
   @Output() buttonPressed = new EventEmitter<boolean>();
   @Output() menuOpened = new EventEmitter<boolean>();
+  @Output() settingsOpened = new EventEmitter<boolean>();
   @Output() renderAudio = new EventEmitter<boolean>();
   playStatus = "Play"
 
@@ -19,18 +20,25 @@ export class MenubarComponent implements OnInit {
 
   runConductor() {
     if (this.playStatus === "Play") {
+      // chnage button to stop and start audio
       this.playStatus = "Stop";
       this.buttonPressed.emit(true);
+      
     }
     else if (this.playStatus === "Stop") {
       this.playStatus = "Play"
       this.buttonPressed.emit(false);
+      this.renderAudio.emit(false);
     }
-    this.renderAudio.emit(true);
+    
   }
 
   openMenu() {
     this.menuOpened.emit(true);
+  }
+
+  openSettings() {
+    this.settingsOpened.emit(true);
   }
 
   ngOnInit(): void {

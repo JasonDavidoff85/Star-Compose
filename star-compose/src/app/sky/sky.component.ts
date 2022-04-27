@@ -33,8 +33,10 @@ export class SkyComponent implements OnInit {
   constellations:Constellation[] = [];
   activeConstellatoions: Constellation[] = [];
   playTime = 120;
+  playMode: boolean = false;
 
-  renderAudio($event: boolean) {
+  renderAudio() {
+    console.log("playing audio");
     let constData: {stars: Star[], connections: Connection[]} = {stars: [], connections: []}
     // console.log("sky got button press");
     // this.consts.forEach((element, index) => console.log(element.getScreenCoord()));
@@ -44,13 +46,19 @@ export class SkyComponent implements OnInit {
       constData.connections.push(...element.getScreenCoord().connections);
     });
     console.log(constData);
-    
+    // this.playMode = true;
     this.synth.playStars(constData, this.playTime);
   }
 
   add(cname: string) {
     let c = this.constellations.find(elem => elem.name === cname)
     if (c) {this.activeConstellatoions.push(c)}
+  }
+
+  togglePlay($event: boolean) {
+    this.playMode = $event
+    console.log("playmode: ", this.playMode)
+    this.renderAudio();
   }
 
   ngOnInit(): void {

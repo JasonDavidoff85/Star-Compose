@@ -1,12 +1,16 @@
 <div class="star-box" cdkDragBoundary=".example-boundary" [cdkDragConstrainPosition]="computeDragRenderPos" cdkDrag>
-    <svg class="boundary" [attr.height]="aConst.height" [attr.width]="aConst.width">
+    <div class="boundary" [@HideBorder]="playMode ? 'invisible' : 'visible'" cdkDragHandle>
+    <svg [attr.height]="aConst.height" [attr.width]="aConst.width" [ngStyle]="{'transform':'rotate(' + rotateValue + 'deg)'}">
         <circle #star *ngFor="let star of aConst.stars" [attr.cx]="star.x" [attr.cy]="star.y" r="5" fill="white"></circle>
         <line #connection *ngFor="let line of aConst.connections" [attr.x1]="line.x1" [attr.y1]="line.y1" [attr.x2]="line.x2" [attr.y2]="line.y2" style="stroke:rgb(255, 255, 255);stroke-width:2"></line>
     </svg>
+    </div>
 
     <div class="options">
-        <mat-icon class="drag-icon" cdkDragHandle>open_with</mat-icon>
-        <mat-icon class="rotate-icon">rotate_90_degrees_ccw</mat-icon>
+        <abbr [title]='rotateTitle'>
+            <mat-icon class="rotate-icon" (click)="this.rotating = !this.rotating" [@HideSettings]="playMode ? 'invisible' : 'visible'">rotate_90_degrees_ccw</mat-icon>
+        </abbr>
+        <input #rotation *ngIf="this.rotating && !this.resized" type="range" orient="vertical" class="custom-range  my-2 rotateBar" min="0" max="360" [(ngModel)]="rotateValue" [value]='rotateValue' (change)="setRotate(rotation.value)" [@HideSettings]="playMode ? 'invisible' : 'visible'">
     </div>
 
 </div>

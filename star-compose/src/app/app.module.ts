@@ -12,11 +12,13 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatCardModule} from '@angular/material/card';
+import {MatSliderModule} from '@angular/material/slider';
 
 import { SkyComponent } from './sky/sky.component';
 import { ConstellationComponent } from './constellation/constellation.component';
 import { ConductorComponent } from './conductor/conductor.component';
 import { MenubarComponent } from './menubar/menubar.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,7 +27,7 @@ import { MenubarComponent } from './menubar/menubar.component';
     SkyComponent,
     ConstellationComponent,
     ConductorComponent,
-    MenubarComponent
+    MenubarComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,9 @@ import { MenubarComponent } from './menubar/menubar.component';
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
-    MatCardModule
+    MatCardModule,
+    FormsModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

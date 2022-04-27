@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Inject } from '@angular/core';
 import * as Tone from 'tone';
 import { PolySynth } from 'tone';
+import { Listener } from 'tone/build/esm/core/context/Listener';
 import { Monophonic } from 'tone/build/esm/instrument/Monophonic';
 import { Connection } from '../_models/connection.model';
 import { Constellation } from '../_models/constellation.model';
@@ -12,11 +13,16 @@ import { Star } from '../_models/star.model';
   })
 export class SynthService {
   bpm: number;
+  noteSet: string[];
+  noteSetB: string[];
   timeOfDay: number;
   pauseTime: number;
   screenWidth: number;
   bassMajorCollection = ['C2', 'F2', 'G2', 'A3', 'C3'];
   melodyMajorCollection = ['C4', 'D4', 'E4', 'F4', 'G4', 'A5', 'B5', 'C5'];
+
+  bassMinorCollection = ['A2', 'D3', 'E3', 'F3', 'A3'];
+  melodyMinorCollection = ['A3', 'B3', 'C4', 'D4', 'E4', 'F4', 'G4', 'A4'];
 
   //reverb and effects
   verb = new Tone.Reverb(9).toDestination();
@@ -44,6 +50,8 @@ export class SynthService {
   constructor() {
     this.bpm = 0
     this.pauseTime = 0;
+    this.noteSet = [];
+    this.noteSetB=[];
     this.screenWidth = window.innerWidth;
     this.synth.connect(this.verb);
     this.bass.connect(this.verb);
@@ -52,27 +60,34 @@ export class SynthService {
 
     if (this.timeOfDay < 6) {
       //Do nothing. It is calm here.
+      this.noteSet = this.melodyMajorCollection;
+      this.noteSetB = this.bassMajorCollection;
+
     }
     else if (this.timeOfDay < 12) {
       const ping = new Tone.PingPongDelay("0.4s", 0.45).toDestination();
 
       this.synth.connect(ping);
+      this.noteSet = this.melodyMajorCollection;
+      this.noteSetB = this.bassMajorCollection;
 
     }
     else if (this.timeOfDay < 18) {
       const phaser = new Tone.Phaser({
         frequency: 10,
         octaves: 2,
-        baseFrequency: 50
+        baseFrequency: 100
       }).toDestination();
 
       this.bass.connect(phaser);
-
-      
+      this.noteSet = this.melodyMinorCollection;
+      this.noteSetB = this.bassMinorCollection;
     }
     else {
       const dist = new Tone.Distortion(0.5).toDestination();
       this.synth.connect(dist);
+      this.noteSet = this.melodyMinorCollection;
+      this.noteSetB = this.bassMinorCollection;
     }
   }
   //Reference for snippet -> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random 
@@ -98,7 +113,7 @@ export class SynthService {
           let duration = Math.ceil((line.x2 - line.x1)/4);
           let pTime1 = Math.floor((line.x1-5)/4);
           let pBeat1 = (line.x1-5) % 4;
-          playData2.push({'time': pTime1 + ':' + pBeat1, 'note': this.bassMajorCollection[this.getRandomInt(0, 5)], 'duration': duration +'m', 'velocity': 0.5});
+          playData2.push({'time': pTime1 + ':' + pBeat1, 'note': this.noteSetB[this.getRandomInt(0, 5)], 'duration': duration +'m', 'velocity': 0.5});
       }
     const bassLine = new Tone.Part(((time: any, value: { note: any; velocity: any; duration: any; }) => {
       // the value is an object which contains both the note and the velocity
@@ -110,7 +125,7 @@ export class SynthService {
       for (let star of stars) {
           let pTime = Math.floor(star.getX()/4);
           let pBeat = star.getX() % 4;
-          playData.push({'time': pTime + ':' + pBeat, note: this.melodyMajorCollection[this.getRandomInt(0, 8)], duration: '16n', 'velocity': 0.4});
+          playData.push({'time': pTime + ':' + pBeat, note: this.noteSet[this.getRandomInt(0, 8)], duration: '16n', 'velocity': 0.4});
       }
       const melody = new Tone.Part(((time: any, value: { note: any; velocity: any; }) => {
         // the value is an object which contains both the note and the velocity

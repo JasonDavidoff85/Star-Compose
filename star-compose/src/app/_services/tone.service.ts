@@ -12,12 +12,14 @@ import { Star } from '../_models/star.model';
   })
 export class SynthService {
   bpm: number;
+  timeOfDay: number;
+  pauseTime: number;
   screenWidth: number;
   bassMajorCollection = ['C2', 'F2', 'G2', 'A3', 'C3'];
   melodyMajorCollection = ['C4', 'D4', 'E4', 'F4', 'G4', 'A5', 'B5', 'C5'];
 
   //reverb and effects
-  verb = new Tone.JCReverb().toDestination();
+  verb = new Tone.Reverb(9).toDestination();
   //
   lim = new Tone.Limiter(-1).toDestination;
   // This assumes a constellation object with valid grid data.
@@ -41,11 +43,37 @@ export class SynthService {
   
   constructor() {
     this.bpm = 0
+    this.pauseTime = 0;
     this.screenWidth = window.innerWidth;
-    this.verb.roomSize.value = 0.5;
     this.synth.connect(this.verb);
     this.bass.connect(this.verb);
-    
+    const d = new Date();
+    this.timeOfDay = d.getHours() + 1;
+
+    if (this.timeOfDay < 6) {
+      //Do nothing. It is calm here.
+    }
+    else if (this.timeOfDay < 12) {
+      const ping = new Tone.PingPongDelay("0.4s", 0.45).toDestination();
+
+      this.synth.connect(ping);
+
+    }
+    else if (this.timeOfDay < 18) {
+      const phaser = new Tone.Phaser({
+        frequency: 10,
+        octaves: 2,
+        baseFrequency: 50
+      }).toDestination();
+
+      this.bass.connect(phaser);
+
+      
+    }
+    else {
+      const dist = new Tone.Distortion(0.5).toDestination();
+      this.synth.connect(dist);
+    }
   }
   //Reference for snippet -> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random 
   getRandomInt(min:number, max:number):number {
@@ -56,6 +84,7 @@ export class SynthService {
 
 // build the melody based on the star data (currently just x data)
   playStars(constellation: {stars:Star[], connections:Connection[]}):void {
+      Tone.Transport.stop();
       this.setTempo(60, this.screenWidth, 50);
       Tone.Transport.bpm.value = this.bpm;
       
@@ -88,13 +117,25 @@ export class SynthService {
         this.synth.triggerAttackRelease(value.note, "16n", time, value.velocity);
       }), playData).start(0);
       
-    Tone.context.resume();
-    Tone.Transport.start();
+      Tone.Transport.start();
+      Tone.context.resume();
   }
   // function for changing tempo
   setTempo(time:number, screenSize: number, divsionSize: number):void {
       this.bpm = (screenSize) * (60/time)
   }
 
+  pause():void {
+    this.pauseTime = Tone.now();
+    Tone.Transport.pause();
+  }
+
+  play():void {
+    Tone.Transport.start(this.pauseTime);
+  }
+
+  stop():void {
+    Tone.Transport.stop();
+  }
 
 }

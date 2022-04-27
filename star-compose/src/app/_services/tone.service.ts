@@ -76,7 +76,7 @@ export class SynthService {
       const phaser = new Tone.Phaser({
         frequency: 10,
         octaves: 2,
-        baseFrequency: 100
+        baseFrequency: 700
       }).toDestination();
 
       this.bass.connect(phaser);
@@ -113,7 +113,8 @@ export class SynthService {
           let duration = Math.ceil((line.x2 - line.x1)/4);
           let pTime1 = Math.floor((line.x1-5)/4);
           let pBeat1 = (line.x1-5) % 4;
-          playData2.push({'time': pTime1 + ':' + pBeat1, 'note': this.noteSetB[this.getRandomInt(0, 5)], 'duration': duration +'m', 'velocity': 0.5});
+          
+          playData2.push({'time': pTime1 + ':' + pBeat1, 'note': this.noteSetB[this.getRandomInt(0, 5)], 'duration': duration +'m', 'velocity': 0.6});
       }
     const bassLine = new Tone.Part(((time: any, value: { note: any; velocity: any; duration: any; }) => {
       // the value is an object which contains both the note and the velocity
@@ -125,7 +126,7 @@ export class SynthService {
       for (let star of stars) {
           let pTime = Math.floor(star.getX()/4);
           let pBeat = star.getX() % 4;
-          playData.push({'time': pTime + ':' + pBeat, note: this.noteSet[this.getRandomInt(0, 8)], duration: '16n', 'velocity': 0.4});
+          playData.push({'time': pTime + ':' + pBeat, note: this.noteSet[this.getRandomInt(0, 8)], duration: '16n', 'velocity': 0.5});
       }
       const melody = new Tone.Part(((time: any, value: { note: any; velocity: any; }) => {
         // the value is an object which contains both the note and the velocity

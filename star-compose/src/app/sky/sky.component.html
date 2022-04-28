@@ -1,9 +1,35 @@
 <!-- <app-menubar (renderAudio)="renderAudio($event)" (buttonPressed)="conductor.play($event)"></app-menubar> -->
 <app-menubar (renderAudio)="renderAudio($event)" (onSelected)="onSelectedConstellation($event)" [constellations]="constellations" (buttonPressed)="conductor.play($event)"></app-menubar>
 <div class="example-boundary">
-    <div>
+    <!-- Animation for night -->
+    <!-- <div>
         <div class="background-stars"></div>
         <div class="twinkling"></div> 
+    </div> -->
+
+    <!-- Animation for day -->
+    <div>
+        <div id="background-day">
+            <div class="x1">
+                <div class="cloud"></div>
+            </div>
+        
+            <div class="x2">
+                <div class="cloud"></div>
+            </div>
+        
+            <div class="x3">
+                <div class="cloud"></div>
+            </div>
+        
+            <div class="x4">
+                <div class="cloud"></div>
+            </div>
+        
+            <div class="x5">
+                <div class="cloud"></div>
+            </div>
+        </div>
     </div>
 
     <app-constellation class="stars" *ngFor="let i of draggableConstellations" [aConst]="i"></app-constellation>

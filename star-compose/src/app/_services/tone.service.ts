@@ -85,7 +85,9 @@ export class SynthService {
     }
     else {
       const dist = new Tone.Distortion(0.5).toDestination();
+      const dist1 = new Tone.Distortion(0.2).toDestination();
       this.synth.connect(dist);
+      this.bass.connect(dist1);
       this.noteSet = this.melodyMinorCollection;
       this.noteSetB = this.bassMinorCollection;
     }

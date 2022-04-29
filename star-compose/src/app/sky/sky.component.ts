@@ -154,6 +154,39 @@ export class SkyComponent implements OnInit {
     }
   }
 
+  //Get time of day to choose background to display
+  getTime() {
+    const date = new Date();
+    let hour = date.getHours();
+    console.log("Hour" +hour)
+
+    let night = document.getElementsByClassName("night")
+    let day = document.getElementsByClassName("day")
+
+    let body = document.getElementsByTagName("body")
+
+
+    if (0 <= hour && hour <= 6)
+    {
+      night[0].setAttribute("style", "visibility:visible;")
+    }
+    else if (6 < hour && hour <= 12)
+    {
+      day[0].setAttribute("style", "visibility:visible;")
+      body[0].setAttribute("style", "background-image: linear-gradient(#9cb8ea, #5f8fe3);")
+    }
+    else if (12 < hour && hour <= 18)
+    {
+      day[0].setAttribute("style", "visibility:visible;")
+      body[0].setAttribute("style", "background-image: linear-gradient(#2F4090, #9284D1);")
+    }
+    else if (18 < hour && hour < 24)
+    {
+      night[0].setAttribute("style", "visibility:visible;")
+      
+    }
+  }
+
   renderAudio($event: boolean) {
     let constData: {stars: Star[], connections: Connection[]} = {stars: [], connections: []}
     // console.log("sky got button press");
@@ -170,6 +203,7 @@ export class SkyComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLocation()
+    this.getTime()
   }
 
   ngAfterViewChecked(): void {

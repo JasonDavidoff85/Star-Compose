@@ -8,5 +8,6 @@ export interface Constellation {
     stars: Star[];
     connections: Connection[];
     leftBound: number;
+    constellationID:number;
     // TODO added: all data surrounding visiblity
 }

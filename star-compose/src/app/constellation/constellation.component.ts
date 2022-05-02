@@ -30,6 +30,7 @@ export class ConstellationComponent implements OnInit {
   dragTitle = "Drag Constellation";
   rotateTitle = "Rotate Constellation";
   resizeTitle = "Resize Constellation";
+  deleteTitle = "Delete Constellation";
 
   @ViewChildren('star') circles!: QueryList<ElementRef>;
   @ViewChildren('connection') connections!: QueryList<ElementRef>;
@@ -37,6 +38,7 @@ export class ConstellationComponent implements OnInit {
 
   constructor(private elem:ElementRef) {}
   @Input() aConst!:Constellation;
+  @Input() draggableConstellations:Constellation[] = [];
 
   public getScreenCoord(): {stars: Star[], connections: Connection[]} {
     let allStars: Star[] = [];
@@ -76,6 +78,16 @@ export class ConstellationComponent implements OnInit {
       this.rotated = true;
       this.resizeTitle = "Resize Constellation (Disabled)";
     }
+  }
+
+  delete() {    
+    console.log(this.aConst.constellationID)
+    console.log("DELETING")
+
+    this.draggableConstellations.forEach((element, index) => {
+      if (this.aConst.constellationID == element.constellationID)
+        this.draggableConstellations.splice(index, 1)
+    })
   }
 
   public style: object = {};
@@ -123,7 +135,4 @@ export class ConstellationComponent implements OnInit {
     this.name = this.aConst.name;
   }
 
-  ngAfterViewInit() {
-    // console.log("Svg left bound: ", this.border.nativeElement.getAttribute('height'));
-  }
 }

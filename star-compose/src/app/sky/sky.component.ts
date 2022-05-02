@@ -47,6 +47,7 @@ export class SkyComponent implements OnInit {
   currConnection:Connection[] = [];
   boolChange = 0;
   myLat = -100000;
+  currID = 0;
 
   //List of all constellations
   public constellationList:{height:number, width:number, month:number, nLat:number, sLat:number, quadrant:string, name:string, stars:any, connections:any}[] = data;
@@ -60,7 +61,19 @@ export class SkyComponent implements OnInit {
   //Add constellation to sky on click
   onSelectedConstellation(constellation:Constellation)
   {    
-   this.draggableConstellations.push(constellation)
+
+    let newConst: Constellation = {
+      height: constellation.height,
+      width: constellation.width,
+      name: constellation.name,
+      stars: constellation.stars,
+      connections: constellation.connections,
+      leftBound: 0,
+      constellationID: this.currID
+    }
+
+    this.draggableConstellations.push(newConst)
+   this.currID++;
    this.boolChange = 1 
   }
 
@@ -141,7 +154,8 @@ export class SkyComponent implements OnInit {
         name: this.constellationList[item].name,
         stars: this.currStar,
         connections: this.currConnection,
-        leftBound: 0
+        leftBound: 0,
+        constellationID: -1
       }
       if (this.constellationList[item].month == month && this.constellationList[item].nLat > this.myLat && this.constellationList[item].sLat < this.myLat)
       {

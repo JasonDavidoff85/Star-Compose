@@ -8,6 +8,9 @@
             <abbr [title]='rotateTitle'>
                 <mat-icon class="rotate-icon" (click)="this.rotating = !this.rotating">rotate_90_degrees_ccw</mat-icon>
             </abbr>
+            <abbr [title]='deleteTitle'>
+                <mat-icon class="delete-icon" (click)="delete()">delete-icon</mat-icon>
+            </abbr>
             <abbr [title]='resizeTitle'>
                 <div class="resize-grip" mwlResizeHandle [resizeEdges]="{ bottom: true, right: true }"></div>
             </abbr>

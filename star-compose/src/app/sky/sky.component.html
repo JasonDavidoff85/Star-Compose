@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    <app-constellation class="stars" *ngFor="let i of draggableConstellations" [aConst]="i"></app-constellation>
+    <app-constellation [draggableConstellations]="draggableConstellations" class="stars" *ngFor="let i of draggableConstellations" [aConst]="i"></app-constellation>
     <!-- <app-constellation #constel *ngFor="let i of constellations" [aConst]="i"></app-constellation> -->
 
     <app-conductor #conductor></app-conductor>

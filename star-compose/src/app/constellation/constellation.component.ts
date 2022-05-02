@@ -72,12 +72,10 @@ export class ConstellationComponent implements OnInit {
     }; // will render the element every 30 pixels horizontally
   }
 
-  setRotate(value: string) {
-    if (!this.resized) {
+  setRotate(value: string) {  
+
       this.rotateValue = +value;
-      this.rotated = true;
-      this.resizeTitle = "Resize Constellation (Disabled)";
-    }
+      this.rotated = true;      
   }
 
   delete() {    
@@ -90,23 +88,27 @@ export class ConstellationComponent implements OnInit {
   public style: object = {};
 
   resizing(event: ResizeEvent): void {''
-  this.draggableConstellations.forEach((element, constNum) => {
+  this.draggableConstellations.forEach((element, index) => {
 
     if (this.aConst.constellationID == element.constellationID)
     {
-
-      if (!this.rotated) {
+        
        this.style = {
          width: `${event.rectangle.width}px`,
          height: `${event.rectangle.width}px`
        };
+
+       this.draggableConstellations[index].height = event.rectangle.width as number;
+       this.draggableConstellations[index].width = event.rectangle.width as number;
+      console.log("WIDTH: "+this.draggableConstellations[index].height)
        let scale = this.elem.nativeElement.offsetWidth/this.size;
        let newSize = this.size*scale;
    
        if (newSize > this.minSize && newSize < this.maxSize) {
          // Reposition Stars
-         this.draggableConstellations[constNum].stars.forEach((element, index) => {
-           element.x += ((newSize/2) - this.size/2);       // recentering
+         this.draggableConstellations[index].stars.forEach((element, index) => {
+           
+            element.x += ((newSize/2) - this.size/2);       // recentering
            element.y += ((newSize/2) - this.size/2);
            
            element.x += (element.x-newSize/2)*(scale-1);   // resizing
@@ -114,7 +116,7 @@ export class ConstellationComponent implements OnInit {
          });
    
          // Reposition Connections
-         this.draggableConstellations[constNum].connections.forEach((element, index) => {
+         this.draggableConstellations[index].connections.forEach((element, index) => {
            element.x1 += ((newSize/2) - this.size/2);      // recentering
            element.y1 += ((newSize/2) - this.size/2);
            element.x2 += ((newSize/2) - this.size/2);
@@ -128,9 +130,7 @@ export class ConstellationComponent implements OnInit {
    
          this.size = newSize;
          this.resized = true;
-         this.rotateTitle = "Rotate Constellation (Disabled)";
        }
-     }
     }
     
   })
@@ -139,5 +139,4 @@ export class ConstellationComponent implements OnInit {
   ngOnInit(): void {
     this.name = this.aConst.name;
   }
-
 }

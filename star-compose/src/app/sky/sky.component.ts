@@ -61,13 +61,12 @@ export class SkyComponent implements OnInit {
   //Add constellation to sky on click
   onSelectedConstellation(constellation:Constellation)
   {    
-
     let newConst: Constellation = {
       height: constellation.height,
       width: constellation.width,
       name: constellation.name,
-      stars: constellation.stars,
-      connections: constellation.connections,
+      stars: constellation.stars.map(x => Object.assign({}, x)),
+      connections: constellation.connections.map(x => Object.assign({}, x)),
       leftBound: 0,
       constellationID: this.currID
     }

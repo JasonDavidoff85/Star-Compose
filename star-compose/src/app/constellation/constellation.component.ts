@@ -93,42 +93,52 @@ export class ConstellationComponent implements OnInit {
   public style: object = {};
 
   resizing(event: ResizeEvent): void {''
-    if (!this.rotated) {
-    this.style = {
-      width: `${event.rectangle.width}px`,
-      height: `${event.rectangle.width}px`
-    };
-    let scale = this.elem.nativeElement.offsetWidth/this.size;
-    let newSize = this.size*scale;
+  this.draggableConstellations.forEach((element, constNum) => {
 
-    if (newSize > this.minSize && newSize < this.maxSize) {
-      // Reposition Stars
-      this.aConst.stars.forEach((element, index) => {
-        element.x += ((newSize/2) - this.size/2);       // recentering
-        element.y += ((newSize/2) - this.size/2);
-        
-        element.x += (element.x-newSize/2)*(scale-1);   // resizing
-        element.y += (element.y-newSize/2)*(scale-1);
-      });
+    if (this.aConst.constellationID == element.constellationID)
+    {
 
-      // Reposition Connections
-      this.aConst.connections.forEach((element, index) => {
-        element.x1 += ((newSize/2) - this.size/2);      // recentering
-        element.y1 += ((newSize/2) - this.size/2);
-        element.x2 += ((newSize/2) - this.size/2);
-        element.y2 += ((newSize/2) - this.size/2);
+      if (!this.rotated) {
+       this.style = {
+         width: `${event.rectangle.width}px`,
+         height: `${event.rectangle.width}px`
+       };
+       let scale = this.elem.nativeElement.offsetWidth/this.size;
+       let newSize = this.size*scale;
+   
+       if (newSize > this.minSize && newSize < this.maxSize) {
+        console.log("CONST ID: "+this.draggableConstellations[constNum].constellationID)
 
-        element.x1 += (element.x1-newSize/2)*(scale-1);  // resizing
-        element.y1 += (element.y1-newSize/2)*(scale-1);
-        element.x2 += (element.x2-newSize/2)*(scale-1);
-        element.y2 += (element.y2-newSize/2)*(scale-1);
-      });
-
-      this.size = newSize;
-      this.resized = true;
-      this.rotateTitle = "Rotate Constellation (Disabled)";
+         // Reposition Stars
+         this.draggableConstellations[constNum].stars.forEach((element, index) => {
+           element.x += ((newSize/2) - this.size/2);       // recentering
+           element.y += ((newSize/2) - this.size/2);
+           
+           element.x += (element.x-newSize/2)*(scale-1);   // resizing
+           element.y += (element.y-newSize/2)*(scale-1);
+         });
+   
+         // Reposition Connections
+         this.draggableConstellations[constNum].connections.forEach((element, index) => {
+           element.x1 += ((newSize/2) - this.size/2);      // recentering
+           element.y1 += ((newSize/2) - this.size/2);
+           element.x2 += ((newSize/2) - this.size/2);
+           element.y2 += ((newSize/2) - this.size/2);
+   
+           element.x1 += (element.x1-newSize/2)*(scale-1);  // resizing
+           element.y1 += (element.y1-newSize/2)*(scale-1);
+           element.x2 += (element.x2-newSize/2)*(scale-1);
+           element.y2 += (element.y2-newSize/2)*(scale-1);
+         });
+   
+         this.size = newSize;
+         this.resized = true;
+         this.rotateTitle = "Rotate Constellation (Disabled)";
+       }
+     }
     }
-  }
+    
+  })
 }
 
   ngOnInit(): void {

@@ -55,7 +55,6 @@ export class SkyComponent implements OnInit {
   //Get User Location
   callApi(Longitude: number, Latitude: number){
     const url = `https://api-adresse.data.gouv.fr/reverse/?lon=${Longitude}&lat=${Latitude}`
-    //Call API
   }
 
   //Add constellation to sky on click
@@ -171,7 +170,6 @@ export class SkyComponent implements OnInit {
   getTime() {
     const date = new Date();
     let hour = date.getHours();
-    console.log("Hour" +hour)
 
     let night = document.getElementsByClassName("night")
     let day = document.getElementsByClassName("day")

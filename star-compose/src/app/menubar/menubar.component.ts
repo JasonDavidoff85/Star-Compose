@@ -20,11 +20,6 @@ export class MenubarComponent implements OnInit {
     this.buttonPressed.emit(true);
     this.renderAudio.emit(true);
 
-    //Twinkling background on run
-    // let twink = document.getElementsByClassName("twinkling")
-    // twink[0].setAttribute("style", "animation:move-twink-back 200s linear infinite;");
-
-
     //Disable Buttons
     let constellationButton = document.getElementsByClassName("constellationButton")
     constellationButton[0].setAttribute("disabled", "")
@@ -37,6 +32,7 @@ export class MenubarComponent implements OnInit {
     icons.push(document.getElementsByClassName("outside"))
     icons.push(document.getElementsByClassName("drag-icon"))
     icons.push(document.getElementsByClassName("rotate-icon"))
+    icons.push(document.getElementsByClassName("delete-icon"))
     icons.push(document.getElementsByClassName("resize-grip"))
     icons.push(document.getElementsByClassName("constellation-name"))
     icons.push(document.getElementsByClassName("custom-range  my-2"))
@@ -65,7 +61,6 @@ export class MenubarComponent implements OnInit {
 
   //Add constellation to sky on click
   onSelectedConstellation(cst:Constellation){
-    console.log("CLICKED")
     let nm = cst.name
     for (let i in this.constellations)
     {

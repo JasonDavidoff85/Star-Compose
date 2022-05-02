@@ -81,9 +81,6 @@ export class ConstellationComponent implements OnInit {
   }
 
   delete() {    
-    console.log(this.aConst.constellationID)
-    console.log("DELETING")
-
     this.draggableConstellations.forEach((element, index) => {
       if (this.aConst.constellationID == element.constellationID)
         this.draggableConstellations.splice(index, 1)
@@ -107,8 +104,6 @@ export class ConstellationComponent implements OnInit {
        let newSize = this.size*scale;
    
        if (newSize > this.minSize && newSize < this.maxSize) {
-        console.log("CONST ID: "+this.draggableConstellations[constNum].constellationID)
-
          // Reposition Stars
          this.draggableConstellations[constNum].stars.forEach((element, index) => {
            element.x += ((newSize/2) - this.size/2);       // recentering

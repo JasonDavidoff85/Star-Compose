@@ -58,21 +58,29 @@ export class SynthService {
     const d = new Date();
     this.timeOfDay = d.getHours() + 1;
 
-    if (this.timeOfDay < 6) {
+    if (this.timeOfDay < 2) {
+      const dist = new Tone.Distortion(0.5).toDestination();
+      const dist1 = new Tone.Distortion(0.2).toDestination();
+      this.synth.connect(dist);
+      this.bass.connect(dist1);
+      this.noteSet = this.melodyMinorCollection;
+      this.noteSetB = this.bassMinorCollection;
+    }
+    else if (this.timeOfDay < 10) {
       //Do nothing. It is calm here.
       this.noteSet = this.melodyMajorCollection;
       this.noteSetB = this.bassMajorCollection;
 
     }
-    else if (this.timeOfDay < 12) {
-      const ping = new Tone.PingPongDelay("0.4s", 0.45).toDestination();
+    else if (this.timeOfDay < 19) {
+      const ping = new Tone.PingPongDelay("0.4s", 0.52).toDestination();
 
       this.synth.connect(ping);
       this.noteSet = this.melodyMajorCollection;
       this.noteSetB = this.bassMajorCollection;
 
     }
-    else if (this.timeOfDay < 18) {
+    else if (this.timeOfDay < 23) {
       const phaser = new Tone.Phaser({
         frequency: 10,
         octaves: 2,
@@ -112,9 +120,15 @@ export class SynthService {
       let playData2 = [];
       // This builds play times based on the line connections
       for (let line of connections) {
-          let duration = Math.ceil((line.x2 - line.x1)/4);
-          let pTime1 = Math.floor((line.x1-5)/4);
-          let pBeat1 = (line.x1-5) % 4;
+          let p1 = line.x1;
+          let p2 = line.x2;
+          if (p1 > p2){
+            p1 = line.x2;
+            p2 = line.x1;
+          }
+          let duration = Math.ceil((p2 - p1)/4);
+          let pTime1 = Math.floor((p1-5)/4);
+          let pBeat1 = (p1-5) % 4;
           
           playData2.push({'time': pTime1 + ':' + pBeat1, 'note': this.noteSetB[this.getRandomInt(0, 5)], 'duration': duration +'m', 'velocity': 0.6});
       }

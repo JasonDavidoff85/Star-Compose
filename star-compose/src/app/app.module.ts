@@ -13,6 +13,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatCardModule} from '@angular/material/card';
 import {MatSliderModule} from '@angular/material/slider';
+import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 
 import { SkyComponent } from './sky/sky.component';
 import { ConstellationComponent } from './constellation/constellation.component';
@@ -20,6 +21,7 @@ import { ConductorComponent } from './conductor/conductor.component';
 import { MenubarComponent } from './menubar/menubar.component';
 import { FormsModule } from '@angular/forms';
 import { ResizableModule } from "angular-resizable-element";
+import { DialogComponent } from './dialog/dialog.component';
 
 
 @NgModule({
@@ -29,6 +31,7 @@ import { ResizableModule } from "angular-resizable-element";
     ConstellationComponent,
     ConductorComponent,
     MenubarComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { ResizableModule } from "angular-resizable-element";
     MatCardModule,
     FormsModule,
     MatSliderModule,
-    ResizableModule
+    ResizableModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

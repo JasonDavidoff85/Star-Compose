@@ -4,6 +4,7 @@
 (menuOpened)="snav.toggle()" 
 (time)="setPlayTime($event)">
 </app-menubar>
+<app-dialog></app-dialog>
 
 <mat-sidenav-container class="example-boundary" [hasBackdrop]="false">
     <mat-sidenav #snav [mode]="'over'" position="end">
@@ -16,7 +17,7 @@
     <mat-sidenav-content>
         <div class="night">
             <div class="background-stars"></div>
-            <div class="twinkling"></div> 
+            <div class="twinkling"></div>
         </div>
     
         <!-- Animation for day -->

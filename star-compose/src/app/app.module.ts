@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog'; // added
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { FormsModule } from "@angular/forms";
@@ -18,6 +19,7 @@ import { SkyComponent } from './sky/sky.component';
 import { ConstellationComponent } from './constellation/constellation.component';
 import { ConductorComponent } from './conductor/conductor.component';
 import { MenubarComponent } from './menubar/menubar.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { MenubarComponent } from './menubar/menubar.component';
     ConstellationComponent,
     ConductorComponent,
     MenubarComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { MenubarComponent } from './menubar/menubar.component';
     MatButtonToggleModule,
     MatIconModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

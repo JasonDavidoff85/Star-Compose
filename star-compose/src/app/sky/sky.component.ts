@@ -58,7 +58,13 @@ export class SkyComponent implements OnInit {
   togglePlay($event: boolean) {
     this.playMode = $event
     console.log("playmode: ", this.playMode)
-    this.renderAudio();
+    if (this.playMode) {
+      this.renderAudio();
+    }
+  }
+
+  setPlayTime($event: number) {
+    this.playTime = $event;
   }
 
   ngOnInit(): void {

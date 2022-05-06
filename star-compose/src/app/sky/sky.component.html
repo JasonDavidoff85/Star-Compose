@@ -1,8 +1,8 @@
 <app-menubar 
-(buttonPressed)="conductor.play($event)"
-(buttonPressed)="togglePlay($event)"
-(menuOpened)="snav.toggle()">
-(settingsOpened)="settingMenu.toggle()"
+(buttonPressed)="conductor.play($event)" 
+(buttonPressed)="togglePlay($event)" 
+(menuOpened)="snav.toggle()" 
+(time)="setPlayTime($event)">
 </app-menubar>
 
 <mat-sidenav-container class="example-boundary" [hasBackdrop]="false">
@@ -12,14 +12,11 @@
                 {{i.name}}
             </mat-card-content>
         </mat-card>
-    <!-- <mat-nav-list>
-        <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a>
-    </mat-nav-list> -->
     </mat-sidenav>
 
-    <mat-sidenav #settingMenu [mode]="'over'" position="start">
+    <!-- <mat-sidenav #settingMenu [mode]="'over'" position="start">
         <mat-slider min="5" max="60" step="1" value="1"></mat-slider>
-    </mat-sidenav>
+    </mat-sidenav> -->
 
     <mat-sidenav-content>
         <app-constellation #constel *ngFor="let i of activeConstellatoions" [playMode]="playMode" [aConst]="i"></app-constellation>

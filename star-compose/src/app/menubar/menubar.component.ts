@@ -12,7 +12,9 @@ export class MenubarComponent implements OnInit {
   @Output() menuOpened = new EventEmitter<boolean>();
   @Output() settingsOpened = new EventEmitter<boolean>();
   @Output() renderAudio = new EventEmitter<boolean>();
+  @Output() time = new EventEmitter<number>();
   playStatus = "Play"
+  timeTemp: number = 15;
 
   constructor(
     private synth: SynthService
@@ -31,6 +33,13 @@ export class MenubarComponent implements OnInit {
       this.renderAudio.emit(false);
     }
     
+  }
+
+  changeValue(event: any) {
+    this.timeTemp = event.value;
+    console.log("Emitting value: ", event.value)
+    this.time.emit(event.value);
+
   }
 
   openMenu() {

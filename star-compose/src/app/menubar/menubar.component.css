@@ -18,3 +18,12 @@ mat-button-toggle {
 mat-icon {
     display: block;
 }
+
+.timer {
+    color: white;
+}
+
+.time {
+    color: white;
+    min-width: 25px;
+}

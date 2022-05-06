@@ -7,6 +7,7 @@
     </div>
 
     <div class="options">
+        <mat-icon class="delete-icon" [@HideSettings]="playMode ? 'invisible' : 'visible'">delete</mat-icon>
         <abbr [title]='rotateTitle'>
             <mat-icon class="rotate-icon" (click)="this.rotating = !this.rotating" [@HideSettings]="playMode ? 'invisible' : 'visible'">rotate_90_degrees_ccw</mat-icon>
         </abbr>

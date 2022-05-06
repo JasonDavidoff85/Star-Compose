@@ -73,6 +73,10 @@ export class SkyComponent implements OnInit {
     if (this.playMode) {
       this.renderAudio();
     }
+    else {
+      console.log("Stopping audio")
+      this.synth.stop();
+    }
   }
 
   setPlayTime($event: number) {

@@ -113,8 +113,6 @@ export class SynthService {
       this.setTempo(playTime, this.screenWidth);
       Tone.Transport.bpm.value = this.bpm;
       
-
-      
       console.log("playing star:", constellation);
       let connections = constellation.connections;
       let playData2 = [];

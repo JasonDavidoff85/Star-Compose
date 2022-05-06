@@ -19,6 +19,7 @@ import { ConstellationComponent } from './constellation/constellation.component'
 import { ConductorComponent } from './conductor/conductor.component';
 import { MenubarComponent } from './menubar/menubar.component';
 import { FormsModule } from '@angular/forms';
+import { ResizableModule } from "angular-resizable-element";
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { FormsModule } from '@angular/forms';
     MatSidenavModule,
     MatCardModule,
     FormsModule,
-    MatSliderModule
+    MatSliderModule,
+    ResizableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

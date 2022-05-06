@@ -30,8 +30,9 @@ export class SkyComponent implements OnInit {
 
   constructor(private synth: SynthService) { }
 
-  constellations:Constellation[] = [];
-  activeConstellatoions: Constellation[] = [];
+  constellations:Constellation[] = []; // all constelaltions (maybe not needed)
+  activeConstellatoions: Constellation[] = []; // constellations available to user
+  placedConstellations: Constellation[] = []; // constellations on screen
   playTime = 120;
   playMode: boolean = false;
 
@@ -51,8 +52,19 @@ export class SkyComponent implements OnInit {
   }
 
   add(cname: string) {
-    let c = this.constellations.find(elem => elem.name === cname)
-    if (c) {this.activeConstellatoions.push(c)}
+    let c = this.activeConstellatoions.find(elem => elem.name === cname)
+    if (c) {
+      this.activeConstellatoions.splice(this.activeConstellatoions.indexOf(c), 1);
+      this.placedConstellations.push(c)
+    }
+  }
+
+  deleteC(cname: string) {
+    let c = this.placedConstellations.find(elem => elem.name === cname)
+    if (c) {
+      this.placedConstellations.splice(this.placedConstellations.indexOf(c), 1);
+      this.activeConstellatoions.push(c)
+    }
   }
 
   togglePlay($event: boolean) {
@@ -80,7 +92,8 @@ export class SkyComponent implements OnInit {
       }
       conste.stars = stars;
       conste.connections = connections;
-      this.constellations.push(conste);
+      // location data effects this
+      this.activeConstellatoions.push(conste);
     }
   }
 

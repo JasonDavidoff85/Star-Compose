@@ -7,7 +7,7 @@
 
 <mat-sidenav-container class="example-boundary" [hasBackdrop]="false">
     <mat-sidenav #snav [mode]="'over'" position="end">
-        <mat-card *ngFor="let i of constellations" (click)="add(i.name)">
+        <mat-card *ngFor="let i of activeConstellatoions" (click)="add(i.name)">
             <mat-card-content>
                 {{i.name}}
             </mat-card-content>
@@ -19,7 +19,7 @@
     </mat-sidenav> -->
 
     <mat-sidenav-content>
-        <app-constellation #constel *ngFor="let i of activeConstellatoions" [playMode]="playMode" [aConst]="i"></app-constellation>
+        <app-constellation [draggableConstellations]="placedConstellations" #constel *ngFor="let i of placedConstellations" [playMode]="playMode" [aConst]="i" (delete)="deleteC($event)"></app-constellation>
         <app-conductor #conductor [playTime]="playTime"></app-conductor>
     </mat-sidenav-content>
 </mat-sidenav-container>

@@ -47,6 +47,18 @@
     margin-left: 2px;
 }
 
+.resize-grip {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    bottom: 0;
+    right: 0;
+    cursor: nwse-resize;
+    -webkit-clip-path: polygon(100% 0,100% 100%,0 100%);
+    clip-path: polygon(100% 0,100% 100%,0 100%);
+    background: repeating-linear-gradient(135deg,hsla(0,0%,100%,.5),hsla(0,0%,100%,.5) 2px,#000 0,#000 4px);
+}
+
 input[type=range][orient=vertical] {
     writing-mode: bt-lr; /* IE */
     -webkit-appearance: slider-vertical; /* Chromium */

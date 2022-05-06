@@ -61,7 +61,9 @@ export class ConstellationComponent implements OnInit {
   @ViewChildren('connection') connections!: QueryList<ElementRef>;
   @Input() aConst!:Constellation;
   @Input() playMode!: boolean;
+  @Input() draggableConstellations:Constellation[] = [];
   @Output() dataPoints = new EventEmitter<{stars: Star[], connections: Connection[]}>();
+  @Output() delete = new EventEmitter<string>();
 
   rotateValue = 0;
   rotating = false;
@@ -95,6 +97,10 @@ export class ConstellationComponent implements OnInit {
       ));
     });
     return {stars: allStars, connections: allConnections};
+  }
+
+  public deleteConst($cname: string) {
+    this.delete.emit($cname);
   }
 
   public setScreenCoords() {
@@ -166,6 +172,55 @@ export class ConstellationComponent implements OnInit {
       y: Math.floor(pos.y)
     }; // will render the element every 30 pixels horizontally
   }
+
+//   resizing(event: ResizeEvent): void {''
+//   this.draggableConstellations.forEach((element, index) => {
+
+//     // if (this.aConst.constellationID == element.constellationID)
+//     // {
+        
+//        this.style = {
+//          width: `${event.rectangle.width}px`,
+//          height: `${event.rectangle.width}px`
+//        };
+
+//        this.draggableConstellations[index].height = event.rectangle.width as number;
+//        this.draggableConstellations[index].width = event.rectangle.width as number;
+//       console.log("WIDTH: "+this.draggableConstellations[index].height)
+//        let scale = this.elem.nativeElement.offsetWidth/this.size;
+//        let newSize = this.size*scale;
+   
+//        if (newSize > this.minSize && newSize < this.maxSize) {
+//          // Reposition Stars
+//          this.draggableConstellations[index].stars.forEach((element, index) => {
+           
+//             element.x += ((newSize/2) - this.size/2);       // recentering
+//            element.y += ((newSize/2) - this.size/2);
+           
+//            element.x += (element.x-newSize/2)*(scale-1);   // resizing
+//            element.y += (element.y-newSize/2)*(scale-1);
+//          });
+   
+//          // Reposition Connections
+//          this.draggableConstellations[index].connections.forEach((element, index) => {
+//            element.x1 += ((newSize/2) - this.size/2);      // recentering
+//            element.y1 += ((newSize/2) - this.size/2);
+//            element.x2 += ((newSize/2) - this.size/2);
+//            element.y2 += ((newSize/2) - this.size/2);
+   
+//            element.x1 += (element.x1-newSize/2)*(scale-1);  // resizing
+//            element.y1 += (element.y1-newSize/2)*(scale-1);
+//            element.x2 += (element.x2-newSize/2)*(scale-1);
+//            element.y2 += (element.y2-newSize/2)*(scale-1);
+//          });
+   
+//          this.size = newSize;
+//          this.resized = true;
+//        }
+//     // }
+    
+//   })
+// }
 
 
   ngOnInit(): void {

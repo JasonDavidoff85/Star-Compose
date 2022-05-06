@@ -7,5 +7,9 @@ export interface Constellation {
     name: string;
     stars: Star[];
     connections: Connection[];
-    // TODO added: all data surrounding visiblity
+    month: number;
+    nLat: number;
+    sLat: number;
+    left: number;
+    top: number;
 }

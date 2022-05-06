@@ -17,6 +17,7 @@ import { Constellation } from '../_models/constellation.model';
 import { Star } from '../_models/star.model';
 import {SynthService} from '../_services/tone.service';
 import data from './constellations.json'; 
+import { from, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-sky',
@@ -33,8 +34,9 @@ export class SkyComponent implements OnInit {
   constellations:Constellation[] = []; // all constelaltions (maybe not needed)
   activeConstellatoions: Constellation[] = []; // constellations available to user
   placedConstellations: Constellation[] = []; // constellations on screen
-  playTime = 120;
+  playTime = 15;
   playMode: boolean = false;
+  myLat: number = -1;
 
   renderAudio() {
     console.log("playing audio");
@@ -82,8 +84,64 @@ export class SkyComponent implements OnInit {
   setPlayTime($event: number) {
     this.playTime = $event;
   }
+  getLocation_success(pos: any) {
+    console.log(pos.coords.latitude);
+    this.myLat = pos.coords.latitude
+  }
+  getLocation_error(err: any) {
+    console.log(err);
+  }
+
+  //Get time of day to choose background to display
+  getTime() {
+    this.getTime();
+    const date = new Date();
+    let hour = date.getHours();
+
+    let night = document.getElementsByClassName("night")
+    let day = document.getElementsByClassName("day")
+
+    let body = document.getElementsByTagName("body")
+
+
+    if (0 <= hour && hour <= 6)
+    {
+      night[0].setAttribute("style", "visibility:visible;")
+    }
+    else if (6 < hour && hour <= 12)
+    {
+      day[0].setAttribute("style", "visibility:visible;")
+      body[0].setAttribute("style", "background-image: linear-gradient(#9cb8ea, #5f8fe3);")
+    }
+    else if (12 < hour && hour <= 18)
+    {
+      day[0].setAttribute("style", "visibility:visible;")
+      body[0].setAttribute("style", "background-image: linear-gradient(#2F4090, #9284D1);")
+    }
+    else if (18 < hour && hour < 24)
+    {
+      night[0].setAttribute("style", "visibility:visible;")
+      
+    }
+  }
+
+  getLocation() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log("i'm tracking you!");
+        const latitude = position.coords.latitude;
+        this.myLat = latitude
+    },
+    (error) => {
+      if (error.code == error.PERMISSION_DENIED)
+        console.log("You denied support for geolocation :-(")
+    });
+  }
 
   ngOnInit(): void {
+    console.log("my lat", this.myLat)
+    
+    let hour = new Date().getMonth() + 1
+
     for (let i = 0 ; i < data.constellations.length ; i++) {
       let conste: any = data.constellations[i]
       let stars: Star[] = []

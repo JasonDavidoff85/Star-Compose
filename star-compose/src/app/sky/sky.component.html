@@ -13,12 +13,37 @@
             </mat-card-content>
         </mat-card>
     </mat-sidenav>
-
-    <!-- <mat-sidenav #settingMenu [mode]="'over'" position="start">
-        <mat-slider min="5" max="60" step="1" value="1"></mat-slider>
-    </mat-sidenav> -->
-
     <mat-sidenav-content>
+        <div class="night">
+            <div class="background-stars"></div>
+            <div class="twinkling"></div> 
+        </div>
+    
+        <!-- Animation for day -->
+        <div class="day">
+            <div id="background-day">
+                <div class="x1">
+                    <div class="cloud"></div>
+                </div>
+            
+                <div class="x2">
+                    <div class="cloud"></div>
+                </div>
+            
+                <div class="x3">
+                    <div class="cloud"></div>
+                </div>
+            
+                <div class="x4">
+                    <div class="cloud"></div>
+                </div>
+            
+                <div class="x5">
+                    <div class="cloud"></div>
+                </div>
+            </div>
+        </div>
+    
         <app-constellation [draggableConstellations]="placedConstellations" #constel *ngFor="let i of placedConstellations" [playMode]="playMode" [aConst]="i" (delete)="deleteC($event)"></app-constellation>
         <app-conductor #conductor [playTime]="playTime"></app-conductor>
     </mat-sidenav-content>

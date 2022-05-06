@@ -55,7 +55,7 @@
             </div>
         </div>
     
-        <app-constellation [attr.top]="i.top" [attr.left]="i.left" [draggableConstellations]="placedConstellations" #constel *ngFor="let i of placedConstellations" [playMode]="playMode" [aConst]="i" (delete)="deleteC($event)"></app-constellation>
+        <app-constellation class="stars" [attr.top]="i.top" [attr.left]="i.left" [draggableConstellations]="placedConstellations" #constel *ngFor="let i of placedConstellations" [playMode]="playMode" [aConst]="i" (delete)="deleteC($event)"></app-constellation>
         <app-conductor #conductor [playTime]="playTime"></app-conductor>
     </mat-sidenav-content>
 </mat-sidenav-container>

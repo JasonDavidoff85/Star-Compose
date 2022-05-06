@@ -37,6 +37,7 @@ export class SkyComponent implements OnInit {
   placedConstellations: Constellation[] = []; // constellations on screen
   playTime = 15;
   playMode: boolean = false;
+  boolChange = 0;
 
   renderAudio() {
     console.log("playing audio");
@@ -71,8 +72,35 @@ export class SkyComponent implements OnInit {
         this.placedConstellations.push(c)
       }
     }
+    this.boolChange = 1
+  }
 
+  changeStarPosition()
+  {
+    let height =  window.innerHeight - (0.05 * window.innerHeight);
+    let width =  window.innerWidth - (0.2 * window.innerWidth);
     
+    let randHeight = (Math.floor(Math.random() * ( (height -299)-(0.05 * window.innerHeight) ) +(0.05 * window.innerHeight)).toString() + "px");
+    let randWidth = (Math.floor(Math.random() * (width - 299))).toString() + "px";
+    
+    if (height < 300)
+    {
+      randHeight = "0px";
+    }
+    if (width < 300)
+    {
+      randWidth = "0px";
+    }
+    let elem = document.getElementsByClassName("stars")
+    if (elem != null)
+    {
+        if (elem.length > 0)
+        {
+        let str = "position: absolute; top:" +randHeight+ "; left:" +randWidth+ ";"
+        elem[this.placedConstellations.length - 1].setAttribute("style", str)
+        }
+    }
+    this.boolChange = 0;
   }
 
   deleteC(cname: string) {
@@ -189,8 +217,6 @@ export class SkyComponent implements OnInit {
       }
     }
     this.locationConstellations = this.currentConstellations.map(x => Object.assign({}, x))
-    this.activeConstellatoions.sort()
-    this.currentConstellations.sort()
   }
 
   getConstellations() {
@@ -219,6 +245,13 @@ export class SkyComponent implements OnInit {
   ngOnInit(): void {    
     this.getTime();
     this.getLocation();
+  }
+
+  ngAfterViewChecked(): void {
+    if (this.boolChange == 1)
+    {
+      this.changeStarPosition()
+    }
   }
 
 }

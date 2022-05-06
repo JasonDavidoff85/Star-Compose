@@ -9,5 +9,7 @@ export interface Constellation {
     connections: Connection[];
     month: number;
     nLat: number;
-    sLat: number
+    sLat: number;
+    left: number;
+    top: number;
 }

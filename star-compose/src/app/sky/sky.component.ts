@@ -41,10 +41,7 @@ export class SkyComponent implements OnInit {
   renderAudio() {
     console.log("playing audio");
     let constData: {stars: Star[], connections: Connection[]} = {stars: [], connections: []}
-    // console.log("sky got button press");
-    // this.consts.forEach((element, index) => console.log(element.getScreenCoord()));
     this.consts.forEach((element, index) => {
-      // console.log(element.getScreenCoord().stars);
       constData.stars.push(...element.getScreenCoord().stars);
       constData.connections.push(...element.getScreenCoord().connections);
     });
@@ -57,6 +54,10 @@ export class SkyComponent implements OnInit {
     let c = this.activeConstellatoions.find(elem => elem.name === cname)
     if (c) {
       this.activeConstellatoions.splice(this.activeConstellatoions.indexOf(c), 1);
+      c.left = Math.floor(Math.random() * window.innerWidth);
+      c.top = Math.floor(Math.random() * window.innerHeight)
+      console.log("top:", c.top);
+      console.log("left:", c.left);
       this.placedConstellations.push(c)
     }
   }

@@ -65,23 +65,26 @@ export class ConstellationComponent implements OnInit {
   @Output() dataPoints = new EventEmitter<{stars: Star[], connections: Connection[]}>();
   @Output() delete = new EventEmitter<string>();
 
+  // Global Variables
   rotateValue = 0;
   rotating = false;
   rotated = false;
   resized = false;
   size = 300;
   minSize = 300;
-  maxSize = 500;
+  maxSize = 400;
   name = "Constellation";
   gridSize = 50;
 
-  dragTitle = "Drag Constellation";
-  rotateTitle = "Rotate Constellation";
-  resizeTitle = "Resize Constellation";
+   // Icon Default Titles
+   dragTitle = "Drag Constellation";
+   rotateTitle = "Rotate Constellation";
+   resizeTitle = "Resize Constellation";
+   deleteTitle = "Delete Constellation";
   
   constructor(private elem:ElementRef) {}
 
-  public getScreenCoord(): {stars: Star[], connections: Connection[]} { 
+  public getScreenCoord(): {stars: Star[], connections: Connection[]} {
     let allStars: Star[] = [];
     let allConnections: Connection[] = [];
     this.circles.forEach((element, index) => {
@@ -107,55 +110,57 @@ export class ConstellationComponent implements OnInit {
     this.aConst
   }
 
-  setRotate(value: string) {
-    if (!this.resized) {
-      this.rotateValue = +value;
-      this.rotated = true;
-      this.resizeTitle = "Resize Constellation (Disabled)";
-    }
+  setRotate(value: string) {  
+    this.rotateValue = +value;
+    this.rotated = true;      
   }
 
   public style: object = {};
 
   resizing(event: ResizeEvent): void {''
-    if (!this.rotated) {
+    this.draggableConstellations.forEach((element, index) => {
+
       this.style = {
         width: `${event.rectangle.width}px`,
         height: `${event.rectangle.width}px`
       };
-      let scale = this.elem.nativeElement.offsetWidth/this.size;
-      let newSize = this.size*scale;
 
+      this.draggableConstellations[index].height = event.rectangle.width as number;
+      this.draggableConstellations[index].width = event.rectangle.width as number;
+      let scale = this.draggableConstellations[index].width/this.size;
+      let newSize = this.draggableConstellations[index].width;
+
+      console.log(newSize, " > ", this.minSize);
+      console.log(newSize, " < ", this.maxSize);
+  
       if (newSize > this.minSize && newSize < this.maxSize) {
         // Reposition Stars
-        this.aConst.stars.forEach((element, index) => {
+        this.draggableConstellations[index].stars.forEach((element, index) => {           
           element.x += ((newSize/2) - this.size/2);       // recentering
           element.y += ((newSize/2) - this.size/2);
           
           element.x += (element.x-newSize/2)*(scale-1);   // resizing
           element.y += (element.y-newSize/2)*(scale-1);
         });
-
+  
         // Reposition Connections
-        this.aConst.connections.forEach((element, index) => {
+        this.draggableConstellations[index].connections.forEach((element, index) => {
           element.x1 += ((newSize/2) - this.size/2);      // recentering
           element.y1 += ((newSize/2) - this.size/2);
           element.x2 += ((newSize/2) - this.size/2);
           element.y2 += ((newSize/2) - this.size/2);
-
+  
           element.x1 += (element.x1-newSize/2)*(scale-1);  // resizing
           element.y1 += (element.y1-newSize/2)*(scale-1);
           element.x2 += (element.x2-newSize/2)*(scale-1);
           element.y2 += (element.y2-newSize/2)*(scale-1);
         });
-
+  
         this.size = newSize;
         this.resized = true;
-        this.rotateTitle = "Rotate Constellation (Disabled)";
-      }
-    }
+      }    
+    })
   }
-
 
   togglePlayMode($event: boolean) {
     this.playMode = $event;
@@ -166,69 +171,15 @@ export class ConstellationComponent implements OnInit {
     // console.log("SVG Postition: ", this.aConst.leftBound);
     let gridSize = 50;
     return {
-      // x: Math.floor(pos.x / gridSize) * gridSize,
-      // y: Math.floor(pos.y / gridSize) * gridSize
-      x: Math.floor(pos.x),
-      y: Math.floor(pos.y)
+      x: Math.floor(pos.x / gridSize) * gridSize,
+      y: Math.floor(pos.y / gridSize) * gridSize
     }; // will render the element every 30 pixels horizontally
   }
 
-//   resizing(event: ResizeEvent): void {''
-//   this.draggableConstellations.forEach((element, index) => {
-
-//     // if (this.aConst.constellationID == element.constellationID)
-//     // {
-        
-//        this.style = {
-//          width: `${event.rectangle.width}px`,
-//          height: `${event.rectangle.width}px`
-//        };
-
-//        this.draggableConstellations[index].height = event.rectangle.width as number;
-//        this.draggableConstellations[index].width = event.rectangle.width as number;
-//       console.log("WIDTH: "+this.draggableConstellations[index].height)
-//        let scale = this.elem.nativeElement.offsetWidth/this.size;
-//        let newSize = this.size*scale;
-   
-//        if (newSize > this.minSize && newSize < this.maxSize) {
-//          // Reposition Stars
-//          this.draggableConstellations[index].stars.forEach((element, index) => {
-           
-//             element.x += ((newSize/2) - this.size/2);       // recentering
-//            element.y += ((newSize/2) - this.size/2);
-           
-//            element.x += (element.x-newSize/2)*(scale-1);   // resizing
-//            element.y += (element.y-newSize/2)*(scale-1);
-//          });
-   
-//          // Reposition Connections
-//          this.draggableConstellations[index].connections.forEach((element, index) => {
-//            element.x1 += ((newSize/2) - this.size/2);      // recentering
-//            element.y1 += ((newSize/2) - this.size/2);
-//            element.x2 += ((newSize/2) - this.size/2);
-//            element.y2 += ((newSize/2) - this.size/2);
-   
-//            element.x1 += (element.x1-newSize/2)*(scale-1);  // resizing
-//            element.y1 += (element.y1-newSize/2)*(scale-1);
-//            element.x2 += (element.x2-newSize/2)*(scale-1);
-//            element.y2 += (element.y2-newSize/2)*(scale-1);
-//          });
-   
-//          this.size = newSize;
-//          this.resized = true;
-//        }
-//     // }
-    
-//   })
-// }
-
-
   ngOnInit(): void {
+    this.name = this.aConst.name;
   }
 
   ngAfterViewInit() {
-    // console.log("Svg left bound: ", this.border.nativeElement.getAttribute('height'));
-
   }
-
 }

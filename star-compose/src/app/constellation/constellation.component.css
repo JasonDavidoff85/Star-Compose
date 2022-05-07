@@ -10,6 +10,33 @@
     position: absolute;
 }
 
+.box {
+    min-height: 300px;
+    min-width: 300px;
+    max-height: 400px;
+    max-width: 400px;
+}
+
+.outside {
+    position: absolute;
+    display: block;
+    z-index: 5;
+    border: dotted #ccc 2px;
+    cursor: move;
+}
+
+.boundary {
+    border: dotted #ccc 2px;
+    cursor: move;
+}
+
+.inside {
+    position: fixed;
+    /* display: block; */
+    z-index: 3;
+    /* transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1); */
+}
+
 .rotateBar {
     z-index: 6;
 }
@@ -76,11 +103,6 @@ input[type=range][orient=vertical] {
     height: 400;
     padding: 0 5px;
     float: right;
-}
-
-.boundary {
-    border: dotted #ccc 2px;
-    cursor: move;
 }
 
 .example-handle {

@@ -12,3 +12,7 @@ To run, clone the project
 - Change the current working directory to /star-compose
 - type ```npm install```
 - to run: ```ng serve```
+
+## Credits
+Animation for twinkling stars: https://github.com/Carla-Codes/starry-night-css-animation 
+Animation for clouds: https://codepen.io/Mark_Bowley/pen/LYZEBq

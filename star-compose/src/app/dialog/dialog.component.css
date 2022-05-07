@@ -15,6 +15,7 @@
 button {
     width: 35%;
     font-size: x-large;
+    border-radius: 20px;
     background-color: rgba(152, 174, 247, 0.911);
     color: rgba(24, 24, 24, 0.75);
     font-style: bold;

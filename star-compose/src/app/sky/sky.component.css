@@ -12,6 +12,16 @@ app-constellation {
     position: absolute;
 }
 
+.currentConstellations {
+  color: black;
+}
+
+.currConstellationText{
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
 mat-button-toggle {
     background-color: rgba(0, 0, 0, 0.5);
 }
@@ -39,12 +49,12 @@ mat-card {
 
 .background-stars, .twinkling {
     position:absolute;
-    top:5%;
+    top:0;
     left:0;
     right:0;
     bottom:0;
     width:100%;
-    height:95%;
+    height:100%;
     display:block;
 }
 

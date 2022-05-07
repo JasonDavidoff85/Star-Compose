@@ -7,13 +7,24 @@
 
 <mat-sidenav-container class="example-boundary" [hasBackdrop]="false">
     <mat-sidenav #snav [mode]="'over'" position="end">
+
+        <mat-card *ngFor="let i of currentConstellations" (click)="add(i.name)">
+            <mat-card-content>
+                <mat-icon class="currentConstellations">stars</mat-icon>
+                <span class="currConstellationText">{{i.name}}</span>
+            </mat-card-content>
+        </mat-card>
+
         <mat-card *ngFor="let i of activeConstellatoions" (click)="add(i.name)">
             <mat-card-content>
                 {{i.name}}
             </mat-card-content>
         </mat-card>
+
     </mat-sidenav>
     <mat-sidenav-content>
+
+        <!-- Animation for night -->
         <div class="night">
             <div class="background-stars"></div>
             <div class="twinkling"></div> 
@@ -44,7 +55,7 @@
             </div>
         </div>
     
-        <app-constellation [attr.top]="i.top" [attr.left]="i.left" [draggableConstellations]="placedConstellations" #constel *ngFor="let i of placedConstellations" [playMode]="playMode" [aConst]="i" (delete)="deleteC($event)"></app-constellation>
+        <app-constellation class="stars" [attr.top]="i.top" [attr.left]="i.left" [draggableConstellations]="placedConstellations" #constel *ngFor="let i of placedConstellations" [playMode]="playMode" [aConst]="i" (delete)="deleteC($event)"></app-constellation>
         <app-conductor #conductor [playTime]="playTime"></app-conductor>
     </mat-sidenav-content>
 </mat-sidenav-container>

@@ -31,12 +31,13 @@ export class SkyComponent implements OnInit {
 
   constructor(private synth: SynthService) { }
 
-  constellations:Constellation[] = []; // all constelaltions (maybe not needed)
+  currentConstellations: Constellation[] = [];
+  locationConstellations: Constellation[] = []; //constellations in user's location
   activeConstellatoions: Constellation[] = []; // constellations available to user
   placedConstellations: Constellation[] = []; // constellations on screen
   playTime = 15;
   playMode: boolean = false;
-  myLat: number = -1;
+  boolChange = 0;
 
   renderAudio() {
     console.log("playing audio");
@@ -54,19 +55,62 @@ export class SkyComponent implements OnInit {
     let c = this.activeConstellatoions.find(elem => elem.name === cname)
     if (c) {
       this.activeConstellatoions.splice(this.activeConstellatoions.indexOf(c), 1);
-      c.left = Math.floor(Math.random() * window.innerWidth);
-      c.top = Math.floor(Math.random() * window.innerHeight)
-      console.log("top:", c.top);
-      console.log("left:", c.left);
       this.placedConstellations.push(c)
     }
+    else {
+      c = this.currentConstellations.find(elem => elem.name === cname)
+      if (c) {
+        this.currentConstellations.splice(this.currentConstellations.indexOf(c), 1);
+        this.placedConstellations.push(c)
+      }
+    }
+    this.boolChange = 1
+  }
+
+  changeStarPosition()
+  {
+    let height =  window.innerHeight - (0.05 * window.innerHeight);
+    let width =  window.innerWidth - (0.2 * window.innerWidth);
+    
+    let randHeight = (Math.floor(Math.random() * ( (height -299)-(0.05 * window.innerHeight) ) +(0.05 * window.innerHeight)).toString() + "px");
+    let randWidth = (Math.floor(Math.random() * (width - 299))).toString() + "px";
+    
+    if (height < 300)
+    {
+      randHeight = "0px";
+    }
+    if (width < 300)
+    {
+      randWidth = "0px";
+    }
+    let elem = document.getElementsByClassName("stars")
+    if (elem != null)
+    {
+        if (elem.length > 0)
+        {
+        let str = "position: absolute; top:" +randHeight+ "; left:" +randWidth+ ";"
+        elem[this.placedConstellations.length - 1].setAttribute("style", str)
+        }
+    }
+    this.boolChange = 0;
   }
 
   deleteC(cname: string) {
     let c = this.placedConstellations.find(elem => elem.name === cname)
+    let d = this.locationConstellations.find(elem => elem.name === cname)
+    console.log(d)
     if (c) {
-      this.placedConstellations.splice(this.placedConstellations.indexOf(c), 1);
-      this.activeConstellatoions.push(c)
+      if (d) 
+      {
+        this.placedConstellations.splice(this.placedConstellations.indexOf(c), 1);
+        this.currentConstellations.push(c)
+        this.currentConstellations.sort((a,b)=> a.name.localeCompare(b.name));
+      }
+      else {
+        this.placedConstellations.splice(this.placedConstellations.indexOf(c), 1);
+        this.activeConstellatoions.push(c)
+        this.activeConstellatoions.sort((a,b)=> a.name.localeCompare(b.name));
+      }
     }
   }
 
@@ -85,17 +129,9 @@ export class SkyComponent implements OnInit {
   setPlayTime($event: number) {
     this.playTime = $event;
   }
-  getLocation_success(pos: any) {
-    console.log(pos.coords.latitude);
-    this.myLat = pos.coords.latitude
-  }
-  getLocation_error(err: any) {
-    console.log(err);
-  }
 
   //Get time of day to choose background to display
   getTime() {
-    this.getTime();
     const date = new Date();
     let hour = date.getHours();
 
@@ -103,7 +139,6 @@ export class SkyComponent implements OnInit {
     let day = document.getElementsByClassName("day")
 
     let body = document.getElementsByTagName("body")
-
 
     if (0 <= hour && hour <= 6)
     {
@@ -128,25 +163,29 @@ export class SkyComponent implements OnInit {
 
   getLocation() {
     navigator.geolocation.getCurrentPosition((position) => {
-      console.log("i'm tracking you!");
+        console.log("Support for location");
         const latitude = position.coords.latitude;
-        this.myLat = latitude
+        this.getConstellationsLocation(latitude)
     },
     (error) => {
       if (error.code == error.PERMISSION_DENIED)
-        console.log("You denied support for geolocation :-(")
+        console.log("No location services")
+        this.getConstellations()
     });
+
+    
   }
 
-  ngOnInit(): void {
-    console.log("my lat", this.myLat)
-    
-    let hour = new Date().getMonth() + 1
+  getConstellationsLocation(myLat:number) {
+
+    let myDate = new Date();
+    let month = myDate.getMonth() + 1;
 
     for (let i = 0 ; i < data.constellations.length ; i++) {
       let conste: any = data.constellations[i]
       let stars: Star[] = []
       let connections: Connection[] = []
+
       for (let j = 0 ; j < conste.stars.length ; j++) {
         stars.push(new Star(conste.stars[j][0], conste.stars[j][1]) )
       }
@@ -155,8 +194,57 @@ export class SkyComponent implements OnInit {
       }
       conste.stars = stars;
       conste.connections = connections;
-      // location data effects this
-      this.activeConstellatoions.push(conste);
+
+      if (myLat != -1) {
+        if (conste.month == month && conste.nLat > myLat && conste.sLat < myLat) {
+          // location data effects this
+          this.currentConstellations.push(conste)
+        }
+        else {
+          this.activeConstellatoions.push(conste)
+        }  
+      }
+      else {
+        this.activeConstellatoions.push(conste)
+      }
+    }
+    this.locationConstellations = this.currentConstellations.map(x => Object.assign({}, x))
+    this.activeConstellatoions.sort((a,b)=> a.name.localeCompare(b.name));
+  }
+
+  getConstellations() {
+    let myDate = new Date();
+    let month = myDate.getMonth() + 1;
+
+    for (let i = 0 ; i < data.constellations.length ; i++) {
+      let conste: any = data.constellations[i]
+      let stars: Star[] = []
+      let connections: Connection[] = []
+
+      for (let j = 0 ; j < conste.stars.length ; j++) {
+        stars.push(new Star(conste.stars[j][0], conste.stars[j][1]) )
+      }
+      for (let j = 0 ; j < conste.connections.length ; j++) {
+        connections.push(new Connection(conste.connections[j][0], conste.connections[j][1], conste.connections[j][2], conste.connections[j][3]));
+      }
+      conste.stars = stars;
+      conste.connections = connections;
+      
+      this.activeConstellatoions.push(conste)
+      }
+    // this.activeConstellatoions.sort()
+    this.activeConstellatoions.sort((a,b)=> a.name.localeCompare(b.name));
+  }
+
+  ngOnInit(): void {    
+    this.getTime();
+    this.getLocation();
+  }
+
+  ngAfterViewChecked(): void {
+    if (this.boolChange == 1)
+    {
+      this.changeStarPosition()
     }
   }
 

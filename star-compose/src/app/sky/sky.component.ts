@@ -55,20 +55,12 @@ export class SkyComponent implements OnInit {
     let c = this.activeConstellatoions.find(elem => elem.name === cname)
     if (c) {
       this.activeConstellatoions.splice(this.activeConstellatoions.indexOf(c), 1);
-      c.left = Math.floor(Math.random() * window.innerWidth);
-      c.top = Math.floor(Math.random() * window.innerHeight)
-      console.log("top:", c.top);
-      console.log("left:", c.left);
       this.placedConstellations.push(c)
     }
     else {
       c = this.currentConstellations.find(elem => elem.name === cname)
       if (c) {
         this.currentConstellations.splice(this.currentConstellations.indexOf(c), 1);
-        c.left = Math.floor(Math.random() * window.innerWidth);
-        c.top = Math.floor(Math.random() * window.innerHeight)
-        console.log("top:", c.top);
-        console.log("left:", c.left);
         this.placedConstellations.push(c)
       }
     }
@@ -112,10 +104,12 @@ export class SkyComponent implements OnInit {
       {
         this.placedConstellations.splice(this.placedConstellations.indexOf(c), 1);
         this.currentConstellations.push(c)
+        this.currentConstellations.sort((a,b)=> a.name.localeCompare(b.name));
       }
       else {
         this.placedConstellations.splice(this.placedConstellations.indexOf(c), 1);
         this.activeConstellatoions.push(c)
+        this.activeConstellatoions.sort((a,b)=> a.name.localeCompare(b.name));
       }
     }
   }
@@ -201,10 +195,8 @@ export class SkyComponent implements OnInit {
       conste.stars = stars;
       conste.connections = connections;
 
-      if (myLat != -1)
-      {
-        if (conste.month == month && conste.nLat > myLat && conste.sLat < myLat)
-        {
+      if (myLat != -1) {
+        if (conste.month == month && conste.nLat > myLat && conste.sLat < myLat) {
           // location data effects this
           this.currentConstellations.push(conste)
         }
@@ -217,6 +209,7 @@ export class SkyComponent implements OnInit {
       }
     }
     this.locationConstellations = this.currentConstellations.map(x => Object.assign({}, x))
+    this.activeConstellatoions.sort((a,b)=> a.name.localeCompare(b.name));
   }
 
   getConstellations() {
@@ -239,7 +232,8 @@ export class SkyComponent implements OnInit {
       
       this.activeConstellatoions.push(conste)
       }
-    this.activeConstellatoions.sort()
+    // this.activeConstellatoions.sort()
+    this.activeConstellatoions.sort((a,b)=> a.name.localeCompare(b.name));
   }
 
   ngOnInit(): void {    

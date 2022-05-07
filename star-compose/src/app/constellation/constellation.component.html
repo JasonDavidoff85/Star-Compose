@@ -12,6 +12,9 @@
             <abbr [title]='deleteTitle'>
                 <mat-icon class="delete-icon" (click)="deleteConst(aConst.name)" [@HideSettings]="playMode ? 'invisible' : 'visible'">delete</mat-icon>
             </abbr>
+            <abbr [title]='dragTitle'>
+                <mat-icon class="drag-icon" cdkDragHandle [@HideSettings]="playMode ? 'invisible' : 'visible'">open_with</mat-icon>
+            </abbr>
             <abbr [title]='rotateTitle'>
                 <mat-icon class="rotate-icon" (click)="this.rotating = !this.rotating" [@HideSettings]="playMode ? 'invisible' : 'visible'">rotate_90_degrees_ccw</mat-icon>
             </abbr>

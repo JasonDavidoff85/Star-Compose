@@ -1,4 +1,4 @@
-<div class="star-box" [attr.top]="aConst.top" [attr.left]="aConst.left" cdkDragBoundary=".example-boundary" [cdkDragConstrainPosition]="computeDragRenderPos" mwlResizable [resizeSnapGrid]="{left: 30, right: 30}" cdkDrag>
+<div class="star-box" [cdkDragDisabled]="playMode" [attr.top]="aConst.top" [attr.left]="aConst.left" cdkDragBoundary=".example-boundary" [cdkDragConstrainPosition]="computeDragRenderPos" mwlResizable [resizeSnapGrid]="{left: 30, right: 30}" cdkDrag>
     <p class="constellation-name" [@HideSettings]="playMode ? 'invisible' : 'visible'">{{aConst.name}}</p>
     <div class="boundary" [@HideBorder]="playMode ? 'invisible' : 'visible'" cdkDragHandle>
         <svg [attr.height]="aConst.height" [attr.width]="aConst.width" [ngStyle]="{'transform':'rotate(' + rotateValue + 'deg)'}">

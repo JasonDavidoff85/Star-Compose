@@ -14,6 +14,8 @@ export class MenubarComponent implements OnInit {
   @Input() locationConstellations:Constellation[] = [];
   @Output() renderAudio = new EventEmitter<boolean>();
   @Output() onSelected = new EventEmitter<any>();
+  @Output() time = new EventEmitter<number>();
+  timeTemp: number = 30;
   playStatus = "Play"
   helpButton = true;
 
@@ -23,14 +25,14 @@ export class MenubarComponent implements OnInit {
     if (this.playStatus === "Play") {
       // chnage button to stop and start audio
       this.playStatus = "Stop";
-      this.buttonPressed.emit(true);
       this.renderAudio.emit(true);
+      this.buttonPressed.emit(true);
       this.hideIcons("hidden")
     }
     else if (this.playStatus === "Stop") {
       this.playStatus = "Play"
-      this.buttonPressed.emit(false);
       this.renderAudio.emit(false);
+      this.buttonPressed.emit(false);
       this.hideIcons("visible")
     }
   }
@@ -60,6 +62,12 @@ export class MenubarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  changeValue(event: any) {
+    this.timeTemp = event.value;
+    console.log("Emitting value: ", event.value)
+    this.time.emit(event.value);
   }
 
   

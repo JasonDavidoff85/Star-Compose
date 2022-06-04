@@ -11,9 +11,6 @@
         <abbr [title]='rotateTitle'>
             <mat-icon class="rotate-icon" (click)="this.rotating = !this.rotating" [@HideSettings]="playMode ? 'invisible' : 'visible'">rotate_90_degrees_ccw</mat-icon>
         </abbr>
-        <abbr [title]='resizeTitle'>
-            <div *ngIf="!rotated" class="resize-grip" mwlResizeHandle [resizeEdges]="{ bottom: true, right: true }" [@HideSettings]="playMode ? 'invisible' : 'visible'"></div>
-        </abbr>
         <input #rotation *ngIf="this.rotating && !this.resized" type="range" orient="vertical" class="custom-range  my-2 rotateBar" min="0" max="360" [(ngModel)]="rotateValue" [value]='rotateValue' (change)="setRotate(rotation.value)" [@HideSettings]="playMode ? 'invisible' : 'visible'">
     </div>
 
